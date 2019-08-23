@@ -12,7 +12,7 @@ logging.basicConfig(level=logging.INFO)
 use_cuda = torch.cuda.is_available()
 device = torch.device('cuda:0' if use_cuda else 'cpu')
 
-path_to_wsc = '../../data/wsc_data/enhanced.tense.random.role.syn.voice.tsv'
+path_to_wsc = '../../data/wsc_data/enhanced.tense.random.role.syn.voice.scramble.freqnoun.tsv'
 wsc_datapoints = pd.read_csv(path_to_wsc, sep='\t')
 
 #wsc_file = open(path_to_wsc, 'r')
@@ -57,11 +57,11 @@ for q_index, dp_split in wsc_datapoints.iterrows():
 
         correct_answer = dp_split['correct_answer'].strip()
         pronoun = dp_split['pron'].strip()
-        pronoun_index_orig =  dp_split['pron_index_rand']
+        pronoun_index_orig =  dp_split['pron_index_scrambled']
 
         answer_A = dp_split['answer_a'].strip()
         answer_B = dp_split['answer_b'].strip()
-        text = dp_split['text_random'].strip()
+        text = dp_split['text_scrambled'].strip()
 
         if  pronoun_index_orig != '-' and  pronoun_index_orig:
             counter = counter + 1

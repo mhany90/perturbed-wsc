@@ -4,7 +4,7 @@ from copy import deepcopy
 from random import shuffle, sample
 import math
 import pandas as pd
-
+import re
 
 # OPTIONAL: if you want to have more information on what's happening, activate the logger as follows
 import logging
@@ -49,7 +49,7 @@ def insert_probable(text, proportion, pronoun_index):
     for _ in range(num_insertions):
         #sample index
         insert_index = sample(range(text_no_words), 1)[0]
-        sampled_word = sample(nouns_list, 1)[0]
+        sampled_word = sample(nouns_list, 1)[0].replace('\n', '')
         if insert_index <= pronoun_index:
             pronoun_index_with_word = pronoun_index_with_word + 1
         text_with_word.insert(insert_index, sampled_word)
