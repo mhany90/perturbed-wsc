@@ -1,0 +1,2135 @@
+collection	schema	text	txt1	pron	txt2	quote	quote1	pron	quote2	answers	answer	correctAnswer	source
+			"
+The city councilmen refused the demonstrators a permit because"	"they"	"feared violence. 
+"			"they"	"feared violence"		"The city councilmen"	"A"	"(Winograd 1972)"
+											"The demonstrators"	
+			"
+The city councilmen refused the demonstrators a permit because"	"they"	"advocated violence. 
+"			"they"	"advocated violence"		"The city councilmen"	"B"	"(Winograd 1972)"
+											"The demonstrators"	
+			"
+The trophy doesn't fit into the brown suitcase because 
+"	"it"	"is too large.
+"			"it"	"is too large"		"the trophy"	"A."	"Hector Levesque"
+											"the suitcase"	
+			"
+The trophy doesn't fit into the brown suitcase because 
+"	"it"	"is too small.
+"			"it"	"is too small"		"the trophy"	"B."	"Hector Levesque"
+											"the suitcase"	
+			"
+Joan made sure to thank Susan for all the help 
+"	"she"	"had recieved.
+"			"she"	"had received"		"Joan"	"A."	"Hector Levesque"
+											"Susan"	
+			"
+Joan made sure to thank Susan for all the help 
+"	"she"	"had given.
+"			"she"	"had given"		"Joan"	"B."	"Hector Levesque"
+											"Susan"	
+			"
+Paul tried to call George on the phone, but 
+"	"he"	"wasn't successful.
+"			"he"	"wasn't successful."		"Paul"	"A."	"Hector Levesque"
+											"George"	
+			"
+Paul tried to call George on the phone, but 
+"	"he"	"wasn't available.
+"			"he"	"wasn't available."		"Paul"	"B."	"Hector Levesque"
+											"George"	
+			"
+The lawyer asked the witness a question, but 
+"	"he"	"
+was reluctant to repeat it.
+"			"he"	"was reluctant"		"the lawyer"	"A."	"Hector Levesque"
+											"the witness"	
+			"
+The lawyer asked the witness a question, but 
+"	"he"	"
+was reluctant to answer it.
+"			"he"	"was reluctant"		"the lawyer"	"B."	"Hector Levesque"
+											"the witness"	
+			"
+The delivery truck zoomed by the school bus because 
+"	"it"	"was going so fast.
+"			"it"	"was going so fast."		"the delivery truck"	"A."	"Hector Levesque"
+											"the school bus"	
+			"
+The delivery truck zoomed by the school bus because 
+"	"it"	"was going so slow.
+"			"it"	"was going so slow."		"the delivery truck"	"B."	"Hector Levesque"
+											"the school bus"	
+			"
+Frank felt vindicated when his longtime rival Bill revealed that
+"	"he"	"
+was the winner of the competition."			"he"	"was the winner"		"Frank"	"A."	"Hector Levesque"
+											"Bill"	
+			"
+Frank felt crushed when his longtime rival Bill revealed that
+"	"he"	"
+was the winner of the competition."			"he"	"was the winner"		"Frank"	"B."	"Hector Levesque"
+											"Bill"	
+			"
+The man couldn't lift his son because 
+"	"he"	"was so weak.
+"			"he"	"was so weak."		"The man"	"A."	"Hector Levesque"
+											"The son"	
+			"
+The man couldn't lift his son because 
+"	"he"	"was so heavy.
+"			"he"	"was so heavy."		"The man"	"B."	"Hector Levesque"
+											"The son"	
+			"
+The large ball crashed right through the table because 
+"	"it"	"
+was made of steel.
+"			"it"	"was made of steel."		"The large ball"	"A."	"Hector Levesque"
+											"The table"	
+			"
+The large ball crashed right through the table because 
+"	"it"	"
+was made of styrofoam.
+"			"it"	"was made of styrofoam."		"The large ball"	"B."	"Hector Levesque"
+											"The table"	
+			"
+John couldn't see the stage with Billy in front of him because 
+"	"he"	"is so short.
+"			"he"	"is so short."		"John"	"A."	"Hector Levesque"
+											"Billy"	
+			"
+John couldn't see the stage with Billy in front of him because 
+"	"he"	"is so tall.
+"			"he"	"is so tall."		"John"	"B."	"Hector Levesque"
+											"Billy"	
+			"
+Tom threw his schoolbag down to Ray after 
+"	"he"	"
+reached the top of the stairs. 
+"			"he"	"
+reached the top of the stairs. 
+"		"Tom"	"A"	"Hector Levesque"
+											"Ray"	
+			"
+Tom threw his schoolbag down to Ray after 
+"	"he"	"
+reached the bottom of the stairs. 
+"			"he"	"
+reached the bottom of the stairs. 
+"		"Tom"	"B"	"Hector Levesque"
+											"Ray"	
+			"
+Although they ran at about the same speed, Sue beat Sally because 
+"	"she"	"
+had such a good start.
+"			"she"	"
+had such a good start.
+"		"Sue"	"A"	"Hector Levesque"
+											"Sally"	
+			"
+Although they ran at about the same speed, Sue beat Sally because 
+"	"she"	"
+had such a bad start.
+"			"she"	"
+had such a bad start.
+"		"Sue"	"B"	"Hector Levesque"
+											"Sally"	
+			"
+The sculpture rolled off the shelf because 
+"	"it"	"
+wasn't anchored.
+"			"it"	"
+wasn't anchored.
+"		"The sculpture"	"A"	"Hector Levesque"
+											"The shelf"	
+			"
+The sculpture rolled off the shelf because 
+"	"it"	"
+wasn't level.
+"			"it"	"
+wasn't level.
+"		"The sculpture"	"B"	"Hector Levesque"
+											"The shelf"	
+			"
+Sam's drawing was hung just above Tina's and 
+"	"it"	"
+did look much better with another one below it.
+"			"it"	"
+did look much better
+"		"Sam's drawing"	"A"	"Hector Levesque"
+											"Tina's drawing"	
+			"
+Sam's drawing was hung just above Tina's and 
+"	"it"	"
+did look much better with another one above it.
+"			"it"	"
+did look much better
+"		"Sam's drawing"	"B"	"Hector Levesque"
+											"Tina's drawing"	
+			"
+Anna did a lot better than her good friend Lucy on the test because 
+"	"she"	"
+had studied so hard. 
+"			"she"	"
+had studied so hard. 
+"		"Anna"	"A"	"Hector Levesque"
+											"Lucy"	
+			"
+Anna did a lot worse than her good friend Lucy on the test because 
+"	"she"	"
+had studied so hard. 
+"			"she"	"
+had studied so hard. 
+"		"Anna"	"B"	"Hector Levesque"
+											"Lucy"	
+			"
+The firemen arrived after the police because 
+"	"they"	"
+were coming from so far away. 
+"			"they"	"
+were coming from so far away. 
+"		"The firemen"	"A"	"Hector Levesque"
+											"The police"	
+			"
+The firemen arrived before the police because 
+"	"they"	"
+were coming from so far away. 
+"			"they"	"
+were coming from so far away. 
+"		"The firemen"	"B"	"Hector Levesque"
+											"The police"	
+			"
+Frank was upset with Tom because the toaster 
+"	"he"	"
+had bought from him didn't work.
+"			"he"	"
+had bought
+"		"Frank"	"A"	"Hector Levesque"
+											"Tom"	
+			"
+Frank was upset with Tom because the toaster 
+"	"he"	"
+had sold him didn't work.
+"			"he"	"
+had sold
+"		"Frank"	"B"	"Hector Levesque"
+											"Tom"	
+			"
+Jim yelled at Kevin because 
+"	"he"	"was so upset.
+"			"he"	"was so upset.
+"		"Jim"	"A"	"Hector Levesque"
+											"Kevin"	
+			"
+Jim comforted Kevin because 
+"	"he"	"was so upset.
+"			"he"	"was so upset.
+"		"Jim"	"B"	"Hector Levesque"
+											"Kevin"	
+			"
+The sack of potatoes had been placed above
+the bag of flour, so 
+"	"it"	"
+had to be moved first.  
+"			"it"	"
+had to be moved first.  
+"		"The sack of potatoes"	"A"	"Hector Levesque"
+											"The bag of flour"	
+			"
+The sack of potatoes had been placed below
+the bag of flour, so 
+"	"it"	"
+had to be moved first.  
+"			"it"	"
+had to be moved first.  
+"		"The sack of potatoes"	"B"	"Hector Levesque"
+											"The bag of flour"	
+			"
+Pete envies Martin although
+"	"he"	"
+is very successful.
+"			"he"	"
+is very successful.
+"		"Pete"	"A"	"Ernest Davis"
+											"Martin"	
+			"
+Pete envies Martin because
+"	"he"	"
+is very successful.
+"			"he"	"
+is very successful.
+"		"Pete"	"B"	"Ernest Davis"
+											"Martin"	
+			"
+The older students were bullying the younger ones, so we punished 
+"	"them"	"."		"
+we punished
+"	"them"			"The older students"	"A"	"Ernest Davis"
+											"The younger students"	
+			"
+The older students were bullying the younger ones, so we rescued
+"	"them"	"."		"
+we rescued
+"	"them"			"The older students"	"B"	"Ernest Davis"
+											"The younger students"	
+			"
+I poured water from the bottle into the cup until 
+"	"it"	"was empty.
+"			"it"	"was empty
+"		"the bottle"	"A"	"Ernest Davis"
+											"the cup"	
+			"
+I poured water from the bottle into the cup until 
+"	"it"	"was full.
+"			"it"	"was full
+"		"the bottle"	"B"	"Ernest Davis"
+											"the cup"	
+			"
+Susan knows all about Ann's personal problems because 
+"	"she"	"is nosy.
+"			"she"	"is nosy
+"		"Susan"	"A"	"Ernest Davis"
+											"Ann"	
+			"
+Susan knows all about Ann's personal problems because 
+"	"she"	"is indiscreet.
+"			"she"	"is indiscreet
+"		"Susan"	"B"	"Ernest Davis"
+											"Ann"	
+			"
+Sid explained his theory to Mark but 
+"	"he"	"
+couldn't convince him.
+"			"he"	"
+couldn't convince him.
+"		"Sid"	"A"	"Ernest Davis"
+											"Mark"	
+			"
+Sid explained his theory to Mark but 
+"	"he"	"
+couldn't understand him.
+"			"he"	"
+couldn't understand him.
+"		"Sid"	"B"	"Ernest Davis"
+											"Mark"	
+			"
+Susan knew that Ann's son had been in a car accident, so
+"	"she"	"
+told her about it.
+"			"she"	"told
+"		"Susan"	"A"	"Ernest Davis"
+											"Ann"	
+			"
+Susan knew that Ann's son had been in a car accident, because
+"	"she"	"
+told her about it.
+"			"she"	"told
+"		"Susan"	"B"	"Ernest Davis"
+											"Ann"	
+			"
+Joe's uncle can still beat him at tennis, even though 
+"	"he"	"
+is 30 years younger.
+"			"he"	"
+is 30 years younger.
+"		"Joe"	"A"	"Ernest Davis"
+											"Joe's uncle"	
+			"
+Joe's uncle can still beat him at tennis, even though 
+"	"he"	"
+is 30 years older.
+"			"he"	"
+is 30 years older.
+"		"Joe"	"B"	"Ernest Davis"
+											"Joe's uncle"	
+			"
+The painting in Mark's living room shows an oak tree. 
+"	"It"	"
+is to the right of the bookcase.
+"			"it"	"is to the right
+"		"The painting"	"A"	"Ernest Davis"
+											"The oak tree"	
+			"
+The painting in Mark's living room shows an oak tree. 
+"	"It"	"
+is to the right of a house.
+"			"it"	"is to the right
+"		"The painting"	"B"	"Ernest Davis"
+											"The oak tree"	
+			"
+There is a gap in the wall. You can see the garden through 
+"	"it"	"."		"through 
+"	"it"			"The gap"	"A"	"Ernest Davis"
+											"The wall"	
+			"
+There is a gap in the wall. You can see the garden behind
+"	"it"	"."		"behind
+"	"it"			"The gap"	"B"	"Ernest Davis"
+											"The wall"	
+			"
+The drain is clogged with hair. 
+"	"It"	"
+has to be cleaned.
+"			"It"	"
+has to be cleaned.
+"		"The drain"	"A"	"Ernest Davis"
+											"The hair"	
+			"
+The drain is clogged with hair. 
+"	"It"	"
+has to be removed.
+"			"It"	"
+has to be removed.
+"		"The drain"	"B"	"Ernest Davis"
+											"The hair"	
+			"
+My meeting started at 4:00 and I needed to catch the train at 4:30, 
+so there wasn't much time. Luckily, 
+"	"it"	"
+was short, so it worked out.
+"			"it"	"was short
+"		"The meeting"	"A"	"Ernest Davis"
+											"The train"	
+			"
+My meeting started at 4:00 and I needed to catch the train at 4:30, 
+so there wasn't much time. Luckily, 
+"	"it"	"
+was delayed, so it worked out.
+"			"it"	"was delayed
+"		"The meeting"	"B"	"Ernest Davis"
+											"The train"	
+			"
+There is a pillar between me and the stage, and I can't see around
+"	"it"	"."		"see around
+"	"it"			"The pillar"	"A"	"Ernest Davis"
+											"The stage"	
+			"
+There is a pillar between me and the stage, and I can't see 
+"	"it"	"."		"see 
+"	"it"			"The pillar"	"B"	"Ernest Davis"
+											"The stage"	
+			"
+They broadcast an announcement, but a subway came into the 
+station and I couldn't hear
+"	"it"	"."		"hear
+"	"it"			"The announcement"	"A"	"Ernest Davis"
+											"The subway"	
+			"
+They broadcast an announcement, but a subway came into the 
+station and I couldn't hear over
+"	"it"	"."		"hear over
+"	"it"			"The announcement"	"B"	"Ernest Davis"
+											"The subway"	
+			"
+In the middle of the outdoor concert, the rain started falling, but
+"	"it"	"
+continued until 10.  
+"			"it"	"continued
+"		"The concert"	"A"	"Ernest Davis"
+											"The rain"	
+			"
+In the middle of the outdoor concert, the rain started falling, and
+"	"it"	"
+continued until 10.  
+"			"it"	"continued
+"		"The concert"	"B"	"Ernest Davis"
+											"The rain"	
+			"
+I used an old rag to clean the knife, and then I put 
+"	"it"	"
+in the trash.
+"		"put
+"	"it"	"
+in the trash.
+"		"The rag"	"A"	"Ernest Davis"
+											"The knife"	
+			"
+I used an old rag to clean the knife, and then I put 
+"	"it"	"
+in the drawer.
+"		"put
+"	"it"	"
+in the drawer.
+"		"The rag"	"B"	"Ernest Davis"
+											"The knife"	
+			"
+Ann asked Mary what time the library closes, because
+"	"she"	"
+had forgotten.
+"			"she"	"
+had forgotten.
+"		"Ann"	"A"	"Ernest Davis"
+											"Mary"	
+			"
+Ann asked Mary what time the library closes, but
+"	"she"	"
+had forgotten.
+"			"she"	"
+had forgotten.
+"		"Ann"	"B"	"Ernest Davis"
+											"Mary"	
+			"
+I took the water bottle out of the backpack so that 
+"	"it"	"would be handy.
+"			"it"	"would be handy
+"		"The water bottle"	"A"	"Ernest Davis"
+											"The backpack"	
+			"
+I took the water bottle out of the backpack so that 
+"	"it"	"would be lighter.
+"			"it"	"would be lighter
+"		"The water bottle"	"B"	"Ernest Davis"
+											"The backpack"	
+			"
+I couldn't put the pot on the shelf because 
+"	"it"	"
+was too tall.
+"			"it"	"
+was too tall.
+"		"The pot"	"A"	"Ernest Davis"
+											"The shelf"	
+			"
+I couldn't put the pot on the shelf because 
+"	"it"	"
+was too high.
+"			"it"	"
+was too high.
+"		"The pot"	"B"	"Ernest Davis"
+											"The shelf"	
+			"
+I'm sure that my map will show this building; 
+"	"it"	"
+is very good.
+"			"it"	"is very good
+"		"The map"	"A"	"Ernest Davis"
+											"The building"	
+			"
+I'm sure that my map will show this building; 
+"	"it"	"
+is very famous.
+"			"it"	"is very famous
+"		"The map"	"B"	"Ernest Davis"
+											"The building"	
+			"
+Bob paid for Charlie's college education. 
+"	"He"	"is very generous.
+"			"He"	"is very generous.
+"		"Bob"	"A."	"Ernest Davis"
+											"Charlie"	
+			"
+Bob paid for Charlie's college education. 
+"	"He"	"is very grateful.
+"			"He"	"is very grateful.
+"		"Bob"	"B."	"Ernest Davis"
+											"Charlie"	
+			"
+Bob paid for Charlie's college education, but now Charlie acts as though
+it never happened. 
+"	"He"	"
+is very hurt.
+"			"He"	"
+is very hurt.
+"		"Bob"	"A."	"Ernest Davis"
+											"Charlie"	
+			"
+Bob paid for Charlie's college education, but now Charlie acts as though
+it never happened. 
+"	"He"	"
+is very ungrateful.
+"			"He"	"
+is very ungrateful.
+"		"Bob"	"B."	"Ernest Davis"
+											"Charlie"	
+			"
+Bob was playing cards with Adam and was way ahead. If Adam hadn't had a
+sudden run of good luck, 
+"	"he"	"would have won.
+"			"he"	"would have won.
+"		"Bob"	"A"	"Ernest Davis"
+											"Adam"	
+			"
+Bob was playing cards with Adam and was way ahead. If Adam hadn't had a
+sudden run of good luck, 
+"	"he"	"would have lost.
+"			"he"	"would have lost.
+"		"Bob"	"B"	"Ernest Davis"
+											"Adam"	
+			"
+Adam can't leave work here until Bob arrives to replace him. If Bob had 
+left home for work on time, 
+"	"he"	"
+would be gone by this time.
+"			"he"	"
+would be gone
+"		"Adam"	"A"	"Ernest Davis"
+											"Bob"	
+			"
+Adam can't leave work here until Bob arrives to replace him. If Bob had 
+left home for work on time, 
+"	"he"	"
+would be here by this time.
+"			"he"	"
+would be here
+"		"Adam"	"B"	"Ernest Davis"
+											"Bob"	
+			"
+If the con artist has succeeded in fooling Sam, 
+"	"he"	"
+would have gotten a lot of money.  
+"			"he"	"
+would have gotten a lot of money.  
+"		"The con artist"	"A"	"Ernest Davis"
+											"Sam"	
+			"
+If the con artist has succeeded in fooling Sam, 
+"	"he"	"
+would have lost a lot of money.  
+"			"he"	"
+would have lost a lot of money.  
+"		"The con artist"	"B"	"Ernest Davis"
+											"Sam"	
+			"
+It was a summer afternoon, and the dog was sitting in the middle of the
+lawn. After a while, it got up and moved to a spot under the tree, 
+because 
+"	"it"	"
+was hot."			"it"	"was hot
+"		"The dog"	"A"	"Ernest Davis"
+											"The spot under the tree"	
+			"
+It was a summer afternoon, and the dog was sitting in the middle of the
+lawn. After a while, it got up and moved to a spot under the tree, 
+because 
+"	"it"	"
+was cooler."			"it"	"was cooler
+"		"The dog"	"B"	"Ernest Davis"
+											"The spot under the tree"	
+			"
+The cat was lying by the mouse hole waiting for the mouse, but 
+"	"it"	"
+was too impatient.
+"			"it"	"
+was too impatient.
+"		"The cat"	"A"	"Ernest Davis"
+											"The mouse"	
+			"
+The cat was lying by the mouse hole waiting for the mouse, but 
+"	"it"	"
+was too cautious.
+"			"it"	"
+was too cautious.
+"		"The cat"	"B"	"Ernest Davis"
+											"The mouse"	
+			"
+Anne gave birth to a daughter last month. 
+"	"She"	"
+is a very charming woman.
+"			"She"	"
+is a very charming woman.
+"		"Anne"	"A"	"Ernest Davis"
+											"Anne's daughter"	
+			"
+Anne gave birth to a daughter last month. 
+"	"She"	"
+is a very charming baby. 
+"			"She"	"
+is a very charming baby.
+"		"Anne"	"B"	"Ernest Davis"
+											"Anne's daughter"	
+			"
+Alice tried frantically to stop her daughter from chatting at
+the party, leaving us to wonder why 
+"	"she"	"
+was behaving so strangely.
+"			"she"	"
+was behaving so strangely.
+"		"Alice"	"A"	"Ernest Davis"
+											"Alice's daughter"	
+			"
+Alice tried frantically to stop her daughter from barking at
+the party, leaving us to wonder why 
+"	"she"	"
+was behaving so strangely.
+"			"she"	"
+was behaving so strangely.
+"		"Alice"	"B"	"Ernest Davis"
+											"Alice's daughter"	
+			"
+I saw Jim yelling at some guy in a military uniform with a huge red 
+beard. I don't know why 
+"	"he"	"
+was, but he looked very unhappy.
+"		"
+why
+"	"he"	"
+was
+"		"Jim"	"A"	"Ernest Davis"
+											"the guy in uniform"	
+			"
+I saw Jim yelling at some guy in a military uniform with a huge red 
+beard. I don't know who 
+"	"he"	"
+was, but he looked very unhappy.
+"		"
+who
+"	"he"	"
+was
+"		"Jim"	"B"	"Ernest Davis"
+											"the guy in uniform"	
+			"
+The fish ate the worm. 
+"	"It"	"
+was hungry.
+"			"It"	"
+was hungry.
+"		"The fish"	"A"	"Ernest Davis"
+											"The worm"	
+			"
+The fish ate the worm. 
+"	"It"	"
+was tasty.
+"			"It"	"
+was tasty.
+"		"The fish"	"B"	"Ernest Davis"
+											"The worm"	
+			"
+I was trying to open the lock with the key, but someone had filled the 
+keyhole with chewing gum, and I couldn't get 
+"	"it"	"in.
+"		"I couldn't get
+"	"it"	"in.
+"		"The key"	"A"	"Ernest Davis"
+											"The chewing gum"	
+			"
+I was trying to open the lock with the key, but someone had filled the 
+keyhole with chewing gum, and I couldn't get 
+"	"it"	"out.
+"		"I couldn't get
+"	"it"	"out.
+"		"The key"	"B"	"Ernest Davis"
+											"The chewing gum"	
+			"
+The dog chased the cat, which ran up a tree. 
+"	"It"	"waited at the bottom.
+"			"It"	"waited 
+"		"The dog"	"A"	"Ernest Davis"
+											"The cat"	
+			"
+The dog chased the cat, which ran up a tree. 
+"	"It"	"waited at the top.
+"			"It"	"waited 
+"		"The dog"	"B"	"Ernest Davis"
+											"The cat"	
+			"
+In the storm, the tree fell down and crashed through the roof of my 
+house. Now, I have to get 
+"	"it"	"
+removed.
+"		"get
+"	"it"	"
+removed.
+"		"The tree"	"A"	"Ernest Davis"
+											"The roof"	
+			"
+In the storm, the tree fell down and crashed through the roof of my 
+house. Now, I have to get 
+"	"it"	"
+repaired.
+"		"get
+"	"it"	"
+repaired.
+"		"The tree"	"B"	"Ernest Davis"
+											"The roof"	
+			"
+The customer walked into the bank and stabbed one of the tellers. 
+"	"He"	"
+was immediately taken to the police station.
+"			"He"	"was immediately taken
+"		"The customer"	"A."	"Ernest Davis"
+											"The teller"	
+			"
+The customer walked into the bank and stabbed one of the tellers. 
+"	"He"	"
+was immediately taken to the hospital.
+"			"He"	"was immediately taken
+"		"The customer"	"B."	"Ernest Davis"
+											"The teller"	
+			"
+John was doing research in the library when he heard a man humming and 
+whistling. 
+"	"He"	"
+was very annoyed.
+"			"He"	"
+was very annoyed.
+"		"John"	"A"	"Ernest Davis"
+											"The man"	
+			"
+John was doing research in the library when he heard a man humming and 
+whistling. 
+"	"He"	"
+was very annoying.
+"			"He"	"
+was very annoying.
+"		"John"	"B"	"Ernest Davis"
+											"The man"	
+			"
+John was jogging through the park when he saw a man juggling watermelons.
+"	"He"	"
+was very impressed.
+"			"He"	"
+was very impressed.
+"		"John"	"A"	"Ernest Davis"
+											"The juggler"	
+			"
+John was jogging through the park when he saw a man juggling watermelons.
+"	"He"	"
+was very impressive.
+"			"He"	"
+was very impressive.
+"		"John"	"B"	"Ernest Davis"
+											"The juggler"	
+			"
+Bob collapsed on the sidewalk. Soon he saw Carl coming to help. 
+"	"He"	"was very ill.
+"			"He"	"
+was very ill
+"		"Bob"	"A"	"Ernest Davis"
+											"Carl"	
+			"
+Bob collapsed on the sidewalk. Soon he saw Carl coming to help. 
+"	"He"	"was very concerned.
+"			"He"	"
+was very concerned
+"		"Bob"	"B"	"Ernest Davis"
+											"Carl"	
+			"
+Sam and Amy are passionately in love, but Amy's parents are unhappy
+about it, because 
+"	"they"	"
+are fifteen.
+"			"they"	"
+are fifteen.
+"		"Sam and Amy"	"A"	"Ernest Davis"
+											"Amy's parents"	
+			"
+Sam and Amy are passionately in love, but Amy's parents are unhappy
+about it, because 
+"	"they"	"
+are snobs.
+"			"they"	"
+are snobs.
+"		"Sam and Amy"	"B"	"Ernest Davis"
+											"Amy's parents"	
+			"
+Mark told Pete many lies about himself, which Pete included in his book. 
+"	"He"	"
+should have been more  truthful.
+"			"He"	"
+should have been more  truthful.
+"		"Mark"	"A"	"Ernest Davis"
+											"Pete"	
+			"
+Mark told Pete many lies about himself, which Pete included in his book. 
+"	"He"	"
+should have been more  skeptical.
+"			"He"	"
+should have been more skeptical.
+"		"Mark"	"B"	"Ernest Davis"
+											"Pete"	
+			"
+Joe has sold his house and bought a new one a few miles away. He will
+be moving out of
+"	"it"	"
+on Thursday.
+"		"
+moving out of
+"	"it"			"The old house"	"A"	"Ernest Davis"
+											"The new house"	
+			"
+Joe has sold his house and bought a new one a few miles away. He will
+be moving into
+"	"it"	"
+on Thursday.
+"		"
+moving into
+"	"it"			"The old house"	"B"	"Ernest Davis"
+											"The new house"	
+			"
+Many people start to read Paul's books and can't put them down. 
+"	"They"	"
+are gripped because Paul writes so well.
+"			"They"	"
+are gripped
+"		"People"	"A"	"Ernest Davis"
+											"Paul's books"	
+			"
+Many people start to read Paul's books and can't put them down. 
+"	"They"	"
+are popular because Paul writes so well.
+"			"They"	"
+are popular 
+"		"People"	"B"	"Ernest Davis"
+											"Paul's books"	
+			"
+Mary took out her flute and played one of her favorite pieces. She
+has had
+"	"it"	"
+since she was a child.
+"		"
+She has had
+"	"it"			"The flute"	"A"	"Ernest Davis"
+											"The piece"	
+			"
+Mary took out her flute and played one of her favorite pieces. She
+has loved
+"	"it"	"
+since she was a child.
+"		"
+She has loved
+"	"it"			"The flute"	"B"	"Ernest Davis"
+											"The piece"	
+			"
+Sam pulled up a chair to the piano, but 
+"	"it"	"
+was broken, so he had to stand instead.  
+"			"it"	"
+was broken
+"		"The chair"	"A"	"Ernest Davis"
+											"The piano"	
+			"
+Sam pulled up a chair to the piano, but 
+"	"it"	"
+was broken, so he had to sing instead.  
+"			"it"	"
+was broken
+"		"The chair"	"B"	"Ernest Davis"
+											"The piano"	
+			"
+Since it was raining, I carried the newspaper in my backpack to keep
+"	"it"	"dry.
+"		"keep
+"	"it"	"dry
+"		"The newspaper"	"A"	"Ernest Davis"
+											"The backpack"	
+			"
+Since it was raining, I carried the newspaper over my backpack to keep
+"	"it"	"dry.
+"		"keep
+"	"it"	"dry
+"		"The newspaper"	"B"	"Ernest Davis"
+											"The backpack"	
+			"
+Sara borrowed the book from the library because she needs it for an
+article she is working on. She reads
+"	"it"	"
+when she gets home from work.
+"		"She reads
+"	"it"			"The book"	"A"	"Ernest Davis"
+											"The article"	
+			"
+Sara borrowed the book from the library because she needs it for an
+article she is working on. She writes
+"	"it"	"
+when she gets home from work.
+"		"She writes
+"	"it"			"The book"	"B"	"Ernest Davis"
+											"The article"	
+			"
+This morning, Joey built a sand castle on the beach, and put a toy 
+flag in the highest tower, but this afternoon the tide 
+knocked 
+"	"it"	"down.
+"		"knocked
+"	"it"	"down
+"		"The sand castle"	"A"	"Ernest Davis"
+											"The flag"	
+			"
+This morning, Joey built a sand castle on the beach, and put a toy 
+flag in the highest tower, but this afternoon the wind 
+knocked 
+"	"it"	"down.
+"		"knocked
+"	"it"	"down
+"		"The sand castle"	"B"	"Ernest Davis"
+											"The flag"	
+			"
+Jane knocked on Susan's door, but there was no answer. 
+"	"She"	"was disappointed.
+"			"She"	"was disappointed.
+"		"Jane"	"A"	"Ernest Davis"
+											"Susan"	
+			"
+Jane knocked on Susan's door, but there was no answer. 
+"	"She"	"was out.
+"			"She"	"was out.
+"		"Jane"	"B"	"Ernest Davis"
+											"Susan"	
+			"
+Jane knocked on the door, and Susan answered it. 
+"	"She"	"
+invited her to come out.
+"			"She"	"invited
+"		"Jane"	"A"	"Ernest Davis"
+											"Susan"	
+			"
+Jane knocked on the door, and Susan answered it. 
+"	"She"	"
+invited her to come in.
+"			"She"	"invited
+"		"Jane"	"B"	"Ernest Davis"
+											"Susan"	
+			"
+Sam took French classes from Adam, because 
+"	"he"	"
+was eager to speak it fluently.
+"			"he"	"was eager
+"		"Sam"	"A"	"Ernest Davis"
+											"Adam"	
+			"
+Sam took French classes from Adam, because 
+"	"he"	"
+was known to speak it fluently.
+"			"he"	"was known to speak it
+"		"Sam"	"B"	"Ernest Davis"
+											"Adam"	
+			"
+The path to the lake was blocked, so we couldn't use
+"	"it"	"."		"
+use
+"	"it"			"The path"	"A"	"Ernest Davis"
+											"The lake"	
+			"
+The path to the lake was blocked, so we couldn't reach
+"	"it"	"."		"
+reach
+"	"it"			"The path"	"B"	"Ernest Davis"
+											"The lake"	
+			"
+The sun was covered by a thick cloud all morning, but luckily, by the time
+the picnic started, 
+"	"it"	"was out.
+"			"it"	"was out
+"		"The sun"	"A"	"Ernest Davis"
+											"The cloud"	
+			"
+The sun was covered by a thick cloud all morning, but luckily, by the time
+the picnic started, 
+"	"it"	"was gone.
+"			"it"	"was gone
+"		"The sun"	"B"	"Ernest Davis"
+											"The cloud"	
+			"
+We went to the lake, because a shark had been seen at the ocean beach, so 
+"	"it"	"
+was a safer place to swim.
+"			"it"	"
+was a safer place
+"		"The lake"	"A"	"Ernest Davis"
+											"The ocean beach"	
+			"
+We went to the lake, because a shark had been seen at the ocean beach, so 
+"	"it"	"
+was a dangerous place to swim.
+"			"it"	"
+was a dangerous place
+"		"The lake"	"B"	"Ernest Davis"
+											"The ocean beach"	
+			"
+Sam tried to paint a picture of shepherds with sheep, but 
+"	"they"	"
+ended up looking more like golfers.
+"			"they"	"
+ended up looking more like golfers.
+"		"The shepherds"	"A"	"Ernest Davis"
+											"The sheep"	
+			"
+Sam tried to paint a picture of shepherds with sheep, but 
+"	"they"	"
+ended up looking more like dogs.
+"			"they"	"
+ended up looking more like dogs.
+"		"The shepherds"	"B"	"Ernest Davis"
+											"The sheep"	
+			"
+Mary tucked her daughter Anne into bed, so that 
+"	"she"	"could work.
+"			"she"	"could work
+"		"Mary"	"A"	"Ernest Davis"
+											"Mary's daughter"	
+			"
+Mary tucked her daughter Anne into bed, so that 
+"	"she"	"could sleep.
+"			"she"	"could sleep.
+"		"Mary"	"B"	"Ernest Davis"
+											"Mary's daughter"	
+			"
+Fred and Alice had very warm down coats, but 
+"	"they"	"
+were not prepared for the cold in Alaska.
+"			"they"	"
+were not prepared 
+"		"Fred and Alice"	"A"	"Ernest Davis"
+											"coats"	
+			"
+Fred and Alice had very warm down coats, but 
+"	"they"	"
+were not enough for the cold in Alaska.
+"			"they"	"
+were not enough
+"		"Fred and Alice"	"B"	"Ernest Davis"
+											"coats"	
+			"
+Thomson visited Cooper's grave in 1765. At that date 
+"	"he"	"
+had been travelling for five years.
+"			"he"	"had been travelling
+"		"Thomson"	"A"	"Ernest Davis"
+											"Cooper"	
+			"
+Thomson visited Cooper's grave in 1765. At that date 
+"	"he"	"
+had been dead for five years.
+"			"he"	"had been dead
+"		"Thomson"	"B"	"Ernest Davis"
+											"Cooper"	
+			"
+Jackson was greatly influenced by Arnold, though 
+"	"he"	"
+lived two centuries later.
+"			"he"	"
+lived two centuries later.
+"		"Jackson"	"A"	"Ernest Davis"
+											"Arnold"	
+			"
+Jackson was greatly influenced by Arnold, though 
+"	"he"	"
+lived two centuries earlier.
+"			"he"	"
+lived two centuries earlier.
+"		"Jackson"	"B"	"Ernest Davis"
+											"Arnold"	
+			"
+I can't cut that tree down with that axe; 
+"	"it"	"
+is too thick.
+"			"it"	"
+is too thick.
+"		"The tree"	"A"	"Ernest Davis"
+											"The axe"	
+			"
+I can't cut that tree down with that axe; 
+"	"it"	"
+is too small.
+"			"it"	"
+is too small.
+"		"The tree"	"B"	"Ernest Davis"
+											"The axe"	
+			"
+The foxes are getting in at night and attacking the chickens. I shall have
+to kill
+"	"them"	"."		"
+to kill
+"	"them"			"The foxes"	"A"	"Ernest Davis"
+											"The chickens"	
+			"
+The foxes are getting in at night and attacking the chickens. I shall have
+to guard
+"	"them"	"."		"
+to guard
+"	"them"			"The foxes"	"B"	"Ernest Davis"
+											"The chickens"	
+			"
+The foxes are getting in at night and attacking the chickens. 
+"	"They"	"
+have gotten very bold.
+"			"They"	"
+have gotten very bold.
+"		"The foxes"	"A"	"Ernest Davis"
+											"The chickens"	
+			"
+The foxes are getting in at night and attacking the chickens. 
+"	"They"	"
+have gotten very nervous.
+"			"They"	"
+have gotten very nervous.
+"		"The foxes"	"B"	"Ernest Davis"
+											"The chickens"	
+			"
+Fred covered his eyes with his hands, because the wind was blowing sand
+around. He opened
+"	"them"	"
+when the wind stopped.
+"		"
+opened
+"	"them"			"His eyes"	"A"	"Ernest Davis"
+											"His hands"	
+			"
+Fred covered his eyes with his hands, because the wind was blowing sand
+around. He lowered
+"	"them"	"
+when the wind stopped.
+"		"
+lowered
+"	"them"			"His eyes"	"B"	"Ernest Davis"
+											"His hands"	
+			"
+The actress used to be named Terpsichore, but she changed it to Tina a 
+few years ago, because she figured 
+"	"it"	"
+was too hard to pronounce.
+"			"it"	"
+was too hard
+"		"Terpsichore"	"A"	"Ernest Davis"
+											"Tina"	
+			"
+The actress used to be named Terpsichore, but she changed it to Tina a 
+few years ago, because she figured 
+"	"it"	"
+was easier to pronounce.
+"			"it"	"
+was easier 
+"		"Terpsichore"	"B"	"Ernest Davis"
+											"Tina"	
+			"
+Fred watched TV while George went out to buy groceries. After an hour 
+"	"he"	"
+got up.
+"			"he"	"
+got up.
+"		"Fred"	"A"	"Ernest Davis"
+											"George"	
+			"
+Fred watched TV while George went out to buy groceries. After an hour 
+"	"he"	"
+got back.
+"			"he"	"
+got back.
+"		"Fred"	"B"	"Ernest Davis"
+											"George"	
+			"
+Fred was supposed to run the dishwasher, but he put it off,  because
+he wanted to watch TV. But the show turned out to be boring, so he
+changed his mind and turned 
+"	"it"	"on.
+"		"turned
+"	"it"	"on
+"		"The dishwasher"	"A"	"Ernest Davis"
+											"The TV"	
+			"
+Fred was supposed to run the dishwasher, but he put it off,  because
+he wanted to watch TV. But the show turned out to be boring, so he
+changed his mind and turned 
+"	"it"	"off.
+"		"turned
+"	"it"	"off
+"		"The dishwasher"	"B"	"Ernest Davis"
+											"The TV"	
+			"
+Fred is the only man still alive who remembers my great-grandfather. 
+"	"He"	"
+is a remarkable man.
+"			"He"	"
+is a remarkable man.
+"		"Fred"	"A"	"Ernest Davis"
+											"My great-grandfather"	
+			"
+Fred is the only man still alive who remembers my great-grandfather. 
+"	"He"	"
+was a remarkable man.
+"			"He"	"
+was a remarkable man.
+"		"Fred"	"B"	"Ernest Davis"
+											"My great-grandfather"	
+			"
+Fred is the only man alive who still remembers my father as an infant.
+When Fred first saw my father, 
+"	"he"	"
+was twelve years old.
+"			"he"	"
+was twelve years old.
+"		"Fred"	"A"	"Ernest Davis"
+											"My father"	
+			"
+Fred is the only man alive who still remembers my father as an infant.
+When Fred first saw my father, 
+"	"he"	"
+was twelve months old.
+"			"he"	"
+was twelve months old.
+"		"Fred"	"B"	"Ernest Davis"
+											"My father"	
+			"
+In July, Kamtchatka declared war on Yakutsk. Since Yakutsk's army was much 
+better equipped and ten times larger, 
+"	"they"	"
+were defeated within weeks.
+"			"they"	"
+were defeated
+"		"Kamchatka"	"A"	"Ernest Davis"
+											"Yakutsk"	
+			"
+In July, Kamtchatka declared war on Yakutsk. Since Yakutsk's army was much 
+better equipped and ten times larger, 
+"	"they"	"
+were victorious within weeks.
+"			"they"	"
+were victorious
+"		"Kamchatka"	"B"	"Ernest Davis"
+											"Yakutsk"	
+			"
+Look! There is a minnow swimming right below that duck! 
+"	"It"	"
+had better get away to safety fast!
+"			"It"	"
+had better get away 
+"		"The minnow"	"A"	"Ernest Davis"
+											"The duck"	
+			"
+Look! There is a shark swimming right below that duck! 
+"	"It"	"
+had better get away to safety fast!
+"			"It"	"
+had better get away 
+"		"The shark"	"B"	"Ernest Davis"
+											"The duck"	
+			"
+Archaeologists have concluded that humans lived in Laputa 20,000 years ago. 
+"	"They"	"
+hunted for evidence on the river banks.
+"			"They"	"
+hunted for evidence 
+"		"Archaeologists"	"A"	"Ernest Davis"
+											"Prehistoric humans"	
+			"
+Archaeologists have concluded that humans lived in Laputa 20,000 years ago. 
+"	"They"	"
+hunted for deer on the river banks.
+"			"They"	"
+hunted for deer 
+"		"Archaeologists"	"B"	"Ernest Davis"
+											"Prehistoric humans"	
+			"
+The scientists are studying three species of fish that have recently
+been found living in the Indian Ocean. 
+"	"They"	"
+began two years ago.
+"			"They"	"
+began two years ago.
+"		"The scientists"	"A"	"Ernest Davis"
+											"The fish"	
+			"
+The scientists are studying three species of fish that have recently
+been found living in the Indian Ocean. 
+"	"They"	"
+appeared two years ago.
+"			"They"	"
+appeared two years ago.
+"		"The scientists"	"B"	"Ernest Davis"
+											"The fish"	
+			"
+The journalists interviewed the stars of the new movie. 
+"	"They"	"
+were very persistent, so the interview lasted for a long time.
+"			"They"	"
+were very persistent
+"		"The journalists"	"A"	"Ernest Davis"
+											"The stars"	
+			"
+The journalists interviewed the stars of the new movie. 
+"	"They"	"
+were very cooperative, so the interview lasted for a long time.
+"			"They"	"
+were very cooperative
+"		"The journalists"	"B"	"Ernest Davis"
+											"The stars"	
+			"
+The police arrested all of the gang members. 
+"	"They"	"
+were trying to stop the drug trade in the neighborhood.
+"			"They"	"
+were trying to stop the drug trade.
+"		"The police"	"A"	"Ernest Davis"
+											"The gang members"	
+			"
+The police arrested all of the gang members. 
+"	"They"	"
+were trying to run the drug trade in the neighborhood.
+"			"They"	"
+were trying to run the drug trade.
+"		"The police"	"B"	"Ernest Davis"
+											"The gang members"	
+			"
+I put the cake away in the refrigerator. 
+"	"It"	"
+has a lot of butter in it.  
+"			"It"	"
+has a lot of butter 
+"		"The cake"	"A"	"Ernest Davis"
+											"The refrigerator"	
+			"
+I put the cake away in the refrigerator. 
+"	"It"	"
+has a lot of leftovers in it.  
+"			"It"	"
+has a lot of leftovers 
+"		"The cake"	"B"	"Ernest Davis"
+											"The refrigerator"	
+			"
+Sam broke both his ankles and he's walking with crutches. But a month
+or so from now 
+"	"they"	"
+should be better.
+"			"they"	"
+should be better
+"		"The ankles"	"A"	"Ernest Davis"
+											"The crutches"	
+			"
+Sam broke both his ankles and he's walking with crutches. But a month
+or so from now 
+"	"they"	"
+should be unnecessary.
+"			"they"	"
+should be unnecessary
+"		"The ankles"	"B"	"Ernest Davis"
+											"The crutches"	
+			"
+When the sponsors of the bill got to the town hall, they were surprised
+to find that the room was full of opponents. 
+"	"They"	"
+were very much in the minority.
+"			"They"	"
+were very much in the minority.
+"		"The sponsors"	"A"	"Ernest Davis"
+											"The opponents"	
+			"
+When the sponsors of the bill got to the town hall, they were surprised
+to find that the room was full of opponents. 
+"	"They"	"
+were very much in the majority.
+"			"They"	"
+were very much in the majority.
+"		"The sponsors"	"B"	"Ernest Davis"
+											"The opponents"	
+			"
+Everyone really loved the oatmeal cookies; only a few people liked the 
+chocolate chip cookies. Next time, we should make more of 
+"	"them"	"."		"more of
+"	"them"			"The oatmeal cookies"	"A"	"Ernest Davis"
+											"The chocolate chip cookies"	
+			"
+Everyone really loved the oatmeal cookies; only a few people liked the 
+chocolate chip cookies. Next time, we should make fewer of 
+"	"them"	"."		"fewer of
+"	"them"			"The oatmeal cookies"	"B"	"Ernest Davis"
+											"The chocolate chip cookies"	
+			"
+We had hoped to place copies of our newsletter on all the chairs in the
+auditorium, but there were simply not enough of 
+"	"them"	"."		"
+not enough of
+"	"them"			"copies of the newsletter"	"A"	"Ernest Davis"
+											"chairs"	
+			"
+We had hoped to place copies of our newsletter on all the chairs in the
+auditorium, but there were simply too many of 
+"	"them"	"."		"
+too many of
+"	"them"			"copies of the newsletter"	"B"	"Ernest Davis"
+											"chairs"	
+			"
+I stuck a pin through a carrot. When I pulled the pin out, 
+"	"it"	"
+left a hole.
+"			"it"	"
+left a hole
+"		"The pin"	"A"	"Ernest Davis"
+											"The carrot"	
+			"
+I stuck a pin through a carrot. When I pulled the pin out, 
+"	"it"	"
+had a hole.
+"			"it"	"
+had a hole
+"		"The pin"	"B"	"Ernest Davis"
+											"The carrot"	
+			"
+I couldn't find a spoon, so I tried using a pen to stir my 
+coffee. But that turned out to be a bad idea, because 
+"	"it"	"
+got full of coffee.
+"			"it"	"
+got full of coffee.
+"		"The pen"	"A"	"Ernest Davis"
+											"The coffee"	
+			"
+I couldn't find a spoon, so I tried using a pen to stir my 
+coffee. But that turned out to be a bad idea, because 
+"	"it"	"
+got full of ink.
+"			"it"	"
+got full of ink.
+"		"The pen"	"B"	"Ernest Davis"
+											"The coffee"	
+			"
+Steve follows Fred's example in everything. 
+"	"He"	"
+admires him hugely.
+"			"He"	"
+admires him hugely.
+"		"Steve"	"A"	"Ernest Davis"
+											"Fred"	
+			"
+Steve follows Fred's example in everything. 
+"	"He"	"
+influences him hugely.
+"			"He"	"
+influences him hugely.
+"		"Steve"	"B"	"Ernest Davis"
+											"Fred"	
+			"
+The table won't fit through the doorway because 
+"	"it"	"
+is too wide.
+"			"it"	"
+is too wide.
+"		"The table"	"A"	"Ernest Davis"
+											"The doorway"	
+			"
+The table won't fit through the doorway because 
+"	"it"	"
+is too narrow.
+"			"it"	"
+is too narrow.
+"		"The table"	"B"	"Ernest Davis"
+											"The doorway"	
+			"
+Grace was happy to trade me her sweater for my jacket. She thinks 
+"	"it"	"
+looks dowdy on her.
+"			"it"	"
+looks dowdy on her.
+"		"The sweater"	"A"	"Ernest Davis"
+											"The jacket"	
+			"
+Grace was happy to trade me her sweater for my jacket. She thinks 
+"	"it"	"
+looks great on her.
+"			"it"	"
+looks great on her.
+"		"The sweater"	"B"	"Ernest Davis"
+											"The jacket"	
+			"
+John hired Bill to take care of 
+"	"him"	"."		"take care of
+"	"him"			"John"	"A"	"Ray Jackendoff"
+											"Bill"	
+			"
+John hired himself out to Bill to take care of 
+"	"him"	"."		"take care of
+"	"him"			"John"	"B"	"Ray Jackendoff"
+											"Bill"	
+			"
+John promised Bill to leave, so an hour later 
+"	"he"	"left.
+"			"he"	"left
+"		"John"	"A"	"Ray Jackendoff"
+											"Bill"	
+			"
+John ordered Bill to leave, so an hour later 
+"	"he"	"left.
+"			"he"	"left
+"		"John"	"B"	"Ray Jackendoff"
+											"Bill"	
+			"
+Sam Goodman's biography of the Spartan general Xenophanes
+conveys a vivid sense of the difficulties 
+"	"he"	"
+faced in his research.
+"		"difficulties
+"	"he"	"faced
+"		"Goodman"	"A"	"Ernest Davis"
+											"Xenophanes"	
+			"
+Sam Goodman's biography of the Spartan general Xenophanes
+conveys a vivid sense of the difficulties 
+"	"he"	"
+faced in his childhood.
+"		"difficulties
+"	"he"	"faced
+"		"Goodman"	"B"	"Ernest Davis"
+											"Xenophanes"	
+			"
+Emma's mother had died long ago, and 
+"	"her"	"
+education had been managed by an excellent woman as governess.
+"			"her"	"education
+"		"Emma"	"A"	"Ernest Davis, adapted from Emma by Jane Austen"
+											"Emma's mother"	
+			"
+Emma's mother had died long ago, and 
+"	"her"	"
+place had been taken by an excellent woman as governess.
+"			"her"	"place
+"		"Emma"	"B"	"Ernest Davis, adapted from Emma by Jane Austen"
+											"Emma's mother"	
+			"
+Jane knocked on Susan's door but 
+"	"she"	"
+did not get an answer.
+"			"she"	"
+did not get an answer.
+"		"Jane"	"A"	"Ernest Davis"
+											"Susan"	
+			"
+Jane knocked on Susan's door but 
+"	"she"	"
+did not answer.
+"			"she"	"
+did not answer.
+"		"Jane"	"B"	"Ernest Davis"
+											"Susan"	
+			"
+Joe paid the detective after 
+"	"he"	"
+received the final report on the case. 
+"			"he"	"
+received the final report 
+"		"Joe"	"A"	"David Bender"
+											"the detective"	
+			"
+Joe paid the detective after 
+"	"he"	"
+delivered the final report on the case. 
+"			"he"	"
+delivered the final report 
+"		"Joe"	"B"	"David Bender"
+											"the detective"	
+			"
+Beth didn't get angry with Sally, who had cut her off, because 
+"	"she"	"
+stopped and counted to ten.
+"			"she"	"stopped 
+"		"Beth"	"A"	"David Bender"
+											"Sally"	
+			"
+Beth didn't get angry with Sally, who had cut her off, because 
+"	"she"	"
+stopped and apologized.
+"			"she"	"stopped 
+"		"Beth"	"B"	"David Bender"
+											"Sally"	
+			"
+Jim signaled the barman and gestured toward 
+"	"his"	"empty glass
+"			"his"	"empty glass
+"		"Jim"	"A"	"David Bender"
+											"The barman"	
+			"
+Jim signaled the barman and gestured toward 
+"	"his"	"bathroom key.
+"			"his"	"bathroom key
+"		"Jim"	"B"	"David Bender"
+											"The barman"	
+			"
+Dan took the rear seat while Bill claimed the front because 
+"	"his"	"
+""Dibs!"" was slow.
+"			"his"	"""Dibs!""
+"		"Dan"	"A"	"David Bender"
+											"Bill"	
+			"
+Dan took the rear seat while Bill claimed the front because 
+"	"his"	"
+""Dibs!"" was quicker.
+"			"his"	"""Dibs!""
+"		"Dan"	"B"	"David Bender"
+											"Bill"	
+			"
+Tom said ""Check"" to Ralph as he moved 
+"	"his"	"bishop.
+"			"his"	"bishop
+"		"Tom"	"A"	"David Bender"
+											"Ralph"	
+			"
+Tom said ""Check"" to Ralph as he took
+"	"his"	"bishop.
+"			"his"	"bishop
+"		"Tom"	"B"	"David Bender"
+											"Ralph"	
+			"
+As Andrea in the crop duster passed over Susan, 
+"	"she"	"
+could see the landing strip.
+"			"she"	"could see
+"		"Andrea"	"A"	"David Bender"
+											"Susan"	
+			"
+As Andrea in the crop duster passed over Susan, 
+"	"she"	"
+could see the landing gear.
+"			"she"	"could see
+"		"Andrea"	"B"	"David Bender"
+											"Susan"	
+			"
+Tom gave Ralph a lift to school so 
+"	"he"	"
+wouldn't have to drive alone.
+"			"he"	"
+wouldn't have to drive alone.
+"		"Tom"	"A"	"David Bender"
+											"Ralph"	
+			"
+Tom gave Ralph a lift to school so 
+"	"he"	"
+wouldn't have to walk.
+"			"he"	"
+wouldn't have to walk.
+"		"Tom"	"B"	"David Bender"
+											"Ralph"	
+			"
+Bill passed the half-empty plate to John because 
+"	"he"	"
+was full.
+"			"he"	"
+was full.
+"		"Bill"	"A"	"David Bender"
+											"John"	
+			"
+Bill passed the half-empty plate to John because 
+"	"he"	"
+was hungry.
+"			"he"	"
+was hungry
+"		"Bill"	"B"	"David Bender"
+											"John"	
+			"
+Bill passed the gameboy to John because 
+"	"his"	"
+turn was over.
+"			"his"	"
+turn 
+"		"Bill"	"A"	"David Bender"
+											"John"	
+			"
+Bill passed the gameboy to John because 
+"	"his"	"
+turn was next.
+"			"his"	"
+turn 
+"		"Bill"	"B"	"David Bender"
+											"John"	
+			"
+The man lifted the boy onto 
+"	"his"	"
+shoulders.
+"			"his"	"
+shoulders
+"		"The man"	"A"	"David Bender"
+											"The boy"	
+			"
+The man lifted the boy onto 
+"	"his"	"
+bunk bed.
+"			"his"	"
+bunk bed.
+"		"The man"	"B"	"David Bender"
+											"The boy"	
+			"Stretching
+"	"her"	"
+back, the woman smiled at the girl.
+"			"her"	"back
+"		"The woman"	"A"	"David Bender"
+											"The girl"	
+			"Patting
+"	"her"	"
+back, the woman smiled at the girl.
+"			"her"	"back
+"		"The woman"	"B"	"David Bender"
+											"The girl"	
+			"
+Billy cried because Toby wouldn't accept 
+"	"his"	"toy.
+"			"his"	"toy
+"		"Billy"	"A"	"David Bender"
+											"Toby"	
+			"
+Billy cried because Toby wouldn't share
+"	"his"	"toy.
+"			"his"	"toy
+"		"Billy"	"B"	"David Bender"
+											"Toby"	
+			"
+Lily spoke to Donna, breaking 
+"	"her"	"
+silence.
+"			"her"	"
+silence.
+"		"Lily"	"A"	"David Bender"
+											"Donna"	
+			"
+Lily spoke to Donna, breaking 
+"	"her"	"
+concentration.
+"			"her"	"
+concentration.
+"		"Lily"	"B"	"David Bender"
+											"Donna"	
+			"
+When Tommy dropped his ice cream, Timmy giggled, so father gave 
+"	"him"	"
+a sympathetic look.
+"		"gave
+"	"him"			"Tommy"	"A"	"David Bender"
+											"Timmy"	
+			"
+When Tommy dropped his ice cream, Timmy giggled, so father gave 
+"	"him"	"
+a stern look.
+"		"gave
+"	"him"			"Tommy"	"B"	"David Bender"
+											"Timmy"	
+			"
+As Ollie carried Tommy up the long winding steps, 
+"	"his"	"
+legs ached.
+"			"his"	"legs ached.
+"		"Ollie"	"A"	"David Bender"
+											"Tommy"	
+			"
+As Ollie carried Tommy up the long winding steps, 
+"	"his"	"
+legs dangled.
+"			"his"	"legs dangled.
+"		"Ollie"	"B"	"David Bender"
+											"Tommy"	
+			"
+The father carried the sleeping boy in 
+"	"his"	"arms
+"			"his"	"arms
+"		"The father"	"A"	"David Bender"
+											"The boy"	
+			"
+The father carried the sleeping boy in 
+"	"his"	"bassinet.
+"			"his"	"bassinet.
+"		"The father"	"B"	"David Bender"
+											"The boy"	
+			"
+The woman held the girl against 
+"	"her"	"chest 
+"			"her"	"chest.
+"		"The woman"	"A"	"David Bender"
+											"The girl"	
+			"
+The woman held the girl against 
+"	"her"	"will. 
+"			"her"	"will
+"		"The woman"	"B"	"David Bender"
+											"The girl"	
+			"
+Pam's parents came home and found her having sex with her boyfriend, Paul. 
+"	"They"	"
+were furious about it.
+"			"They"	"
+were furious
+"		"Pam's parents"	"A"	"David Bender"
+											"Pam and Paul"	
+			"
+Pam's parents came home and found her having sex with her boyfriend, Paul. 
+"	"They"	"
+were embarrassed about it.
+"			"They"	"
+were embarrassed 
+"		"Pam's parents"	"B"	"David Bender"
+											"Pam and Paul"	
+			"
+Dr. Adams informed Kate that 
+"	"she"	"
+had retired and presented several options for future treatment. 
+"			"she"	"
+had retired
+"		"Dr. Adams"	"A"	"David Bender"
+											"Kate"	
+			"
+Dr. Adams informed Kate that 
+"	"she"	"
+had cancer and presented several options for future treatment. 
+"			"she"	"
+had cancer 
+"		"Dr. Adams"	"B"	"David Bender"
+											"Kate"	
+			"
+Dan had to stop Bill from toying with the injured bird.
+"	"He"	"
+is very compassionate.
+"			"He"	"
+is very compassionate.
+"		"Dan"	"A"	"David Bender"
+											"Bill"	
+			"
+Dan had to stop Bill from toying with the injured bird.
+"	"He"	"
+is very cruel.
+"			"He"	"
+is very cruel.
+"		"Dan"	"B"	"David Bender"
+											"Bill"	
+			"
+George got free tickets to the play, but he gave them to Eric, even though
+"	"he"	"
+was particularly eager to see it.
+"			"he"	"
+was particularly eager
+"		"George"	"A"	"David Bender"
+											"Eric"	
+			"
+George got free tickets to the play, but he gave them to Eric, because
+"	"he"	"
+was particularly eager to see it.
+"			"he"	"
+was particularly eager
+"		"George"	"B"	"David Bender"
+											"Eric"	
+			"
+George got free tickets to the play, but he gave them to Eric, because
+"	"he"	"
+was not particularly eager to see it.
+"			"he"	"
+was not particularly eager
+"		"George"	"A"	"David Bender"
+											"Eric"	
+			"
+Jane gave Joan candy because 
+"	"she"	"
+wasn't hungry.
+"			"she"	"
+wasn't hungry.
+"		"Jane"	"A"	"
+""Linguistic Problems and Complexities"" 
+http://www.csi.uottawa.ca/tanka/files/complexities.html
+"
+											"Joan"	
+			"
+Jane gave Joan candy because 
+"	"she"	"
+was hungry.
+"			"she"	"
+was hungry.
+"		"Jane"	"B"	"
+""Linguistic Problems and Complexities"" 
+http://www.csi.uottawa.ca/tanka/files/complexities.html
+"
+											"Joan"	
+			"
+I tried to paint a picture of an orchard, with lemons in the lemon trees, 
+but
+"	"they"	"
+came out looking more like light bulbs. 
+"			"they"	"came out
+"		"lemons"	"A"	"Ernest Davis"
+											"lemon trees"	
+			"
+I tried to paint a picture of an orchard, with lemons in the lemon trees, 
+but
+"	"they"	"
+came out looking more like telephone poles. 
+"			"they"	"came out
+"		"lemons"	"B"	"Ernest Davis"
+											"lemon trees"	
+			"
+James asked Robert for a favor but 
+"	"he"	"was refused. 
+"			"he"	"was refused.
+"		"James"	"A"	"From (Rahman and Ng 2012)"
+											"Robert"	
+			"
+James asked Robert for a favor but 
+"	"he"	"refused. 
+"			"he"	"refused.
+"		"James"	"B"	"From (Rahman and Ng 2012)"
+											"Robert"	
+			"
+Kirilov ceded the presidency to Shatov because 
+"	"he"	"
+was less popular.
+"			"he"	"
+was less popular.
+"		"Kirilov"	"A"	"Modified from (Rahman and Ng 2012)"
+											"Shatov"	
+			"
+Kirilov ceded the presidency to Shatov because 
+"	"he"	"
+was more popular.
+"			"he"	"
+was more popular.
+"		"Kirilov"	"B"	"Modified from (Rahman and Ng 2012)"
+											"Shatov"	
+			"
+Emma did not pass the ball to Janie although 
+"	"she"	"
+saw that she was open.
+"			"she"	"saw
+"		"Emma"	"A"	"Modified from (Rahman and Ng 2012)"
+											"Janie"	
+			"
+Emma did not pass the ball to Janie although 
+"	"she"	"
+was open.
+"			"she"	"was open
+"		"Emma"	"B"	"Modified from (Rahman and Ng 2012)"
+											"Janie"	
+			"
+I put the butterfly wing on the table and 
+"	"it"	"
+broke.
+"			"it"	"
+broke.
+"		"The butterfly wing"	"A"	"(Winograd 1971)"
+											"The table"	
+			"
+I put the heavy book on the table and 
+"	"it"	"
+broke.
+"			"it"	"
+broke.
+"		"The heavy book"	"B"	"(Winograd 1971)"
+											"The table"	
+			"
+Madonna fired her trainer because 
+"	"she"	"couldn't stand her boyfriend.
+"			"she"	"couldn't stand
+"		"Madonna"	"A"	"Modified from a headline in People Magazine
+http://www.people.com/article/madonna-fired-trainer-slept-with-boyfriend-manila-tour-stop
+"
+											"The trainer"	
+			"
+Madonna fired her trainer because 
+"	"she"	"slept with her boyfriend.
+"			"she"	"slept 
+"		"Madonna"	"B"	"Modified from a headline in People Magazine
+http://www.people.com/article/madonna-fired-trainer-slept-with-boyfriend-manila-tour-stop
+"
+											"The trainer"	
+			"
+Madonna fired her trainer because she slept with 
+"	"her"	"boyfriend.
+"			"her"	"boyfriend
+"		"Madonna"	"A"	"Modified from a headline in People Magazine
+http://www.people.com/article/madonna-fired-trainer-slept-with-boyfriend-manila-tour-stop
+"
+											"The trainer"	
+			"
+Madonna fired her trainer because she couldn't stand
+"	"her"	"boyfriend.
+"			"her"	"boyfriend
+"		"Madonna"	"B"	"Modified from a headline in People Magazine
+http://www.people.com/article/madonna-fired-trainer-slept-with-boyfriend-manila-tour-stop
+"
+											"The trainer"	
+			"
+Carol believed that Rebecca suspected that 
+"	"she"	"
+had stolen the watch. 
+"			"she"	"
+had stolen the watch. 
+"		"Carol"	"A"	"Leora Morgenstern"
+											"Rebecca"	
+			"
+Carol believed that Rebecca regretted that 
+"	"she"	"
+had stolen the watch. 
+"			"she"	"
+had stolen the watch. 
+"		"Carol"	"B"	"Leora Morgenstern"
+											"Rebecca"	
+			"
+This book introduced Shakespeare to Ovid; it was a major influence on
+"	"his"	"writing.
+"			"his"	"writing.
+"		"Shakespeare"	"A."	"Ernest Davis (coming out of a Facebook discussion with Michael 
+Witbrock)"
+											"Ovid"	
+			"
+This book introduced Shakespeare to Goethe; it was a major influence on
+"	"his"	"writing.
+"			"his"	"writing.
+"		"Shakespeare"	"B."	"Ernest Davis (coming out of a Facebook discussion with Michael 
+Witbrock)"
+											"Goethe"	
+			"
+This book introduced Shakespeare to Ovid; it was a fine selection of
+"	"his"	"writing.
+"			"his"	"writing.
+"		"Shakespeare"	"B."	"Ernest Davis (coming out of a Facebook discussion with Michael 
+Witbrock)"
+											"Ovid"	
+			"
+This book introduced Shakespeare to Goethe; it was a fine selection of
+"	"his"	"writing.
+"			"his"	"writing.
+"		"Shakespeare"	"A."	"Ernest Davis (coming out of a Facebook discussion with Michael 
+Witbrock)"
+											"Goethe"	
+			"
+Alice looked for her friend Jade in the crowd. Since 
+"	"she"	"always
+has good luck, Alice spotted her quickly.
+"			"she"	"always has good luck.
+"		"Alice"	"A."	"Sabri Meeran and Ernest Davis
+"
+											"Jade"	
+			"
+Alice looked for her friend Jade in the crowd. Since 
+"	"she"	"always
+wears a red turban, Alice spotted her quickly.
+"			"she"	"always wears a red turban
+"		"Alice"	"B."	"Sabri Meeran and Ernest Davis
+"
+											"Jade"	
+			"
+During a game of tag, Ethan chased Luke because
+"	"he"	"was ""it"".
+"			"he"	"was ""it"".
+"		"Ethan"	"A."	"Sabri Meeran 
+"
+											"Luke"	
+			"
+During a game of tag, Ethan ran from Luke because
+"	"he"	"was ""it"".
+"			"he"	"was ""it"".
+"		"Ethan"	"B."	"Sabri Meeran 
+"
+											"Luke"	
+			"
+At the Loebner competition the judges couldn't figure out which respondents
+were the chatbots because 
+"	"they"	"were so stupid.
+"			"they"	"were so stupid.
+"		"the judges"	"A."	"Sabri Meeran 
+"
+											"the chatbots"	
+			"
+At the Loebner competition the judges couldn't figure out which respondents
+were the chatbots because 
+"	"they"	"were so advanced.
+"			"they"	"were so advanced.
+"		"the judges"	"B."	"Sabri Meeran 
+"
+											"the chatbots"	
+			"
+The user changed his password from ""GrWQWu8JyC"" toÂ ""willow-towered Canopy
+Huntertropic wrestles"" as
+"	"it"	"was easy to forget.
+"			"it"	"was easy to forget.
+"		"GrWQWu8JyC"	"A."	"Sabri Meeran 
+"
+											"willow-towered Canopy
+Huntertropic wrestles"	
+			"
+The user changed his password from ""GrWQWu8JyC"" toÂ ""willow-towered Canopy
+Huntertropic wrestles"" as
+"	"it"	"was easy to remember.
+"			"it"	"was easy to remember.
+"		"GrWQWu8JyC"	"B."	"Sabri Meeran 
+"
+											"willow-towered Canopy
+Huntertropic wrestles"	

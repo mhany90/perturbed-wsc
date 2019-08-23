@@ -1,0 +1,1993 @@
+random: begin
+
+l: 0
+t: radio
+q: The city councilmen refused the demonstrators a permit because <font color='red'> <b> they </b> </font> feared violence .
+- the city councilmen
+- the demonstrators
+
+
+l: 1
+t: radio
+q: The city councilmen refused the demonstrators a permit because <font color='red'> <b> they </b> </font> advocated violence .
+- the city councilmen
+- the demonstrators
+
+
+l: 2
+t: radio
+q: The trophy doesn't fit into the brown suitcase because <font color='red'> <b> it </b> </font> is too large .
+- the trophy
+- the suitcase
+
+
+l: 3
+t: radio
+q: The trophy doesn't fit into the brown suitcase because <font color='red'> <b> it </b> </font> is too small .
+- the trophy
+- the suitcase
+
+
+l: 4
+t: radio
+q: Joan made sure to thank Susan for all the help <font color='red'> <b> she </b> </font> had received .
+- joan
+- susan
+
+
+l: 5
+t: radio
+q: Joan made sure to thank Susan for all the help <font color='red'> <b> she </b> </font> had given .
+- joan
+- susan
+
+
+l: 6
+t: radio
+q: Paul tried to call George on the phone , but <font color='red'> <b> he </b> </font> wasn't successful .
+- paul
+- george
+
+
+l: 7
+t: radio
+q: Paul tried to call George on the phone , but <font color='red'> <b> he </b> </font> wasn't available .
+- paul
+- george
+
+
+l: 8
+t: radio
+q: The lawyer asked the witness a question , but <font color='red'> <b> he </b> </font> was reluctant to repeat it .
+- the lawyer
+- the witness
+
+
+l: 9
+t: radio
+q: The lawyer asked the witness a question , but <font color='red'> <b> he </b> </font> was reluctant to answer it .
+- the lawyer
+- the witness
+
+
+l: 10
+t: radio
+q: The delivery truck zoomed by the school bus because <font color='red'> <b> it </b> </font> was going so fast .
+- the delivery truck
+- the school bus
+
+
+l: 11
+t: radio
+q: The delivery truck zoomed by the school bus because <font color='red'> <b> it </b> </font> was going so slow .
+- the delivery truck
+- the school bus
+
+
+l: 12
+t: radio
+q: Frank felt vindicated when his longtime rival Bill revealed that <font color='red'> <b> he </b> </font> was the winner of the competition .
+- frank
+- bill
+
+
+l: 13
+t: radio
+q: Frank felt crushed when his longtime rival Bill revealed that <font color='red'> <b> he </b> </font> was the winner of the competition .
+- frank
+- bill
+
+
+l: 14
+t: radio
+q: The man couldn't lift his son because <font color='red'> <b> he </b> </font> was so weak .
+- the man
+- the son
+
+
+l: 15
+t: radio
+q: The man couldn't lift his son because <font color='red'> <b> he </b> </font> was so heavy .
+- the man
+- the son
+
+
+l: 16
+t: radio
+q: The large ball crashed right through the table because <font color='red'> <b> it </b> </font> was made of steel .
+- the large ball
+- the table
+
+
+l: 17
+t: radio
+q: The large ball crashed right through the table because <font color='red'> <b> it </b> </font> was made of styrofoam .
+- the large ball
+- the table
+
+
+l: 18
+t: radio
+q: John couldn't see the stage with Billy in front of him because <font color='red'> <b> he </b> </font> is so short .
+- john
+- billy
+
+
+l: 19
+t: radio
+q: John couldn't see the stage with Billy in front of him because <font color='red'> <b> he </b> </font> is so tall .
+- john
+- billy
+
+
+l: 20
+t: radio
+q: Tom threw his schoolbag down to Ray after <font color='red'> <b> he </b> </font> reached the top of the stairs .
+- tom
+- ray
+
+
+l: 21
+t: radio
+q: Tom threw his schoolbag down to Ray after <font color='red'> <b> he </b> </font> reached the bottom of the stairs .
+- tom
+- ray
+
+
+l: 22
+t: radio
+q: Although they ran at about the same speed , Sue beat Sally because <font color='red'> <b> she </b> </font> had such a good start .
+- sue
+- sally
+
+
+l: 23
+t: radio
+q: Although they ran at about the same speed , Sue beat Sally because <font color='red'> <b> she </b> </font> had such a bad start .
+- sue
+- sally
+
+
+l: 24
+t: radio
+q: The sculpture rolled off the shelf because <font color='red'> <b> it </b> </font> wasn't anchored .
+- the sculpture
+- the shelf
+
+
+l: 25
+t: radio
+q: The sculpture rolled off the shelf because <font color='red'> <b> it </b> </font> wasn't level .
+- the sculpture
+- the shelf
+
+
+l: 26
+t: radio
+q: Sam's drawing was hung just above Tina's and <font color='red'> <b> it </b> </font> did look much better with another one below it .
+- sam's drawing
+- tina's drawing
+
+
+l: 27
+t: radio
+q: Sam's drawing was hung just above Tina's and <font color='red'> <b> it </b> </font> did look much better with another one above it .
+- sam's drawing
+- tina's drawing
+
+
+l: 28
+t: radio
+q: Anna did a lot better than her good friend Lucy on the test because <font color='red'> <b> she </b> </font> had studied so hard .
+- anna
+- lucy
+
+
+l: 29
+t: radio
+q: Anna did a lot worse than her good friend Lucy on the test because <font color='red'> <b> she </b> </font> had studied so hard .
+- anna
+- lucy
+
+
+l: 30
+t: radio
+q: The firemen arrived after the police because <font color='red'> <b> they </b> </font> were coming from so far away .
+- the firemen
+- the police
+
+
+l: 31
+t: radio
+q: The firemen arrived before the police because <font color='red'> <b> they </b> </font> were coming from so far away .
+- the firemen
+- the police
+
+
+l: 32
+t: radio
+q: Frank was upset with Tom because the toaster <font color='red'> <b> he </b> </font> had bought from him didn't work .
+- frank
+- tom
+
+
+l: 33
+t: radio
+q: Frank was upset with Tom because the toaster <font color='red'> <b> he </b> </font> had sold him didn't work .
+- frank
+- tom
+
+
+l: 34
+t: radio
+q: Jim yelled at Kevin because <font color='red'> <b> he </b> </font> was so upset .
+- jim
+- kevin
+
+
+l: 35
+t: radio
+q: Jim comforted Kevin because <font color='red'> <b> he </b> </font> was so upset .
+- jim
+- kevin
+
+
+l: 36
+t: radio
+q: The sack of potatoes had been placed above the bag of flour , so <font color='red'> <b> it </b> </font> had to be moved first .
+- the sack of potatoes
+- the bag of flour
+
+
+l: 37
+t: radio
+q: The sack of potatoes had been placed below the bag of flour , so <font color='red'> <b> it </b> </font> had to be moved first .
+- the sack of potatoes
+- the bag of flour
+
+
+l: 38
+t: radio
+q: Pete envies Martin although <font color='red'> <b> he </b> </font> is very successful .
+- pete
+- martin
+
+
+l: 39
+t: radio
+q: Pete envies Martin because <font color='red'> <b> he </b> </font> is very successful .
+- pete
+- martin
+
+
+l: 40
+t: radio
+q: The older students were bullying the younger ones , so we punished <font color='red'> <b> them </b> </font> .
+- the older students
+- the younger students
+
+
+l: 41
+t: radio
+q: The older students were bullying the younger ones , so we rescued <font color='red'> <b> them </b> </font> .
+- the older students
+- the younger students
+
+
+l: 42
+t: radio
+q: I poured water from the bottle into the cup until <font color='red'> <b> it </b> </font> was empty .
+- the bottle
+- the cup
+
+
+l: 43
+t: radio
+q: I poured water from the bottle into the cup until <font color='red'> <b> it </b> </font> was full .
+- the bottle
+- the cup
+
+
+l: 44
+t: radio
+q: Susan knows all about Ann's personal problems because <font color='red'> <b> she </b> </font> is nosy .
+- susan
+- ann
+
+
+l: 45
+t: radio
+q: Susan knows all about Ann's personal problems because <font color='red'> <b> she </b> </font> is indiscreet .
+- susan
+- ann
+
+
+l: 46
+t: radio
+q: Sid explained his theory to Mark but <font color='red'> <b> he </b> </font> couldn't convince him .
+- sid
+- mark
+
+
+l: 47
+t: radio
+q: Sid explained his theory to Mark but <font color='red'> <b> he </b> </font> couldn't understand him .
+- sid
+- mark
+
+
+l: 48
+t: radio
+q: Susan knew that Ann's son had been in a car accident , so <font color='red'> <b> she </b> </font> told her about it .
+- susan
+- ann
+
+
+l: 49
+t: radio
+q: Susan knew that Ann's son had been in a car accident , because <font color='red'> <b> she </b> </font> told her about it .
+- susan
+- ann
+
+
+l: 50
+t: radio
+q: Joe's uncle can still beat him at tennis , even though <font color='red'> <b> he </b> </font> is 30 years younger .
+- joe
+- joe's uncle
+
+
+l: 51
+t: radio
+q: Joe's uncle can still beat him at tennis , even though <font color='red'> <b> he </b> </font> is 30 years older .
+- joe
+- joe's uncle
+
+
+l: 52
+t: radio
+q: The painting in Mark's living room shows an oak tree . <font color='red'> <b> it </b> </font> is to the right of the bookcase .
+- the painting
+- the oak tree
+
+
+l: 53
+t: radio
+q: The painting in Mark's living room shows an oak tree . <font color='red'> <b> it </b> </font> is to the right of a house .
+- the painting
+- the oak tree
+
+
+l: 54
+t: radio
+q: There is a gap in the wall . You can see the garden through <font color='red'> <b> it </b> </font> .
+- the gap
+- the wall
+
+
+l: 55
+t: radio
+q: There is a gap in the wall . You can see the garden behind <font color='red'> <b> it </b> </font> .
+- the gap
+- the wall
+
+
+l: 56
+t: radio
+q: The drain is clogged with hair . <font color='red'> <b> It </b> </font> has to be cleaned .
+- the drain
+- the hair
+
+
+l: 57
+t: radio
+q: The drain is clogged with hair . <font color='red'> <b> It </b> </font> has to be removed .
+- the drain
+- the hair
+
+
+l: 58
+t: radio
+q: My meeting started at 4:00 and I needed to catch the train at 4:30 , so there wasn't much time . Luckily , <font color='red'> <b> it </b> </font> was short , so it worked out .
+- the meeting
+- the train
+
+
+l: 59
+t: radio
+q: My meeting started at 4:00 and I needed to catch the train at 4:30 , so there wasn't much time . Luckily , <font color='red'> <b> it </b> </font> was delayed , so it worked out .
+- the meeting
+- the train
+
+
+l: 60
+t: radio
+q: There is a pillar between me and the stage , and I can't see around <font color='red'> <b> it </b> </font> .
+- the pillar
+- the stage
+
+
+l: 61
+t: radio
+q: There is a pillar between me and the stage , and I can't see <font color='red'> <b> it </b> </font> .
+- the pillar
+- the stage
+
+
+l: 62
+t: radio
+q: They broadcast an announcement , but a subway came into the station and I couldn't hear <font color='red'> <b> it </b> </font> .
+- the announcement
+- the subway
+
+
+l: 63
+t: radio
+q: They broadcast an announcement , but a subway came into the station and I couldn't hear over <font color='red'> <b> it </b> </font> .
+- the announcement
+- the subway
+
+
+l: 64
+t: radio
+q: In the middle of the outdoor concert , the rain started falling , but <font color='red'> <b> it </b> </font> continued until 10 .
+- the concert
+- the rain
+
+
+l: 65
+t: radio
+q: In the middle of the outdoor concert , the rain started falling , and <font color='red'> <b> it </b> </font> continued until 10 .
+- the concert
+- the rain
+
+
+l: 66
+t: radio
+q: I used an old rag to clean the knife , and then I put <font color='red'> <b> it </b> </font> in the trash .
+- the rag
+- the knife
+
+
+l: 67
+t: radio
+q: I used an old rag to clean the knife , and then I put <font color='red'> <b> it </b> </font> in the drawer .
+- the rag
+- the knife
+
+
+l: 68
+t: radio
+q: Ann asked Mary what time the library closes , because <font color='red'> <b> she </b> </font> had forgotten .
+- ann
+- mary
+
+
+l: 69
+t: radio
+q: Ann asked Mary what time the library closes , but <font color='red'> <b> she </b> </font> had forgotten .
+- ann
+- mary
+
+
+l: 70
+t: radio
+q: I took the water bottle out of the backpack so that <font color='red'> <b> it </b> </font> would be handy .
+- the water bottle
+- the backpack
+
+
+l: 71
+t: radio
+q: I took the water bottle out of the backpack so that <font color='red'> <b> it </b> </font> would be lighter .
+- the water bottle
+- the backpack
+
+
+l: 72
+t: radio
+q: I couldn't put the pot on the shelf because <font color='red'> <b> it </b> </font> was too tall .
+- the pot
+- the shelf
+
+
+l: 73
+t: radio
+q: I couldn't put the pot on the shelf because <font color='red'> <b> it </b> </font> was too high .
+- the pot
+- the shelf
+
+
+l: 74
+t: radio
+q: I'm sure that my map will show this building ; <font color='red'> <b> it </b> </font> is very good .
+- the map
+- the building
+
+
+l: 75
+t: radio
+q: I'm sure that my map will show this building ; <font color='red'> <b> it </b> </font> is very famous .
+- the map
+- the building
+
+
+l: 76
+t: radio
+q: Bob paid for Charlie's college education . <font color='red'> <b> He </b> </font> is very generous .
+- bob
+- charlie
+
+
+l: 77
+t: radio
+q: Bob paid for Charlie's college education . <font color='red'> <b> He </b> </font> is very grateful .
+- bob
+- charlie
+
+
+l: 78
+t: radio
+q: Bob paid for Charlie's college education , but now Charlie acts as though it never happened . <font color='red'> <b> He </b> </font> is very hurt .
+- bob
+- charlie
+
+
+l: 79
+t: radio
+q: Bob paid for Charlie's college education , but now Charlie acts as though it never happened . <font color='red'> <b> He </b> </font> is very ungrateful .
+- bob
+- charlie
+
+
+l: 80
+t: radio
+q: Bob was playing cards with Adam and was way ahead . If Adam hadn't had a sudden run of good luck , <font color='red'> <b> he </b> </font> would have won .
+- bob
+- adam
+
+
+l: 81
+t: radio
+q: Bob was playing cards with Adam and was way ahead . If Adam hadn't had a sudden run of good luck , <font color='red'> <b> he </b> </font> would have lost .
+- bob
+- adam
+
+
+l: 82
+t: radio
+q: Adam can't leave work here until Bob arrives to replace him . If Bob had left home for work on time , <font color='red'> <b> he </b> </font> would be gone by this time .
+- adam
+- bob
+
+
+l: 83
+t: radio
+q: Adam can't leave work here until Bob arrives to replace him . If Bob had left home for work on time , <font color='red'> <b> he </b> </font> would be here by this time .
+- adam
+- bob
+
+
+l: 84
+t: radio
+q: If the con artist had succeeded in fooling Sam , <font color='red'> <b> he </b> </font> would have gotten a lot of money .
+- the con artist
+- sam
+
+
+l: 85
+t: radio
+q: If the con artist had succeeded in fooling Sam , <font color='red'> <b> he </b> </font> would have lost a lot of money .
+- the con artist
+- sam
+
+
+l: 86
+t: radio
+q: It was a summer afternoon , and the dog was sitting in the middle of the lawn . After a while , it got up and moved to a spot under the tree , because <font color='red'> <b> it </b> </font> was hot .
+- the dog
+- the spot under the tree
+
+
+l: 87
+t: radio
+q: It was a summer afternoon , and the dog was sitting in the middle of the lawn . After a while , it got up and moved to a spot under the tree , because <font color='red'> <b> it </b> </font> was cooler .
+- the dog
+- the spot under the tree
+
+
+l: 88
+t: radio
+q: The cat was lying by the mouse hole waiting for the mouse , but <font color='red'> <b> it </b> </font> was too impatient .
+- the cat
+- the mouse
+
+
+l: 89
+t: radio
+q: The cat was lying by the mouse hole waiting for the mouse , but <font color='red'> <b> it </b> </font> was too cautious .
+- the cat
+- the mouse
+
+
+l: 90
+t: radio
+q: Anne gave birth to a daughter last month . <font color='red'> <b> She </b> </font> is a very charming woman .
+- anne
+- anne's daughter
+
+
+l: 91
+t: radio
+q: Anne gave birth to a daughter last month . <font color='red'> <b> She </b> </font> is a very charming baby .
+- anne
+- anne's daughter
+
+
+l: 92
+t: radio
+q: Alice tried frantically to stop her daughter from chatting at the party , leaving us to wonder why <font color='red'> <b> she </b> </font> was behaving so strangely .
+- alice
+- alice's daughter
+
+
+l: 93
+t: radio
+q: Alice tried frantically to stop her daughter from barking at the party , leaving us to wonder why <font color='red'> <b> she </b> </font> was behaving so strangely .
+- alice
+- alice's daughter
+
+
+l: 94
+t: radio
+q: I saw Jim yelling at some guy in a military uniform with a huge red beard . I don't know why <font color='red'> <b> he </b> </font> was , but he looked very unhappy .
+- jim
+- the guy in uniform
+
+
+l: 95
+t: radio
+q: I saw Jim yelling at some guy in a military uniform with a huge red beard . I don't know who <font color='red'> <b> he </b> </font> was , but he looked very unhappy .
+- jim
+- the guy in uniform
+
+
+l: 96
+t: radio
+q: The fish is eating the worm . <font color='red'> <b> It </b> </font> is hungry .
+- the fish
+- the worm
+
+
+l: 97
+t: radio
+q: The fish ate the worm . <font color='red'> <b> It </b> </font> was tasty .
+- the fish
+- the worm
+
+
+l: 98
+t: radio
+q: I was trying to open the lock with the key , but someone had filled the keyhole with chewing gum , and I couldn't get <font color='red'> <b> it </b> </font> in .
+- the key
+- the chewing gum
+
+
+l: 99
+t: radio
+q: I was trying to open the lock with the key , but someone had filled the keyhole with chewing gum , and I couldn't get <font color='red'> <b> it </b> </font> out .
+- the key
+- the chewing gum
+
+
+l: 100
+t: radio
+q: The dog chased the cat , which ran up a tree . <font color='red'> <b> It </b> </font> waited at the bottom .
+- the dog
+- the cat
+
+
+l: 101
+t: radio
+q: The dog chased the cat , which ran up a tree . <font color='red'> <b> It </b> </font> waited at the top .
+- the dog
+- the cat
+
+
+l: 102
+t: radio
+q: In the storm , the tree fell down and crashed through the roof of my house . Now , I have to get <font color='red'> <b> it </b> </font> removed .
+- the tree
+- the roof
+
+
+l: 103
+t: radio
+q: In the storm , the tree fell down and crashed through the roof of my house . Now , I have to get <font color='red'> <b> it </b> </font> repaired .
+- the tree
+- the roof
+
+
+l: 104
+t: radio
+q: The customer walked into the bank and stabbed one of the tellers . <font color='red'> <b> He </b> </font> was immediately taken to the police station .
+- the customer
+- the teller
+
+
+l: 105
+t: radio
+q: The customer walked into the bank and stabbed one of the tellers . <font color='red'> <b> He </b> </font> was immediately taken to the hospital .
+- the customer
+- the teller
+
+
+l: 106
+t: radio
+q: John was doing research in the library when he heard a man humming and whistling . <font color='red'> <b> He </b> </font> was very annoyed .
+- john
+- the man
+
+
+l: 107
+t: radio
+q: John was doing research in the library when he heard a man humming and whistling . <font color='red'> <b> He </b> </font> was very annoying .
+- john
+- the man
+
+
+l: 108
+t: radio
+q: John was jogging through the park when he saw a man juggling watermelons . <font color='red'> <b> He </b> </font> was very impressed .
+- john
+- the juggler
+
+
+l: 109
+t: radio
+q: John was jogging through the park when he saw a man juggling watermelons . <font color='red'> <b> He </b> </font> was very impressive .
+- john
+- the juggler
+
+
+l: 110
+t: radio
+q: Bob collapsed on the sidewalk . Soon he saw Carl coming to help . <font color='red'> <b> He </b> </font> was very ill .
+- bob
+- carl
+
+
+l: 111
+t: radio
+q: Bob collapsed on the sidewalk . Soon he saw Carl coming to help . <font color='red'> <b> He </b> </font> was very concerned .
+- bob
+- carl
+
+
+l: 112
+t: radio
+q: Sam and Amy are passionately in love , but Amy's parents are unhappy about it , because <font color='red'> <b> they </b> </font> are fifteen .
+- sam and amy
+- amy's parents
+
+
+l: 113
+t: radio
+q: Sam and Amy are passionately in love , but Amy's parents are unhappy about it , because <font color='red'> <b> they </b> </font> are snobs .
+- sam and amy
+- amy's parents
+
+
+l: 114
+t: radio
+q: Mark told Pete many lies about himself , which Pete included in his book . <font color='red'> <b> He </b> </font> should have been more truthful .
+- mark
+- pete
+
+
+l: 115
+t: radio
+q: Mark told Pete many lies about himself , which Pete included in his book . <font color='red'> <b> He </b> </font> should have been more skeptical .
+- mark
+- pete
+
+
+l: 116
+t: radio
+q: Joe has sold his house and bought a new one a few miles away . He will be moving out of <font color='red'> <b> it </b> </font> on Thursday .
+- the old house
+- the new house
+
+
+l: 117
+t: radio
+q: Joe has sold his house and bought a new one a few miles away . He will be moving into <font color='red'> <b> it </b> </font> on Thursday .
+- the old house
+- the new house
+
+
+l: 118
+t: radio
+q: Many people start to read Paul's books and can't put them down . <font color='red'> <b> They </b> </font> are gripped because Paul writes so well .
+- people
+- paul's books
+
+
+l: 119
+t: radio
+q: Many people start to read Paul's books and can't put them down . <font color='red'> <b> They </b> </font> are popular because Paul writes so well .
+- people
+- paul's books
+
+
+l: 120
+t: radio
+q: Mary took out her flute and played one of her favorite pieces . She has had <font color='red'> <b> it </b> </font> since she was a child .
+- the flute
+- the piece
+
+
+l: 121
+t: radio
+q: Mary took out her flute and played one of her favorite pieces . She has loved <font color='red'> <b> it </b> </font> since she was a child .
+- the flute
+- the piece
+
+
+l: 122
+t: radio
+q: Sam pulled up a chair to the piano , but <font color='red'> <b> it </b> </font> was broken , so he had to stand instead .
+- the chair
+- the piano
+
+
+l: 123
+t: radio
+q: Sam pulled up a chair to the piano , but <font color='red'> <b> it </b> </font> was broken , so he had to sing instead .
+- the chair
+- the piano
+
+
+l: 124
+t: radio
+q: Since it was raining , I carried the newspaper in my backpack to keep <font color='red'> <b> it </b> </font> dry .
+- the newspaper
+- the backpack
+
+
+l: 125
+t: radio
+q: Since it was raining , I carried the newspaper over my backpack to keep <font color='red'> <b> it </b> </font> dry .
+- the newspaper
+- the backpack
+
+
+l: 126
+t: radio
+q: Sara borrowed the book from the library because she needs it for an article she is working on . She reads <font color='red'> <b> it </b> </font> when she gets home from work .
+- the book
+- the article
+
+
+l: 127
+t: radio
+q: Sara borrowed the book from the library because she needs it for an article she is working on . She writes <font color='red'> <b> it </b> </font> when she gets home from work .
+- the book
+- the article
+
+
+l: 128
+t: radio
+q: This morning , Joey built a sand castle on the beach , and put a toy flag in the highest tower , but this afternoon the tide knocked <font color='red'> <b> it </b> </font> down .
+- the sand castle
+- the flag
+
+
+l: 129
+t: radio
+q: This morning , Joey built a sand castle on the beach , and put a toy flag in the highest tower , but this afternoon the wind knocked <font color='red'> <b> it </b> </font> down .
+- the sand castle
+- the flag
+
+
+l: 130
+t: radio
+q: Jane knocked on Susan's door , but there was no answer . <font color='red'> <b> She </b> </font> was disappointed .
+- jane
+- susan
+
+
+l: 131
+t: radio
+q: Jane knocked on Susan's door , but there was no answer . <font color='red'> <b> She </b> </font> was out .
+- jane
+- susan
+
+
+l: 132
+t: radio
+q: Jane knocked on the door , and Susan answered it . <font color='red'> <b> She </b> </font> invited her to come out .
+- jane
+- susan
+
+
+l: 133
+t: radio
+q: Jane knocked on the door , and Susan answered it . <font color='red'> <b> She </b> </font> invited her to come in .
+- jane
+- susan
+
+
+l: 134
+t: radio
+q: Sam took French classes from Adam , because <font color='red'> <b> he </b> </font> was eager to speak it fluently .
+- sam
+- adam
+
+
+l: 135
+t: radio
+q: Sam took French classes from Adam , because <font color='red'> <b> he </b> </font> was known to speak it fluently .
+- sam
+- adam
+
+
+l: 136
+t: radio
+q: The path to the lake was blocked , so we couldn't use <font color='red'> <b> it </b> </font> .
+- the path
+- the lake
+
+
+l: 137
+t: radio
+q: The path to the lake was blocked , so we couldn't reach <font color='red'> <b> it </b> </font> .
+- the path
+- the lake
+
+
+l: 138
+t: radio
+q: The sun was covered by a thick cloud all morning , but luckily , by the time the picnic started , <font color='red'> <b> it </b> </font> was out .
+- the sun
+- the cloud
+
+
+l: 139
+t: radio
+q: The sun was covered by a thick cloud all morning , but luckily , by the time the picnic started , <font color='red'> <b> it </b> </font> was gone .
+- the sun
+- the cloud
+
+
+l: 140
+t: radio
+q: We went to the lake , because a shark had been seen at the ocean beach , so <font color='red'> <b> it </b> </font> was a safer place to swim .
+- the lake
+- the ocean beach
+
+
+l: 141
+t: radio
+q: We went to the lake , because a shark had been seen at the ocean beach , so <font color='red'> <b> it </b> </font> was a dangerous place to swim .
+- the lake
+- the ocean beach
+
+
+l: 142
+t: radio
+q: Sam tried to paint a picture of shepherds with sheep , but <font color='red'> <b> they </b> </font> ended up looking more like golfers .
+- the shepherds
+- the sheep
+
+
+l: 143
+t: radio
+q: Sam tried to paint a picture of shepherds with sheep , but <font color='red'> <b> they </b> </font> ended up looking more like dogs .
+- the shepherds
+- the sheep
+
+
+l: 144
+t: radio
+q: Mary tucked her daughter Anne into bed , so that <font color='red'> <b> she </b> </font> could work .
+- mary
+- mary's daughter
+
+
+l: 145
+t: radio
+q: Mary tucked her daughter Anne into bed , so that <font color='red'> <b> she </b> </font> could sleep .
+- mary
+- mary's daughter
+
+
+l: 146
+t: radio
+q: Fred and Alice had very warm down coats , but <font color='red'> <b> they </b> </font> were not prepared for the cold in Alaska .
+- fred and alice
+- coats
+
+
+l: 147
+t: radio
+q: Fred and Alice had very warm down coats , but <font color='red'> <b> they </b> </font> were not enough for the cold in Alaska .
+- fred and alice
+- coats
+
+
+l: 148
+t: radio
+q: Thomson visited Cooper's grave in 1765 . At that date <font color='red'> <b> he </b> </font> had been travelling for five years .
+- thomson
+- cooper
+
+
+l: 149
+t: radio
+q: Thomson visited Cooper's grave in 1765 . At that date <font color='red'> <b> he </b> </font> had been dead for five years .
+- thomson
+- cooper
+
+
+l: 150
+t: radio
+q: Jackson was greatly influenced by Arnold , though <font color='red'> <b> he </b> </font> lived two centuries later .
+- jackson
+- arnold
+
+
+l: 151
+t: radio
+q: Jackson was greatly influenced by Arnold , though <font color='red'> <b> he </b> </font> lived two centuries earlier .
+- jackson
+- arnold
+
+
+l: 152
+t: radio
+q: I can't cut that tree down with that axe ; <font color='red'> <b> it </b> </font> is too thick .
+- the tree
+- the axe
+
+
+l: 153
+t: radio
+q: I can't cut that tree down with that axe ; <font color='red'> <b> it </b> </font> is too small .
+- the tree
+- the axe
+
+
+l: 154
+t: radio
+q: The foxes are getting in at night and attacking the chickens . I shall have to kill <font color='red'> <b> them </b> </font> .
+- the foxes
+- the chickens
+
+
+l: 155
+t: radio
+q: The foxes are getting in at night and attacking the chickens . I shall have to guard <font color='red'> <b> them </b> </font> .
+- the foxes
+- the chickens
+
+
+l: 156
+t: radio
+q: The foxes are getting in at night and attacking the chickens . <font color='red'> <b> They </b> </font> have gotten very bold .
+- the foxes
+- the chickens
+
+
+l: 157
+t: radio
+q: The foxes are getting in at night and attacking the chickens . <font color='red'> <b> They </b> </font> have gotten very nervous .
+- the foxes
+- the chickens
+
+
+l: 158
+t: radio
+q: Fred covered his eyes with his hands , because the wind was blowing sand around . He opened <font color='red'> <b> them </b> </font> when the wind stopped .
+- his eyes
+- his hands
+
+
+l: 159
+t: radio
+q: Fred covered his eyes with his hands , because the wind was blowing sandaround . He lowered <font color='red'> <b> them </b> </font> when the wind stopped .
+- his eyes
+- his hands
+
+
+l: 160
+t: radio
+q: The actress used to be named Terpsichore , but she changed it to Tina a few years ago , because she figured <font color='red'> <b> it </b> </font> was too hard to pronounce .
+- terpsichore
+- tina
+
+
+l: 161
+t: radio
+q: The actress used to be named Terpsichore , but she changed it to Tina a few years ago , because she figured <font color='red'> <b> it </b> </font> was easier to pronounce .
+- terpsichore
+- tina
+
+
+l: 162
+t: radio
+q: Fred watched TV while George went out to buy groceries . After an hour <font color='red'> <b> he </b> </font> got up .
+- fred
+- george
+
+
+l: 163
+t: radio
+q: Fred watched TV while George went out to buy groceries . After an hour <font color='red'> <b> he </b> </font> got back .
+- fred
+- george
+
+
+l: 164
+t: radio
+q: Fred was supposed to run the dishwasher , but he put it off , because he wanted to watch TV . But the show turned out to be boring , so he changed his mind and turned <font color='red'> <b> it </b> </font> on .
+- the dishwasher
+- the tv
+
+
+l: 165
+t: radio
+q: Fred was supposed to run the dishwasher , but he put it off , because he wanted to watch TV . But the show turned out to be boring , so he changed his mind and turned <font color='red'> <b> it </b> </font> off .
+- the dishwasher
+- the tv
+
+
+l: 166
+t: radio
+q: Fred is the only man still alive who remembers my great-grandfather . <font color='red'> <b> He </b> </font> is a remarkable man .
+- fred
+- my great-grandfather
+
+
+l: 167
+t: radio
+q: Fred is the only man still alive who remembers my great-grandfather . <font color='red'> <b> He </b> </font> was a remarkable man .
+- fred
+- my great-grandfather
+
+
+l: 168
+t: radio
+q: Fred is the only man alive who still remembers my father as an infant . When Fred first saw my father , <font color='red'> <b> he </b> </font> was twelve years old .
+- fred
+- my father
+
+
+l: 169
+t: radio
+q: Fred is the only man alive who still remembers my father as an infant . When Fred first saw my father , <font color='red'> <b> he </b> </font> was twelve months old .
+- fred
+- my father
+
+
+l: 170
+t: radio
+q: In July , Kamtchatka declared war on Yakutsk . Since Yakutsk's army was much better equipped and ten times larger , <font color='red'> <b> they </b> </font> were defeated within weeks .
+- kamchatka
+- yakutsk
+
+
+l: 171
+t: radio
+q: In July , Kamtchatka declared war on Yakutsk . Since Yakutsk's army was much better equipped and ten times larger , <font color='red'> <b> they </b> </font> were victorious within weeks .
+- kamchatka
+- yakutsk
+
+
+l: 172
+t: radio
+q: Look ! There is a minnow swimming right below that duck ! <font color='red'> <b> It </b> </font> had better get away to safety fast !
+- the minnow
+- the duck
+
+
+l: 173
+t: radio
+q: Look ! There is a shark swimming right below that duck ! <font color='red'> <b> It </b> </font> had better get away to safety fast !
+- the shark
+- the duck
+
+
+l: 174
+t: radio
+q: Archaeologists have concluded that humans lived in Laputa 20,000 years ago . <font color='red'> <b> They </b> </font> hunted for evidence on the river banks .
+- archaeologists
+- prehistoric humans
+
+
+l: 175
+t: radio
+q: Archaeologists have concluded that humans lived in Laputa 20,000 years ago . <font color='red'> <b> They </b> </font> hunted for deer on the river banks .
+- archaeologists
+- prehistoric humans
+
+
+l: 176
+t: radio
+q: Three species of fish that have recently been found living in the Indian Ocean are being studied by scientists . <font color='red'> <b> They </b> </font> began two years ago .
+- the scientists
+- the fish
+
+
+l: 177
+t: radio
+q: The scientists are studying three species of fish that have recently been found living in the Indian Ocean . <font color='red'> <b> They </b> </font> appeared two years ago .
+- the scientists
+- the fish
+
+
+l: 178
+t: radio
+q: The journalists interviewed the stars of the new movie . <font color='red'> <b> They </b> </font> were very persistent , so the interview lasted for a long time .
+- the journalists
+- the stars
+
+
+l: 179
+t: radio
+q: The journalists interviewed the stars of the new movie . <font color='red'> <b> They </b> </font> were very cooperative , so the interview lasted for a long time .
+- the journalists
+- the stars
+
+
+l: 180
+t: radio
+q: The police arrested all of the gang members . <font color='red'> <b> They </b> </font> were trying to stop the drug trade in the neighborhood .
+- the police
+- the gang members
+
+
+l: 181
+t: radio
+q: The police arrested all of the gang members . <font color='red'> <b> They </b> </font> were trying to run the drug trade in the neighborhood .
+- the police
+- the gang members
+
+
+l: 182
+t: radio
+q: I put the cake away in the refrigerator . <font color='red'> <b> It </b> </font> has a lot of butter in it .
+- the cake
+- the refrigerator
+
+
+l: 183
+t: radio
+q: I put the cake away in the refrigerator . <font color='red'> <b> It </b> </font> has a lot of leftovers in it .
+- the cake
+- the refrigerator
+
+
+l: 184
+t: radio
+q: Sam broke both his ankles and he's walking with crutches . But a month or so from now <font color='red'> <b> they </b> </font> should be better .
+- the ankles
+- the crutches
+
+
+l: 185
+t: radio
+q: Sam broke both his ankles and he's walking with crutches . But a month or so from now <font color='red'> <b> they </b> </font> should be unnecessary .
+- the ankles
+- the crutches
+
+
+l: 186
+t: radio
+q: When the sponsors of the bill got to the town hall , they were surprised to find that the room was full of opponents . <font color='red'> <b> They </b> </font> were very much in the minority .
+- the sponsors
+- the opponents
+
+
+l: 187
+t: radio
+q: When the sponsors of the bill got to the town hall , they were surprised to find that the room was full of opponents . <font color='red'> <b> They </b> </font> were very much in the majority .
+- the sponsors
+- the opponents
+
+
+l: 188
+t: radio
+q: Everyone really loved the oatmeal cookies ; only a few people liked the chocolate chip cookies . Next time , we should make more of <font color='red'> <b> them </b> </font> .
+- the oatmeal cookies
+- the chocolate chip cookies
+
+
+l: 189
+t: radio
+q: Everyone really loved the oatmeal cookies ; only a few people liked the chocolate chip cookies . Next time , we should make fewer of <font color='red'> <b> them </b> </font> .
+- the oatmeal cookies
+- the chocolate chip cookies
+
+
+l: 190
+t: radio
+q: We had hoped to place copies of our newsletter on all the chairs in the auditorium , but there were simply not enough of <font color='red'> <b> them </b> </font> .
+- copies of the newsletter
+- chairs
+
+
+l: 191
+t: radio
+q: We had hoped to place copies of our newsletter on all the chairs in the auditorium , but there were simply too many of <font color='red'> <b> them </b> </font> .
+- copies of the newsletter
+- chairs
+
+
+l: 192
+t: radio
+q: I stuck a pin through a carrot . When I pulled the pin out , <font color='red'> <b> it </b> </font> left a hole .
+- the pin
+- the carrot
+
+
+l: 193
+t: radio
+q: I stuck a pin through a carrot . When I pulled the pin out , <font color='red'> <b> it </b> </font> had a hole .
+- the pin
+- the carrot
+
+
+l: 194
+t: radio
+q: I couldn't find a spoon , so I tried using a pen to stir my coffee . But that turned out to be a bad idea , because <font color='red'> <b> it </b> </font> got full of coffee .
+- the pen
+- the coffee
+
+
+l: 195
+t: radio
+q: I couldn't find a spoon , so I tried using a pen to stir my coffee . But that turned out to be a bad idea , because <font color='red'> <b> it </b> </font> got full of ink .
+- the pen
+- the coffee
+
+
+l: 196
+t: radio
+q: Steve follows Fred's example in everything . <font color='red'> <b> He </b> </font> admires him hugely .
+- steve
+- fred
+
+
+l: 197
+t: radio
+q: Steve follows Fred's example in everything . <font color='red'> <b> He </b> </font> influences him hugely .
+- steve
+- fred
+
+
+l: 198
+t: radio
+q: The table won't fit through the doorway because <font color='red'> <b> it </b> </font> is too wide .
+- the table
+- the doorway
+
+
+l: 199
+t: radio
+q: The table won't fit through the doorway because <font color='red'> <b> it </b> </font> is too narrow .
+- the table
+- the doorway
+
+
+l: 200
+t: radio
+q: Grace was happy to trade me her sweater for my jacket . She thinks <font color='red'> <b> it </b> </font> looks dowdy on her .
+- the sweater
+- the jacket
+
+
+l: 201
+t: radio
+q: Grace was happy to trade me her sweater for my jacket . She thinks <font color='red'> <b> it </b> </font> looks great on her .
+- the sweater
+- the jacket
+
+
+l: 202
+t: radio
+q: John hired Bill to take care of <font color='red'> <b> him </b> </font> .
+- john
+- bill
+
+
+l: 203
+t: radio
+q: John hired himself out to Bill to take care of <font color='red'> <b> him </b> </font> .
+- john
+- bill
+
+
+l: 204
+t: radio
+q: John promised Bill to leave , so an hour later <font color='red'> <b> he </b> </font> left .
+- john
+- bill
+
+
+l: 205
+t: radio
+q: John ordered Bill to leave , so an hour later <font color='red'> <b> he </b> </font> left .
+- john
+- bill
+
+
+l: 206
+t: radio
+q: Sam Goodman's biography of the Spartan general Xenophanes conveys a vivid sense of the difficulties <font color='red'> <b> he </b> </font> faced in his research .
+- goodman
+- xenophanes
+
+
+l: 207
+t: radio
+q: Sam Goodman's biography of the Spartan general Xenophanes conveys a vivid sense of the difficulties <font color='red'> <b> he </b> </font> faced in his childhood .
+- goodman
+- xenophanes
+
+
+l: 208
+t: radio
+q: Emma's mother had died long ago , and <font color='red'> <b> her </b> </font> education had been managed by an excellent woman as governess .
+- emma
+- emma's mother
+
+
+l: 209
+t: radio
+q: Emma's mother had died long ago , and <font color='red'> <b> her </b> </font> place had been taken by an excellent woman as governess .
+- emma
+- emma's mother
+
+
+l: 210
+t: radio
+q: Jane knocked on Susan's door but <font color='red'> <b> she </b> </font> did not get an answer .
+- jane
+- susan
+
+
+l: 211
+t: radio
+q: Jane knocked on Susan's door but <font color='red'> <b> she </b> </font> did not answer .
+- jane
+- susan
+
+
+l: 212
+t: radio
+q: Joe paid the detective after <font color='red'> <b> he </b> </font> received the final report on the case .
+- joe
+- the detective
+
+
+l: 213
+t: radio
+q: Joe paid the detective after <font color='red'> <b> he </b> </font> delivered the final report on the case .
+- joe
+- the detective
+
+
+l: 214
+t: radio
+q: Beth didn't get angry with Sally , who had cut her off , because <font color='red'> <b> she </b> </font> stopped and counted to ten .
+- beth
+- sally
+
+
+l: 215
+t: radio
+q: Beth didn't get angry with Sally , who had cut her off , because <font color='red'> <b> she </b> </font> stopped and apologized .
+- beth
+- sally
+
+
+l: 216
+t: radio
+q: Jim signaled the barman and gestured toward <font color='red'> <b> his </b> </font> empty glass .
+- jim
+- the barman
+
+
+l: 217
+t: radio
+q: Jim signaled the barman and gestured toward <font color='red'> <b> his </b> </font> bathroom key .
+- jim
+- the barman
+
+
+l: 218
+t: radio
+q: Dan took the rear seat while Bill claimed the front because <font color='red'> <b> his </b> </font> "Dibs!" was slow .
+- dan
+- bill
+
+
+l: 219
+t: radio
+q: Dan took the rear seat while Bill claimed the front because <font color='red'> <b> his </b> </font> "Dibs!" was quicker .
+- dan
+- bill
+
+
+l: 220
+t: radio
+q: Tom said "Check" to Ralph as he moved <font color='red'> <b> his </b> </font> bishop .
+- tom
+- ralph
+
+
+l: 221
+t: radio
+q: Tom said "Check" to Ralph as he took <font color='red'> <b> his </b> </font> bishop .
+- tom
+- ralph
+
+
+l: 222
+t: radio
+q: As Andrea in the crop duster passed over Susan , <font color='red'> <b> she </b> </font> could see the landing strip .
+- andrea
+- susan
+
+
+l: 223
+t: radio
+q: As Andrea in the crop duster passed over Susan , <font color='red'> <b> she </b> </font> could see the landing gear .
+- andrea
+- susan
+
+
+l: 224
+t: radio
+q: Tom gave Ralph a lift to school so <font color='red'> <b> he </b> </font> wouldn't have to drive alone .
+- tom
+- ralph
+
+
+l: 225
+t: radio
+q: Tom gave Ralph a lift to school so <font color='red'> <b> he </b> </font> wouldn't have to walk .
+- tom
+- ralph
+
+
+l: 226
+t: radio
+q: Bill passed the half-empty plate to John because <font color='red'> <b> he </b> </font> was full .
+- bill
+- john
+
+
+l: 227
+t: radio
+q: Bill passed the half-empty plate to John because <font color='red'> <b> he </b> </font> was hungry .
+- bill
+- john
+
+
+l: 228
+t: radio
+q: Bill passed the gameboy to John because <font color='red'> <b> his </b> </font> turn was over .
+- bill
+- john
+
+
+l: 229
+t: radio
+q: Bill passed the gameboy to John because <font color='red'> <b> his </b> </font> turn was next .
+- bill
+- john
+
+
+l: 230
+t: radio
+q: The man lifted the boy onto <font color='red'> <b> his </b> </font> shoulders .
+- the man
+- the boy
+
+
+l: 231
+t: radio
+q: The man lifted the boy onto <font color='red'> <b> his </b> </font> bunk bed .
+- the man
+- the boy
+
+
+l: 232
+t: radio
+q: Stretching <font color='red'> <b> her </b> </font> back , the woman smiled at the girl .
+- the woman
+- the girl
+
+
+l: 233
+t: radio
+q: Patting <font color='red'> <b> her </b> </font> back , the woman smiled at the girl .
+- the woman
+- the girl
+
+
+l: 234
+t: radio
+q: Billy cried because Toby wouldn't accept <font color='red'> <b> his </b> </font> toy .
+- billy
+- toby
+
+
+l: 235
+t: radio
+q: Billy cried because Toby wouldn't share <font color='red'> <b> his </b> </font> toy .
+- billy
+- toby
+
+
+l: 236
+t: radio
+q: Lily spoke to Donna , breaking <font color='red'> <b> her </b> </font> silence .
+- lily
+- donna
+
+
+l: 237
+t: radio
+q: Lily spoke to Donna , breaking <font color='red'> <b> her </b> </font> concentration .
+- lily
+- donna
+
+
+l: 238
+t: radio
+q: When Tommy dropped his ice cream , Timmy giggled , so father gave <font color='red'> <b> him </b> </font> a sympathetic look .
+- tommy
+- timmy
+
+
+l: 239
+t: radio
+q: When Tommy dropped his ice cream , Timmy giggled , so father gave <font color='red'> <b> him </b> </font> a stern look .
+- tommy
+- timmy
+
+
+l: 240
+t: radio
+q: As Ollie carried Tommy up the long winding steps , <font color='red'> <b> his </b> </font> legs ached .
+- ollie
+- tommy
+
+
+l: 241
+t: radio
+q: As Ollie carried Tommy up the long winding steps , <font color='red'> <b> his </b> </font> legs dangled .
+- ollie
+- tommy
+
+
+l: 242
+t: radio
+q: The father carried the sleeping boy in <font color='red'> <b> his </b> </font> arms .
+- the father
+- the boy
+
+
+l: 243
+t: radio
+q: The father carried the sleeping boy in <font color='red'> <b> his </b> </font> bassinet .
+- the father
+- the boy
+
+
+l: 244
+t: radio
+q: The woman held the girl against <font color='red'> <b> her </b> </font> chest .
+- the woman
+- the girl
+
+
+l: 245
+t: radio
+q: The woman held the girl against <font color='red'> <b> her </b> </font> will .
+- the woman
+- the girl
+
+
+l: 246
+t: radio
+q: Pam's parents came home and found her having sex with her boyfriend , Paul . <font color='red'> <b> They </b> </font> were furious about it .
+- pam's parents
+- pam and paul
+
+
+l: 247
+t: radio
+q: Pam's parents came home and found her having sex with her boyfriend , Paul . <font color='red'> <b> They </b> </font> were embarrassed about it .
+- pam's parents
+- pam and paul
+
+
+l: 248
+t: radio
+q: Dr . Adams informed Kate that <font color='red'> <b> she </b> </font> had retired and presented several options for future treatment .
+- dr .  adams
+- kate
+
+
+l: 249
+t: radio
+q: Dr . Adams informed Kate that <font color='red'> <b> she </b> </font> had cancer and presented several options for future treatment .
+- dr .  adams
+- kate
+
+
+l: 250
+t: radio
+q: Dan had to stop Bill from toying with the injured bird . <font color='red'> <b> He </b> </font> is very compassionate .
+- dan
+- bill
+
+
+l: 251
+t: radio
+q: Dan had to stop Bill from toying with the injured bird . <font color='red'> <b> He </b> </font> is very cruel .
+- dan
+- bill
+
+
+l: 252
+t: radio
+q: George got free tickets to the play , but he gave them to Eric , even though <font color='red'> <b> he </b> </font> was particularly eager to see it .
+- george
+- eric
+
+
+l: 253
+t: radio
+q: George got free tickets to the play , but he gave them to Eric , because <font color='red'> <b> he </b> </font> was particularly eager to see it .
+- george
+- eric
+
+
+l: 254
+t: radio
+q: George got free tickets to the play , but he gave them to Eric , because <font color='red'> <b> he </b> </font> was not particularly eager to see it .
+- george
+- eric
+
+
+l: 255
+t: radio
+q: Jane gave Joan candy because <font color='red'> <b> she </b> </font> wasn't hungry .
+- jane
+- joan
+
+
+l: 256
+t: radio
+q: Jane gave Joan candy because <font color='red'> <b> she </b> </font> was hungry .
+- jane
+- joan
+
+
+l: 257
+t: radio
+q: I tried to paint a picture of an orchard , with lemons in the lemon trees , but <font color='red'> <b> they </b> </font> came out looking more like light bulbs .
+- lemons
+- lemon trees
+
+
+l: 258
+t: radio
+q: I tried to paint a picture of an orchard , with lemons in the lemon trees , but <font color='red'> <b> they </b> </font> came out looking more like telephone poles .
+- lemons
+- lemon trees
+
+
+l: 259
+t: radio
+q: James asked Robert for a favor but <font color='red'> <b> he </b> </font> was refused .
+- james
+- robert
+
+
+l: 260
+t: radio
+q: James asked Robert for a favor but <font color='red'> <b> he </b> </font> refused .
+- james
+- robert
+
+
+l: 261
+t: radio
+q: Kirilov ceded the presidency to Shatov because <font color='red'> <b> he </b> </font> was less popular .
+- kirilov
+- shatov
+
+
+l: 262
+t: radio
+q: Kirilov ceded the presidency to Shatov because <font color='red'> <b> he </b> </font> was more popular .
+- kirilov
+- shatov
+
+
+l: 263
+t: radio
+q: Emma did not pass the ball to Janie although <font color='red'> <b> she </b> </font> saw that she was open .
+- emma
+- janie
+
+
+l: 264
+t: radio
+q: Emma did not pass the ball to Janie although <font color='red'> <b> she </b> </font> was open .
+- emma
+- janie
+
+
+l: 265
+t: radio
+q: I put the butterfly wing on the table and <font color='red'> <b> it </b> </font> broke .
+- the butterfly wing
+- the table
+
+
+l: 266
+t: radio
+q: I put the heavy book on the table and <font color='red'> <b> it </b> </font> broke .
+- the heavy book
+- the table
+
+
+l: 267
+t: radio
+q: Madonna fired her trainer because <font color='red'> <b> she </b> </font> couldn't stand her boyfriend .
+- madonna
+- the trainer
+
+
+l: 268
+t: radio
+q: Madonna fired her trainer because <font color='red'> <b> she </b> </font> slept with her boyfriend .
+- madonna
+- the trainer
+
+
+l: 269
+t: radio
+q: Madonna fired her trainer because she slept with <font color='red'> <b> her </b> </font> boyfriend .
+- madonna
+- the trainer
+
+
+l: 270
+t: radio
+q: Madonna fired her trainer because <font color='red'> <b> she </b> </font> couldn't stand her boyfriend .
+- madonna
+- the trainer
+
+
+l: 271
+t: radio
+q: Carol believed that Rebecca suspected that <font color='red'> <b> she </b> </font> had stolen the watch .
+- carol
+- rebecca
+
+
+l: 272
+t: radio
+q: Carol believed that Rebecca regretted that <font color='red'> <b> she </b> </font> had stolen the watch .
+- carol
+- rebecca
+
+
+l: 273
+t: radio
+q: This book introduced Shakespeare to Ovid ; it was a major influence on <font color='red'> <b> his </b> </font> writing .
+- shakespeare
+- ovid
+
+
+l: 274
+t: radio
+q: This book introduced Shakespeare to Goethe ; it was a major influence on <font color='red'> <b> his </b> </font> writing .
+- shakespeare
+- goethe
+
+
+l: 275
+t: radio
+q: This book introduced Shakespeare to Ovid ; it was a fine selection of <font color='red'> <b> his </b> </font> writing .
+- shakespeare
+- ovid
+
+
+l: 276
+t: radio
+q: This book introduced Shakespeare to Goethe ; it was a fine selection of <font color='red'> <b> his </b> </font> writing .
+- shakespeare
+- goethe
+
+
+l: 277
+t: radio
+q: Alice looked for her friend Jade in the crowd . Since <font color='red'> <b> she </b> </font> always has good luck , Alice spotted her quickly .
+- alice
+- jade
+
+
+l: 278
+t: radio
+q: Alice looked for her friend Jade in the crowd . Since <font color='red'> <b> she </b> </font> always wears a red turban , Alice spotted her quickly .
+- alice
+- jade
+
+
+l: 279
+t: radio
+q: During a game of tag , Ethan chased Luke because <font color='red'> <b> he </b> </font> was "it" .
+- ethan
+- luke
+
+
+l: 280
+t: radio
+q: During a game of tag , Ethan ran from Luke because <font color='red'> <b> he </b> </font> was "it" .
+- ethan
+- luke
+
+
+l: 281
+t: radio
+q: At the Loebner competition the judges couldn't figure out which respondents were the chatbots because <font color='red'> <b> they </b> </font> were so stupid .
+- the judges
+- the chatbots
+
+
+l: 282
+t: radio
+q: At the Loebner competition the judges couldn't figure out which respondents were the chatbots because <font color='red'> <b> they </b> </font> were so advanced .
+- the judges
+- the chatbots
+
+
+l: 283
+t: radio
+q: The user changed his password from " GrWQWu8JyC " to " willow-towered Canopy Huntertropic wrestles " as <font color='red'> <b> it </b> </font> was easy to forget .
+- grwqwu8jyc
+- willow-towered canopyhuntertropic wrestles
+
+random: end
+
+
+
