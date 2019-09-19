@@ -51,11 +51,17 @@ for dp in wsc_datapoints[1:]:
         correct_answer = dp_split[-3]
 
         #check for empty
-        text = "[CLS] " + dp_split[0].lower()  + " [SEP]"
+        """
+        text = "<cls> " + dp_split[0].lower()  + " <sep>"
         text = re.sub(' +', ' ', text)
-        text_enhanced = "[CLS] " + dp_split[6].lower()  + " [SEP]"
+        text_enhanced = "<cls> " + dp_split[6].lower()  + " <sep>"
         text_enhanced = re.sub(' +', ' ', text_enhanced)
+        """
 
+        text = dp_split[0].lower()
+        text = re.sub(' +', ' ', text)
+        text_enhanced =  dp_split[6].lower()
+        text_enhanced = re.sub(' +', ' ', text_enhanced)
         print(text, "text")
 
         tokenized_text = tokenizer.tokenize(text)
@@ -148,16 +154,16 @@ for dp in wsc_datapoints[1:]:
         masked_lm_labels_B_enhanced = []
 
         # Convert token to vocabulary indices
-        indexed_tokens_A = tokenizer.convert_tokens_to_ids(tokenized_text_A)
-        indexed_tokens_B = tokenizer.convert_tokens_to_ids(tokenized_text_B)
-        indexed_tokens_A_pre_mask = tokenizer.convert_tokens_to_ids(tokenized_text_A_pre_mask)
-        indexed_tokens_B_pre_mask = tokenizer.convert_tokens_to_ids(tokenized_text_B_pre_mask)
+        indexed_tokens_A = tokenizer.add_special_tokens_single_sentence(tokenizer.convert_tokens_to_ids(tokenized_text_A))
+        indexed_tokens_B = tokenizer.add_special_tokens_single_sentence(tokenizer.convert_tokens_to_ids(tokenized_text_B))
+        indexed_tokens_A_pre_mask = tokenizer.add_special_tokens_single_sentence(tokenizer.convert_tokens_to_ids(tokenized_text_A_pre_mask))
+        indexed_tokens_B_pre_mask = tokenizer.add_special_tokens_single_sentence(tokenizer.convert_tokens_to_ids(tokenized_text_B_pre_mask))
 
         #enhanced
-        indexed_tokens_A_enhanced = tokenizer.convert_tokens_to_ids(tokenized_text_enhanced_A)
-        indexed_tokens_B_enhanced = tokenizer.convert_tokens_to_ids(tokenized_text_enhanced_B)
-        indexed_tokens_A_pre_mask_enhanced = tokenizer.convert_tokens_to_ids(tokenized_text_A_pre_mask_enhanced)
-        indexed_tokens_B_pre_mask_enhanced = tokenizer.convert_tokens_to_ids(tokenized_text_B_pre_mask_enhanced)
+        indexed_tokens_A_enhanced = tokenizer.add_special_tokens_single_sentence(tokenizer.convert_tokens_to_ids(tokenized_text_enhanced_A))
+        indexed_tokens_B_enhanced = tokenizer.add_special_tokens_single_sentence(tokenizer.convert_tokens_to_ids(tokenized_text_enhanced_B))
+        indexed_tokens_A_pre_mask_enhanced = tokenizer.add_special_tokens_single_sentence(tokenizer.convert_tokens_to_ids(tokenized_text_A_pre_mask_enhanced))
+        indexed_tokens_B_pre_mask_enhanced = tokenizer.add_special_tokens_single_sentence(tokenizer.convert_tokens_to_ids(tokenized_text_B_pre_mask_enhanced))
 
         #mask all labels but wsc options
         for token_index in range(len(indexed_tokens_A)):
@@ -241,12 +247,32 @@ for dp in wsc_datapoints[1:]:
         total_logprobs_A_enhanced = 0
         total_logprobs_B_enhanced = 0
 
-        with torch.no_grad():
-            probs_A = model(tokens_tensor_A)#, segments_tensors_A) #, masked_lm_labels =  masked_lm_labels_A)
-            probs_B = model(tokens_tensor_B)#, segments_tensors_B) #, masked_lm_labels =  masked_lm_labels_B)
+        # mask generation
+        def get_masks(input_tensor, mask_tuple):
+            num_tokens = input_tensor.size(1)
+            to_mask = [i[0] for i in mask_tuple]
+            num_tokens_to_predict = len(to_mask)
 
-            probs_A_enhanced = model(tokens_tensor_A_enhanced)  # , segments_tensors_A) #, masked_lm_labels =  masked_lm_labels_A)
-            probs_B_enhanced = model(tokens_tensor_B_enhanced)  # , segments_tensors_B) #, masked_lm_labels =  masked_lm_labels_B)
+            perm_mask = torch.zeros(1, num_tokens, num_tokens)
+            perm_mask[:, :, to_mask] = 1.0
+
+            target_mapping = torch.zeros(1, num_tokens_to_predict, num_tokens)
+            in_out_map = zip(range(num_tokens_to_predict), to_mask)
+            for i, j in in_out_map:
+                target_mapping[0, i, j] = 1.0
+
+            return perm_mask, target_mapping
+
+        with torch.no_grad():
+            perm_mask_A, target_mapping_A = get_masks(tokens_tensor_A, masked_lm_labels_A_non_neg)
+            perm_mask_B, target_mapping_B = get_masks(tokens_tensor_B, masked_lm_labels_B_non_neg)
+            probs_A = model(tokens_tensor_A, perm_mask=perm_mask_A, target_mapping=target_mapping_A)#, segments_tensors_A) #, masked_lm_labels =  masked_lm_labels_A)
+            probs_B = model(tokens_tensor_B, perm_mask=perm_mask_B, target_mapping=target_mapping_B)#, segments_tensors_B) #, masked_lm_labels =  masked_lm_labels_B)
+
+            perm_mask_A_enhanced, target_mapping_A_enhanced = get_masks(tokens_tensor_A_enhanced, masked_lm_labels_A_non_neg_enhanced)
+            perm_mask_B_enhanced, target_mapping_B_enhanced = get_masks(tokens_tensor_B_enhanced, masked_lm_labels_B_non_neg_enhanced)
+            probs_A_enhanced = model(tokens_tensor_A_enhanced, perm_mask=perm_mask_A_enhanced, target_mapping=target_mapping_A_enhanced)  # , segments_tensors_A) #, masked_lm_labels =  masked_lm_labels_A)
+            probs_B_enhanced = model(tokens_tensor_B_enhanced, perm_mask=perm_mask_B_enhanced, target_mapping=target_mapping_B_enhanced)  # , segments_tensors_B) #, masked_lm_labels =  masked_lm_labels_B)
 
             logprobs_A = torch.nn.functional.log_softmax(probs_A[0], dim=-1)
             logprobs_B = torch.nn.functional.log_softmax(probs_B[0], dim=-1)
@@ -256,31 +282,31 @@ for dp in wsc_datapoints[1:]:
 
             print("-----------A---------------")
 
-            for index_item in masked_lm_labels_A_non_neg:
+            for n, index_item in enumerate(masked_lm_labels_A_non_neg):
                 index, item = index_item
                 print(index, tokenizer.convert_ids_to_tokens([item]), " : index, item")
                 #print(probs_A[0,index,item].item(), " : probs_A[0,index,item].item()")
-                total_logprobs_A +=  logprobs_A[0,index,item].item()
+                total_logprobs_A +=  logprobs_A[0,n,item].item()
 
-            for index_item in masked_lm_labels_A_non_neg_enhanced:
+            for n, index_item in enumerate(masked_lm_labels_A_non_neg_enhanced):
                 index, item = index_item
                 print(index, tokenizer.convert_ids_to_tokens([item]), " : index, item")
                 # print(probs_A[0,index,item].item(), " : probs_A[0,index,item].item()")
-                total_logprobs_A_enhanced += logprobs_A_enhanced[0, index, item].item()
+                total_logprobs_A_enhanced += logprobs_A_enhanced[0, n, item].item()
 
             print("-----------B---------------")
 
-            for index_item in masked_lm_labels_B_non_neg:
+            for n, index_item in enumerate(masked_lm_labels_B_non_neg):
                 index, item = index_item
                 print(index, tokenizer.convert_ids_to_tokens([item]), " : index, item")
                 #print(probs_A[0, index, item].item(), " : probs_A[0,index,item].item()")
-                total_logprobs_B += logprobs_B[0,index,item].item()
+                total_logprobs_B += logprobs_B[0,n,item].item()
 
-            for index_item in masked_lm_labels_B_non_neg_enhanced:
+            for n, index_item in enumerate(masked_lm_labels_B_non_neg_enhanced):
                 index, item = index_item
                 print(index, tokenizer.convert_ids_to_tokens([item]), " : index, item")
                 # print(probs_A[0,index,item].item(), " : probs_A[0,index,item].item()")
-                total_logprobs_B_enhanced += logprobs_B_enhanced[0, index, item].item()
+                total_logprobs_B_enhanced += logprobs_B_enhanced[0, n, item].item()
 
 
             print(total_logprobs_A / tokenized_option_A_len  , " total_probs_A / tokenized_option_A_len")
