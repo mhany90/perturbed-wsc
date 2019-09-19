@@ -4,7 +4,6 @@ import numpy as np
 from copy import deepcopy
 import pandas as pd
 import pickle
-import re
 import sys
 
 # OPTIONAL: if you want to have more information on what's happening, activate the logger as follows
@@ -81,7 +80,7 @@ for current_alt, current_pron_index in [('text_original', 'pron_index'),
             # save the index
             # Tokenized input
             correct_answer = dp_split['correct_answer']
-            text_enhanced = re.sub(r' +', ' ', dp_split[current_alt].lower())
+            text_enhanced = "[CLS] " + dp_split[current_alt]  + " [SEP]"
 
             tokenized_enhanced_text = tokenizer.tokenize(text_enhanced)
 
@@ -157,19 +156,19 @@ for current_alt, current_pron_index in [('text_original', 'pron_index'),
             tokenized_text_B_pre_mask_enhanced = deepcopy(tokenized_text_enhanced_B)
 
             for masked_index in range(masked_indices_A_text_enhanced[0], masked_indices_A_text_enhanced[1]):
-                tokenized_text_enhanced_A[masked_index] = '<mask>'
+                tokenized_text_enhanced_A[masked_index] = '[MASK]'
 
             for masked_index in range(masked_indices_B_text_enhanced[0], masked_indices_B_text_enhanced[1]):
-                tokenized_text_enhanced_B[masked_index] = '<mask>'
+                tokenized_text_enhanced_B[masked_index] = '[MASK]'
 
             masked_lm_labels_A_enhanced = []
             masked_lm_labels_B_enhanced = []
 
             #enhanced
-            indexed_tokens_A_enhanced = tokenizer.add_special_tokens_single_sentence(tokenizer.convert_tokens_to_ids(tokenized_text_enhanced_A))
-            indexed_tokens_B_enhanced = tokenizer.add_special_tokens_single_sentence(tokenizer.convert_tokens_to_ids(tokenized_text_enhanced_B))
-            indexed_tokens_A_pre_mask_enhanced = tokenizer.add_special_tokens_single_sentence(tokenizer.convert_tokens_to_ids(tokenized_text_A_pre_mask_enhanced))
-            indexed_tokens_B_pre_mask_enhanced = tokenizer.add_special_tokens_single_sentence(tokenizer.convert_tokens_to_ids(tokenized_text_B_pre_mask_enhanced))
+            indexed_tokens_A_enhanced = tokenizer.convert_tokens_to_ids(tokenized_text_enhanced_A)
+            indexed_tokens_B_enhanced = tokenizer.convert_tokens_to_ids(tokenized_text_enhanced_B)
+            indexed_tokens_A_pre_mask_enhanced = tokenizer.convert_tokens_to_ids(tokenized_text_A_pre_mask_enhanced)
+            indexed_tokens_B_pre_mask_enhanced = tokenizer.convert_tokens_to_ids(tokenized_text_B_pre_mask_enhanced)
 
             # mask all labels but wsc options (enhanced)
             for token_index in range(len(indexed_tokens_A_enhanced)):
@@ -208,29 +207,12 @@ for current_alt, current_pron_index in [('text_original', 'pron_index'),
             total_logprobs_A_enhanced = 0
             total_logprobs_B_enhanced = 0
 
-            def get_masks(input_tensor, mask_tuple):
-                num_tokens = input_tensor.size(1)
-                to_mask = [i[0] for i in mask_tuple]
-                num_tokens_to_predict = len(to_mask)
-
-                perm_mask = torch.zeros(1, num_tokens, num_tokens)
-                perm_mask[:, :, to_mask] = 1.0
-
-                target_mapping = torch.zeros(1, num_tokens_to_predict, num_tokens)
-                in_out_map = zip(range(num_tokens_to_predict), to_mask)
-                for i, j in in_out_map:
-                    target_mapping[0, i, j] = 1.0
-
-                return perm_mask, target_mapping
-
             with torch.no_grad():
-                perm_mask_A, target_mapping_A = get_masks(tokens_tensor_A_enhanced, masked_lm_labels_A_non_neg_enhanced)
-                perm_mask_B, target_mapping_B = get_masks(tokens_tensor_B_enhanced, masked_lm_labels_B_non_neg_enhanced)
-                probs_A_enhanced = model(tokens_tensor_A_enhanced, perm_mask=perm_mask_A, target_mapping=target_mapping_A)
-                probs_B_enhanced = model(tokens_tensor_B_enhanced, perm_mask=perm_mask_B, target_mapping=target_mapping_B)
+                probs_A_enhanced = model(tokens_tensor_A_enhanced)
+                probs_B_enhanced = model(tokens_tensor_B_enhanced)
 
-                logprobs_A_enhanced = torch.nn.functional.log_softmax(probs_A_enhanced[0], dim=-1)
-                logprobs_B_enhanced = torch.nn.functional.log_softmax(probs_B_enhanced[0], dim=-1)
+                logprobs_A_enhanced = torch.nn.functional.log_softmax(probs_A_enhanced, dim=-1)
+                logprobs_B_enhanced = torch.nn.functional.log_softmax(probs_B_enhanced, dim=-1)
 
                 probs_array_A_enhanced = []
                 probs_array_B_enhanced = []
