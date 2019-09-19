@@ -11,7 +11,7 @@ logging.basicConfig(level=logging.INFO)
 use_cuda = torch.cuda.is_available()
 device = torch.device('cuda:0' if use_cuda else 'cpu')
 
-path_to_wsc = '../data/wsc_data/dset.formatted'
+path_to_wsc = '../data/wsc_data/new_test.tsv'
 wsc_file = open(path_to_wsc, 'r')
 wsc_datapoints = wsc_file.readlines()
 
