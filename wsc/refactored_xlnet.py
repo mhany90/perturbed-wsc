@@ -44,7 +44,7 @@ def replace_pronoun(tokenized_text, pronoun_index, tokenized_option):
     return tokenized_text
 
 # Load pre-trained model tokenizer (vocabulary)
-tokenizer = BertTokenizer.from_pretrained('xlnet-large-uncased')
+tokenizer = XLNetTokenizer.from_pretrained('xlnet-large-cased')
 
 # perturbation: correct/wrong: original/altered
 # this dupplicates original but whatever the fuck
@@ -54,7 +54,7 @@ answers = {}
 
 prediction_original = []
 # Load pre-trained model (weights)
-model = XLNetLMHeadModel.from_pretrained('xlnet-large-uncased')
+model = XLNetLMHeadModel.from_pretrained('xlnet-large-cased')
 model.eval()
 
 for current_alt, current_pron_index in [('text_original', 'pron_index'),
@@ -211,8 +211,8 @@ for current_alt, current_pron_index in [('text_original', 'pron_index'),
                 probs_A_enhanced = model(tokens_tensor_A_enhanced)
                 probs_B_enhanced = model(tokens_tensor_B_enhanced)
 
-                logprobs_A_enhanced = torch.nn.functional.log_softmax(probs_A_enhanced, dim=-1)
-                logprobs_B_enhanced = torch.nn.functional.log_softmax(probs_B_enhanced, dim=-1)
+                logprobs_A_enhanced = torch.nn.functional.log_softmax(probs_A_enhanced[0], dim=-1)
+                logprobs_B_enhanced = torch.nn.functional.log_softmax(probs_B_enhanced[0], dim=-1)
 
                 probs_array_A_enhanced = []
                 probs_array_B_enhanced = []
