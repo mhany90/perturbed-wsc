@@ -2,15 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7119ac46-12c3-49ae-a720-ec5f5caed1c0" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/enhanced_wsc.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/wsc/plot.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wsc/run_bert.py" beforeDir="false" afterPath="$PROJECT_DIR$/wsc/run_bert.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wsc/run_enhanced.py" beforeDir="false" afterPath="$PROJECT_DIR$/wsc/run_enhanced.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wsc/run_enhanced_roberta.py" beforeDir="false" afterPath="$PROJECT_DIR$/wsc/run_enhanced_roberta.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wsc/run_enhanced_xnlnet.py" beforeDir="false" afterPath="$PROJECT_DIR$/wsc/run_enhanced_xnlnet.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/wsc/refactored_xlnet.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wsc/refactored_enhanced.py" beforeDir="false" afterPath="$PROJECT_DIR$/wsc/refactored_enhanced.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wsc/run_enhanced_xnlnet.py" beforeDir="false" afterPath="$PROJECT_DIR$/wsc/run_enhanced_xlnet.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -34,11 +29,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/wsc/plot.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="41" column="22" selection-start-line="41" selection-start-column="22" selection-end-line="41" selection-end-column="22" />
+            <state relative-caret-position="378">
+              <caret line="18" column="45" lean-forward="true" selection-start-line="18" selection-start-column="45" selection-end-line="18" selection-end-column="45" />
               <folding>
                 <element signature="e#0#17#0" expanded="true" />
               </folding>
@@ -47,10 +42,43 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/wsc/run_enhanced.py">
+        <entry file="file://$PROJECT_DIR$/wsc/run_scramble.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="5649">
-              <caret line="278" column="12" selection-start-line="278" selection-start-column="12" selection-end-line="278" selection-end-column="12" />
+            <state relative-caret-position="363">
+              <caret line="74" column="62" selection-start-line="74" selection-start-column="62" selection-end-line="74" selection-end-column="62" />
+              <folding>
+                <element signature="e#0#12#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/wsc/run_enhanced_xlnet.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="255">
+              <caret line="193" column="53" lean-forward="true" selection-start-line="193" selection-start-column="53" selection-end-line="193" selection-end-column="53" />
+              <folding>
+                <element signature="e#0#12#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/wsc/refactored_xlnet.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-2203">
+              <caret line="1" column="24" selection-start-line="1" selection-start-column="24" selection-end-line="1" selection-end-column="24" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/wsc/refactored_enhanced.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="687">
+              <caret line="244" column="69" selection-start-line="244" selection-start-column="69" selection-end-line="244" selection-end-column="69" />
               <folding>
                 <element signature="e#0#12#0" expanded="true" />
               </folding>
@@ -84,13 +112,16 @@
         <option value="$PROJECT_DIR$/data/wsc_data/new_test.tsv" />
         <option value="$PROJECT_DIR$/wsc/run_enhanced.py" />
         <option value="$PROJECT_DIR$/wsc/plot.py" />
+        <option value="$PROJECT_DIR$/wsc/refactored_xlnet.py" />
+        <option value="$PROJECT_DIR$/wsc/refactored_enhanced.py" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="y" value="23" />
-    <option name="width" value="1440" />
-    <option name="height" value="877" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-456" />
+    <option name="y" value="-1417" />
+    <option name="width" value="2560" />
+    <option name="height" value="1417" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -130,8 +161,14 @@
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/wsc" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+    <property name="two.files.diff.last.used.file" value="$PROJECT_DIR$/wsc/run_enhanced.py" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/wsc" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -236,18 +273,18 @@
       <workItem from="1567602976959" duration="23060000" />
       <workItem from="1568710408760" duration="16000" />
       <workItem from="1568710438710" duration="12000" />
+      <workItem from="1568891866016" duration="2115000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="62514000" />
+    <option name="totallyTimeSpent" value="64629000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1440" height="877" extended-state="0" />
-    <editor active="true" />
+    <frame x="-456" y="-1417" width="2560" height="1417" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49496645" visible="true" weight="0.2739628" />
-      <window_info id="Structure" order="1" sideWeight="0.50503355" side_tool="true" visible="true" weight="0.2739628" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49365854" visible="true" weight="0.15409055" />
+      <window_info id="Structure" order="1" sideWeight="0.50634146" side_tool="true" visible="true" weight="0.15409055" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
@@ -259,8 +296,8 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
-      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50143063" side_tool="true" visible="true" weight="0.2249675" />
-      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.49928468" weight="0.23407023" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.33690986" side_tool="true" weight="0.23407023" />
+      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.6630901" visible="true" weight="0.2169595" />
       <window_info anchor="bottom" id="Python Console" order="12" weight="0.32925898" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -299,6 +336,12 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/wsc/refactored_xlnet.py</url>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
       <default-breakpoints>
         <breakpoint type="python-exception">
           <properties notifyOnTerminate="true" exception="BaseException">
@@ -315,23 +358,6 @@
     <SUITE FILE_PATH="coverage/enhanced_wsc$roberta.coverage" NAME="roberta Coverage Results" MODIFIED="1566913574199" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/wsc" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$USER_HOME$/.miniconda3/miniconda3/envs/nlp/lib/python3.6/site-packages/pytorch_transformers/modeling_xlnet.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="18606">
-          <caret line="902" selection-start-line="902" selection-end-line="902" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wsc/run_enhanced_xnlnet.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5082">
-          <caret line="242" selection-start-line="242" selection-end-line="242" />
-          <folding>
-            <element signature="e#0#12#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/wsc/run_enhanced_roberta.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="181">
@@ -378,20 +404,71 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/wsc/construction/make_survey.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="388">
+          <caret line="24" column="23" selection-start-line="24" selection-start-column="23" selection-end-line="24" selection-end-column="23" />
+          <folding>
+            <element signature="e#0#12#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.miniconda3/miniconda3/envs/nlp/lib/python3.6/site-packages/pytorch_transformers/modeling_xlnet.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1049">
+          <caret line="902" selection-start-line="902" selection-end-line="902" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/wsc/plot.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="41" column="22" selection-start-line="41" selection-start-column="22" selection-end-line="41" selection-end-column="22" />
+        <state relative-caret-position="378">
+          <caret line="18" column="45" lean-forward="true" selection-start-line="18" selection-start-column="45" selection-end-line="18" selection-end-column="45" />
           <folding>
             <element signature="e#0#17#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/wsc/run_enhanced_xlnet.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="193" column="53" lean-forward="true" selection-start-line="193" selection-start-column="53" selection-end-line="193" selection-end-column="53" />
+          <folding>
+            <element signature="e#0#12#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/wsc/run_enhanced.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5649">
-          <caret line="278" column="12" selection-start-line="278" selection-start-column="12" selection-end-line="278" selection-end-column="12" />
+        <state relative-caret-position="246">
+          <caret line="52" column="55" lean-forward="true" selection-start-line="52" selection-start-column="55" selection-end-line="52" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wsc/run_scramble.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="363">
+          <caret line="74" column="62" selection-start-line="74" selection-start-column="62" selection-end-line="74" selection-end-column="62" />
+          <folding>
+            <element signature="e#0#12#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wsc/refactored_xlnet.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2203">
+          <caret line="1" column="24" selection-start-line="1" selection-start-column="24" selection-end-line="1" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wsc/refactored_enhanced.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="687">
+          <caret line="244" column="69" selection-start-line="244" selection-start-column="69" selection-end-line="244" selection-end-column="69" />
           <folding>
             <element signature="e#0#12#0" expanded="true" />
           </folding>
