@@ -21,7 +21,10 @@ wsc_datapoints = pd.read_csv(path_to_wsc, sep='\t')
 PADDING_TEXT = """ In 1991, the remains of Russian Tsar Nicholas II and his family
 (except for Alexei and Maria) are discovered.
 The voice of Nicholas's young son, Tsarevich Alexei Nikolaevich, narrates the
-remainder of the story. <eod> </s> <eos>"""
+remainder of the story. <eod> </s> <eos> """
+
+P_T= """<pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad>
+<pad> <pad> <pad> <pad> <eod> </s> <eos>"""
 
 def find_keyword(tokens, text):
     result = []
@@ -88,7 +91,7 @@ for current_alt, current_pron_index in [('text_original', 'pron_index'),
             # save the index
             # Tokenized input
             correct_answer = dp_split['correct_answer']
-            text_enhanced = re.sub(r' +', ' ', PADDING_TEXT + dp_split[current_alt].lower())
+            text_enhanced = re.sub(r' +', ' ', P_T + dp_split[current_alt].lower())
 
             tokenized_enhanced_text = tokenizer.tokenize(text_enhanced)
 
