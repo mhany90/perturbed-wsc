@@ -1,51 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7119ac46-12c3-49ae-a720-ec5f5caed1c0" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/deployment.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/webServers.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wsc/refactored_xlnet.py" beforeDir="false" afterPath="$PROJECT_DIR$/wsc/refactored_xlnet.py" afterDir="false" />
+    <list default="true" id="cb967bff-7274-4099-9e15-79c17080b766" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/survey/score_answers.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/survey/score_answers_mturk_id.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/survey/score_answers_mturk_standard.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wsc/construction/make_survey_mturk.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wsc/construction/make_survey_mturk_full.py" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/data/survey/standard/data_standard_survey/data.csv" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/data/survey/standard/data_standard_survey/data_times.csv" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/data/survey/standard/data_standard_survey/order.b65ab982-5c96-4d2c-8b53-dae7f766a0a3" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/data/survey/standard/data_standard_survey/s.25604ea1-7a49-42a0-8320-deac0d62a8e6.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/data/survey/standard/data_standard_survey/s.4e6a245f-e697-4055-9270-d4beb34de6b9.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/data/survey/standard/data_standard_survey/s.8f098329-b258-4d6c-a8bd-b01018fc1cf5.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/data/survey/standard/data_standard_survey/s.a4e44235-a5dd-4047-a105-d60b7d6cd8e2.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/data/survey/standard/data_standard_survey/s.b28c7544-132e-45ff-8901-9a4d7c407841.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/data/survey/standard/data_standard_survey/s.b65ab982-5c96-4d2c-8b53-dae7f766a0a3.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/data/survey/standard/data_standard_survey/s.cae694e2-ba0d-44a5-b226-26fd49a11161.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/data/survey/standard/data_standard_survey/survey.txt" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wsc/construction/make_scramble.py" afterPath="$PROJECT_DIR$/wsc/construction/make_scramble.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wsc/run_enhanced.py" afterPath="$PROJECT_DIR$/wsc/run_enhanced.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wsc/run_enhanced_finetuned.py" afterPath="$PROJECT_DIR$/wsc/run_enhanced_finetuned.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wsc/run_enhanced_roberta.py" afterPath="$PROJECT_DIR$/wsc/run_enhanced_roberta.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="DatabaseView">
-    <option name="SHOW_INTERMEDIATE" value="true" />
-    <option name="GROUP_DATA_SOURCES" value="true" />
-    <option name="GROUP_SCHEMA" value="true" />
-    <option name="GROUP_CONTENTS" value="false" />
-    <option name="SORT_POSITIONED" value="false" />
-    <option name="SHOW_EMPTY_GROUPS" value="false" />
-    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
-    <option name="HIDDEN_KINDS">
-      <set />
-    </option>
-    <expand />
-    <select />
-  </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/wsc/plot.py">
+      <file leaf-file-name="make_survey_mturk_full.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/wsc/construction/make_survey_mturk_full.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="378">
-              <caret line="18" column="45" selection-start-line="18" selection-start-column="45" selection-end-line="18" selection-end-column="45" />
-              <folding>
-                <element signature="e#0#17#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/wsc/run_scramble.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="111">
-              <caret line="62" column="25" lean-forward="true" selection-start-line="62" selection-start-column="25" selection-end-line="62" selection-end-column="25" />
+            <state relative-caret-position="600">
+              <caret line="48" column="49" lean-forward="false" selection-start-line="48" selection-start-column="49" selection-end-line="48" selection-end-column="49" />
               <folding>
                 <element signature="e#0#12#0" expanded="true" />
               </folding>
@@ -53,11 +46,21 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/wsc/refactored_xlnet.py">
+      <file leaf-file-name="run_enhanced.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/wsc/run_enhanced.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="398">
-              <caret line="206" column="21" selection-start-line="206" selection-start-column="21" selection-end-line="206" selection-end-column="21" />
+            <state relative-caret-position="334">
+              <caret line="58" column="54" lean-forward="true" selection-start-line="58" selection-start-column="54" selection-end-line="58" selection-end-column="54" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="run_enhanced_finetuned.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/wsc/run_enhanced_finetuned.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="120">
+              <caret line="18" column="108" lean-forward="false" selection-start-line="18" selection-start-column="86" selection-end-line="18" selection-end-column="108" />
               <folding>
                 <element signature="e#0#12#0" expanded="true" />
               </folding>
@@ -65,31 +68,77 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/wsc/refactored_enhanced.py">
+      <file leaf-file-name="run_enhanced_roberta.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/wsc/run_enhanced_roberta.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="517">
-              <caret line="169" column="50" selection-start-line="169" selection-start-column="50" selection-end-line="169" selection-end-column="50" />
+            <state relative-caret-position="15">
+              <caret line="16" column="108" lean-forward="false" selection-start-line="16" selection-start-column="108" selection-end-line="16" selection-end-column="108" />
               <folding>
                 <element signature="e#0#12#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="make_scramble.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/wsc/construction/make_scramble.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1155">
+              <caret line="85" column="0" lean-forward="false" selection-start-line="85" selection-start-column="0" selection-end-line="85" selection-end-column="0" />
+              <folding>
+                <element signature="e#0#12#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="score_answers_mturk_id.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/data/survey/score_answers_mturk_id.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="885">
+              <caret line="60" column="59" lean-forward="false" selection-start-line="60" selection-start-column="59" selection-end-line="60" selection-end-column="59" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
     </leaf>
   </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="Python Script" />
-      </list>
-    </option>
-  </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>pronoun_index</find>
+      <find>convert</find>
+      <find>indexed_tokens_A_pre_mask_enhanced</find>
+      <find>masked_lm_labels_A_non_neg</find>
+      <find>masked_lm_labels_Amasked_lm_labels_A</find>
+      <find>[MASK]</find>
+      <find>masked_lm_labels_A</find>
+      <find>lower</find>
+      <find>strip</find>
+      <find>convert_to</find>
+      <find>matched A</find>
+      <find>su</find>
+      <find>tokenized_option_A_len</find>
+      <find>[1:-1]</find>
+      <find>pronoun_index_orig_enhanced</find>
+      <find>tense</find>
+      <find>enhanced</find>
+      <find>insert_probable</find>
+      <find>scram</find>
+      <find>origi</find>
+      <find>-1</find>
+      <find>orig</find>
+      <find>sort_va</find>
+      <find>wsc_datapoints</find>
+      <find>correc</find>
+      <find>freqnoun</find>
+      <find>voice</find>
+      <find>tsv</find>
+      <find>pronoun</find>
     </findStrings>
+    <replaceStrings>
+      <replace>wsc_datapoints_rep</replace>
+      <replace>&lt;mask&gt;</replace>
+    </replaceStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -97,28 +146,45 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
+        <option value="$PROJECT_DIR$/wsc/construction/make_survey.py" />
+        <option value="$PROJECT_DIR$/wsc/run_enhanced_finetuned.py" />
         <option value="$PROJECT_DIR$/wsc/run_enhanced_xnlnet.py" />
+        <option value="$PROJECT_DIR$/wsc/construction/make_probable.py" />
+        <option value="$PROJECT_DIR$/wsc/run_synonyms_roberta.py" />
+        <option value="$PROJECT_DIR$/data/survey/score_answer.py" />
+        <option value="$PROJECT_DIR$/wsc/construction/make_survey_mturk.py" />
+        <option value="$PROJECT_DIR$/data/survey/score_answers_mturk.py" />
+        <option value="$PROJECT_DIR$/data/survey/score_answers.py" />
+        <option value="$PROJECT_DIR$/data/survey/score_answers_mturk_id.py" />
+        <option value="$PROJECT_DIR$/wsc/construction/make_survey_mturk_full.py" />
+        <option value="$PROJECT_DIR$/wsc/construction/make_scramble.py" />
+        <option value="$PROJECT_DIR$/wsc/run_enhanced_finetuned_new.py" />
         <option value="$PROJECT_DIR$/wsc/run_enhanced_roberta.py" />
-        <option value="$PROJECT_DIR$/wsc/run_bert.py" />
-        <option value="$PROJECT_DIR$/data/wsc_data/new_test.tsv" />
         <option value="$PROJECT_DIR$/wsc/run_enhanced.py" />
-        <option value="$PROJECT_DIR$/wsc/plot.py" />
-        <option value="$PROJECT_DIR$/wsc/refactored_enhanced.py" />
-        <option value="$PROJECT_DIR$/wsc/refactored_xlnet.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-456" />
-    <option name="y" value="-1417" />
-    <option name="width" value="2560" />
-    <option name="height" value="1417" />
+    <option name="y" value="23" />
+    <option name="width" value="1440" />
+    <option name="height" value="877" />
   </component>
   <component name="ProjectView">
-    <navigator proportions="" version="1">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+      <manualOrder />
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -126,39 +192,21 @@
               <item name="enhanced_wsc" type="b2602c69:ProjectViewProjectNode" />
               <item name="enhanced_wsc" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="enhanced_wsc" type="b2602c69:ProjectViewProjectNode" />
-              <item name="enhanced_wsc" type="462c0819:PsiDirectoryNode" />
-              <item name="data" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="enhanced_wsc" type="b2602c69:ProjectViewProjectNode" />
-              <item name="enhanced_wsc" type="462c0819:PsiDirectoryNode" />
-              <item name="data" type="462c0819:PsiDirectoryNode" />
-              <item name="wsc_data" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="enhanced_wsc" type="b2602c69:ProjectViewProjectNode" />
-              <item name="enhanced_wsc" type="462c0819:PsiDirectoryNode" />
-              <item name="wsc" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="WebServerToolWindowFactoryState" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="web.server" />
-    <property name="two.files.diff.last.used.file" value="$PROJECT_DIR$/wsc/run_enhanced.py" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/wsc" />
+      <recent name="$PROJECT_DIR$/data/survey" />
+      <recent name="$PROJECT_DIR$/wsc/construction" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -173,230 +221,174 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.plot">
-    <configuration name="enhanced" type="PythonConfigurationType" factoryName="Python">
-      <module name="enhanced_wsc" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="$USER_HOME$/.miniconda3/miniconda3/envs/nlp/bin/python" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/wsc" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/wsc/run_enhanced.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="plot" type="PythonConfigurationType" factoryName="Python">
-      <module name="enhanced_wsc" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="$USER_HOME$/.miniconda3/miniconda3/envs/nlp/bin/python" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/wsc" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/wsc/plot.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="roberta" type="PythonConfigurationType" factoryName="Python">
-      <module name="enhanced_wsc" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="$USER_HOME$/.miniconda3/miniconda3/envs/nlp/bin/python" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/wsc" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/wsc/run_enhanced_roberta.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <list>
-      <item itemvalue="Python.roberta" />
-      <item itemvalue="Python.enhanced" />
-      <item itemvalue="Python.plot" />
-    </list>
-  </component>
-  <component name="SvnConfiguration">
-    <configuration />
+  <component name="ShelveChangesManager" show_recycled="false">
+    <option name="remove_strategy" value="false" />
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="7119ac46-12c3-49ae-a720-ec5f5caed1c0" name="Default Changelist" comment="" />
-      <created>1566729435016</created>
+      <changelist id="cb967bff-7274-4099-9e15-79c17080b766" name="Default" comment="" />
+      <created>1566559959677</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1566729435016</updated>
-      <workItem from="1566729437306" duration="2222000" />
-      <workItem from="1566913419215" duration="1041000" />
-      <workItem from="1566983331138" duration="22326000" />
-      <workItem from="1567501860600" duration="11934000" />
-      <workItem from="1567586142064" duration="1903000" />
-      <workItem from="1567602976959" duration="23060000" />
-      <workItem from="1568710408760" duration="16000" />
-      <workItem from="1568710438710" duration="12000" />
-      <workItem from="1568891866016" duration="3505000" />
-      <workItem from="1568899460390" duration="1130000" />
+      <updated>1566559959677</updated>
     </task>
-    <task id="LOCAL-00001" summary="xlnet refactor">
-      <created>1568894917667</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1568894917667</updated>
-    </task>
-    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
-  <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="67149000" />
-  </component>
-  <component name="TodoView">
-    <todo-panel id="selected-file">
-      <is-autoscroll-to-source value="true" />
-    </todo-panel>
-    <todo-panel id="all">
-      <are-packages-shown value="true" />
-      <is-autoscroll-to-source value="true" />
-    </todo-panel>
-  </component>
   <component name="ToolWindowManager">
-    <frame x="-456" y="-1417" width="2560" height="1417" extended-state="6" />
-    <editor active="true" />
+    <frame x="0" y="23" width="1440" height="877" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4931663" visible="true" weight="0.15528198" />
-      <window_info id="Structure" order="1" sideWeight="0.50683373" side_tool="true" weight="0.15528198" />
-      <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="File Transfer" visible="true" weight="0.32925898" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4985694" weight="0.2249675" />
-      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49785408" weight="0.39011705" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" weight="0.32925898" />
-      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="8" weight="0.32925898" />
-      <window_info anchor="bottom" id="Database Changes" order="9" />
-      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.33690986" side_tool="true" weight="0.23407023" />
-      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.6630901" weight="0.2169595" />
-      <window_info anchor="bottom" id="Python Console" order="12" weight="0.32925898" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Remote Host" order="3" />
-      <window_info anchor="right" x="0" y="45" width="1440" height="855" id="SciView" maximized="true" order="4" weight="0.32904148" />
-      <window_info anchor="right" id="Database" order="5" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32919255" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
-    <layout-to-restore>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.14853057" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.22612682" />
-      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.13750955" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="8" />
-      <window_info anchor="bottom" id="Database Changes" order="9" />
-      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info anchor="bottom" id="Terminal" order="11" weight="0.32849503" />
-      <window_info anchor="bottom" id="Python Console" order="12" weight="0.32925898" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Remote Host" order="3" />
-      <window_info anchor="right" x="0" y="45" width="1440" height="855" id="SciView" maximized="true" order="4" weight="0.32904148" />
-      <window_info anchor="right" id="Database" order="5" />
-    </layout-to-restore>
   </component>
-  <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="1" />
-  </component>
-  <component name="VcsManagerConfiguration">
-    <MESSAGE value="xlnet refactor" />
-    <option name="LAST_COMMIT_MESSAGE" value="xlnet refactor" />
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/wsc/refactored_xlnet.py</url>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-      <default-breakpoints>
-        <breakpoint type="python-exception">
-          <properties notifyOnTerminate="true" exception="BaseException">
-            <option name="notifyOnTerminate" value="true" />
-          </properties>
-        </breakpoint>
-      </default-breakpoints>
-    </breakpoint-manager>
-  </component>
-  <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/enhanced_wsc$xlnet.coverage" NAME="xlnet Coverage Results" MODIFIED="1566913437321" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/wsc" />
-    <SUITE FILE_PATH="coverage/enhanced_wsc$enhanced.coverage" NAME="enhanced Coverage Results" MODIFIED="1567859099457" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/wsc" />
-    <SUITE FILE_PATH="coverage/enhanced_wsc$plot.coverage" NAME="plot Coverage Results" MODIFIED="1567947114417" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/wsc" />
-    <SUITE FILE_PATH="coverage/enhanced_wsc$roberta.coverage" NAME="roberta Coverage Results" MODIFIED="1566913574199" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/wsc" />
+    <breakpoint-manager />
+    <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/wsc/run_enhanced_roberta.py">
+    <entry file="file://$PROJECT_DIR$/wsc/run_synonyms_roberta.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="181">
-          <caret line="17" column="7" lean-forward="true" selection-start-line="17" selection-start-column="7" selection-end-line="17" selection-end-column="7" />
+        <state relative-caret-position="780">
+          <caret line="52" column="49" lean-forward="false" selection-start-line="52" selection-start-column="35" selection-end-line="52" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wsc/construction/construct_wsc.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/survey/score_answers_mturk_id.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="885">
+          <caret line="60" column="59" lean-forward="false" selection-start-line="60" selection-start-column="59" selection-end-line="60" selection-end-column="59" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/survey/score_answers.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="465">
+          <caret line="31" column="0" lean-forward="false" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wsc/construction/make_survey_mturk_full.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="945">
+          <caret line="63" column="54" lean-forward="false" selection-start-line="63" selection-start-column="54" selection-end-line="63" selection-end-column="54" />
           <folding>
             <element signature="e#0#12#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/wsc/probs_dump.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/wsc_data/new_test.tsv">
+    <entry file="file://$PROJECT_DIR$/wsc/construction/make_survey.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="42">
-          <caret line="2" column="40" selection-start-line="2" selection-start-column="40" selection-end-line="2" selection-end-column="40" />
+        <state relative-caret-position="290">
+          <caret line="63" column="39" lean-forward="false" selection-start-line="63" selection-start-column="39" selection-end-line="63" selection-end-column="39" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/wsc/run_bert.py">
+    <entry file="file://$PROJECT_DIR$/wsc/run_enhanced_xnlnet.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="440">
-          <caret line="118" column="27" selection-start-line="118" selection-start-column="27" selection-end-line="118" selection-end-column="27" />
+        <state relative-caret-position="42">
+          <caret line="56" column="21" lean-forward="true" selection-start-line="56" selection-start-column="0" selection-end-line="57" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wsc/construction/make_probable.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="62" column="50" lean-forward="false" selection-start-line="62" selection-start-column="38" selection-end-line="62" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wsc/run_rel1.py" />
+    <entry file="file://$PROJECT_DIR$/wsc/run_synonyms.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="409">
+          <caret line="70" column="48" lean-forward="false" selection-start-line="70" selection-start-column="48" selection-end-line="70" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/survey/split_survey.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="24" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="4" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wsc/construction/make_survey_mturk.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-117">
+          <caret line="28" column="14" lean-forward="true" selection-start-line="28" selection-start-column="14" selection-end-line="28" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wsc/run_synonyms_roberta.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="780">
+          <caret line="52" column="49" lean-forward="false" selection-start-line="52" selection-start-column="35" selection-end-line="52" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/survey/score_answers_mturk_standard.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="25" column="0" lean-forward="true" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/survey/score_answers.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="465">
+          <caret line="31" column="0" lean-forward="false" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wsc/construction/construct_wsc.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wsc/run_enhanced_finetuned.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="22" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#12#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wsc/construction/make_survey_mturk_full.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="600">
+          <caret line="48" column="49" lean-forward="false" selection-start-line="48" selection-start-column="49" selection-end-line="48" selection-end-column="49" />
           <folding>
             <element signature="e#0#12#0" expanded="true" />
           </folding>
@@ -405,91 +397,47 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/wsc/run_enhanced_finetuned.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
+        <state relative-caret-position="120">
+          <caret line="18" column="108" lean-forward="false" selection-start-line="18" selection-start-column="86" selection-end-line="18" selection-end-column="108" />
           <folding>
             <element signature="e#0#12#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$APPLICATION_HOME_DIR$/helpers/pydev/_pydev_imps/_pydev_execfile.py">
+    <entry file="file://$PROJECT_DIR$/wsc/construction/make_scramble.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="294">
-          <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wsc/construction/make_survey.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="388">
-          <caret line="24" column="23" selection-start-line="24" selection-start-column="23" selection-end-line="24" selection-end-column="23" />
+        <state relative-caret-position="1155">
+          <caret line="85" column="0" lean-forward="false" selection-start-line="85" selection-start-column="0" selection-end-line="85" selection-end-column="0" />
           <folding>
             <element signature="e#0#12#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/.miniconda3/miniconda3/envs/nlp/lib/python3.6/site-packages/pytorch_transformers/modeling_xlnet.py">
+    <entry file="file://$PROJECT_DIR$/data/survey/score_answers_mturk_id.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1049">
-          <caret line="902" selection-start-line="902" selection-end-line="902" />
+        <state relative-caret-position="885">
+          <caret line="60" column="59" lean-forward="false" selection-start-line="60" selection-start-column="59" selection-end-line="60" selection-end-column="59" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wsc/run_enhanced_roberta.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="16" column="108" lean-forward="false" selection-start-line="16" selection-start-column="108" selection-end-line="16" selection-end-column="108" />
+          <folding>
+            <element signature="e#0#12#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/wsc/run_enhanced.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="246">
-          <caret line="52" column="55" lean-forward="true" selection-start-line="52" selection-start-column="55" selection-end-line="52" selection-end-column="55" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wsc/plot.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="378">
-          <caret line="18" column="45" selection-start-line="18" selection-start-column="45" selection-end-line="18" selection-end-column="45" />
-          <folding>
-            <element signature="e#0#17#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wsc/run_enhanced_xlnet.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="777">
-          <caret line="279" column="12" selection-start-line="279" selection-start-column="12" selection-end-line="279" selection-end-column="12" />
-          <folding>
-            <element signature="e#0#12#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wsc/run_scramble.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="111">
-          <caret line="62" column="25" lean-forward="true" selection-start-line="62" selection-start-column="25" selection-end-line="62" selection-end-column="25" />
-          <folding>
-            <element signature="e#0#12#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wsc/refactored_xlnet.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="398">
-          <caret line="206" column="21" selection-start-line="206" selection-start-column="21" selection-end-line="206" selection-end-column="21" />
-          <folding>
-            <element signature="e#0#12#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wsc/refactored_enhanced.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="517">
-          <caret line="169" column="50" selection-start-line="169" selection-start-column="50" selection-end-line="169" selection-end-column="50" />
-          <folding>
-            <element signature="e#0#12#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="334">
+          <caret line="58" column="54" lean-forward="true" selection-start-line="58" selection-start-column="54" selection-end-line="58" selection-end-column="54" />
+          <folding />
         </state>
       </provider>
     </entry>
