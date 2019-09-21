@@ -1,10 +1,13 @@
 import torch
-from pytorch_transformers import XLNetLMHeadModel, XLNetTokenizer
+from pytorch_pretrained_bert import BertTokenizer #, BertModel, BertForMaskedLM
+from modeling import PreTrainedBertModel, BertModel, BertOnlyMLMHead, BertForMaskedLM
 import numpy as np
 from copy import deepcopy
 import pandas as pd
 import pickle
 import sys
+from file_utils import PYTORCH_PRETRAINED_BERT_CACHE
+from collections import  OrderedDict
 
 # OPTIONAL: if you want to have more information on what's happening, activate the logger as follows
 import logging
@@ -44,7 +47,7 @@ def replace_pronoun(tokenized_text, pronoun_index, tokenized_option):
     return tokenized_text
 
 # Load pre-trained model tokenizer (vocabulary)
-tokenizer = XLNetTokenizer.from_pretrained('xlnet-large-cased')
+tokenizer = BertTokenizer.from_pretrained('bert-large-uncased')
 
 # perturbation: correct/wrong: original/altered
 # this dupplicates original but whatever the fuck
@@ -54,19 +57,24 @@ answers = {}
 
 prediction_original = []
 # Load pre-trained model (weights)
-model = XLNetLMHeadModel.from_pretrained('xlnet-large-cased')
-model.eval()
+model = BertForMaskedLM.from_untrained('bert-large-uncased', cache_dir=PYTORCH_PRETRAINED_BERT_CACHE)
+model_dict = torch.load('/Users/mabdou/Desktop/phd/concept/supporting_models/BERT_Wiki_WscR', map_location='cpu')
+new_model_dict = OrderedDict({k.replace('module.', ''):v for k, v in model_dict.items()})
 
+model.load_state_dict(new_model_dict)
+model.eval()
 for current_alt, current_pron_index in [('text_original', 'pron_index'),
                                         ('text_voice', 'pron_index_voice'),
                                         ('text_tense', 'pron_index_tense'),
-                                        ('text_random', 'pron_index_rand'),
+                                        ('text_context', 'pron_index_context'),
                                         ('text_number', 'pron_index_number'),
                                         ('text_gender', 'pron_index'),
                                         ('text_rel_1', 'pron_index_rel'),
                                         ('text_syn', 'pron_index_syn'),
                                         ('text_scrambled', 'pron_index_scrambled'),
-                                        ('text_freqnoun', 'pron_index_freqnoun')]:
+                                        ('text_freqnoun', 'pron_index_freqnoun'),
+                                        ('text_adverb', 'pron_index_adverb')
+                                        ]:
     description[current_alt] = {'correct': {'ans': [], 'dis': []}, 'wrong': {'ans': [], 'dis': []}}
     indices[current_alt] = {'ans': [], 'dis': []}
     answers[current_alt] = []
@@ -156,10 +164,10 @@ for current_alt, current_pron_index in [('text_original', 'pron_index'),
             tokenized_text_B_pre_mask_enhanced = deepcopy(tokenized_text_enhanced_B)
 
             for masked_index in range(masked_indices_A_text_enhanced[0], masked_indices_A_text_enhanced[1]):
-                tokenized_text_enhanced_A[masked_index] = '<mask>'
+                tokenized_text_enhanced_A[masked_index] = '[MASK]'
 
             for masked_index in range(masked_indices_B_text_enhanced[0], masked_indices_B_text_enhanced[1]):
-                tokenized_text_enhanced_B[masked_index] = '<mask>'
+                tokenized_text_enhanced_B[masked_index] = '[MASK]'
 
             masked_lm_labels_A_enhanced = []
             masked_lm_labels_B_enhanced = []
@@ -211,8 +219,8 @@ for current_alt, current_pron_index in [('text_original', 'pron_index'),
                 probs_A_enhanced = model(tokens_tensor_A_enhanced)
                 probs_B_enhanced = model(tokens_tensor_B_enhanced)
 
-                logprobs_A_enhanced = torch.nn.functional.log_softmax(probs_A_enhanced[0], dim=-1)
-                logprobs_B_enhanced = torch.nn.functional.log_softmax(probs_B_enhanced[0], dim=-1)
+                logprobs_A_enhanced = torch.nn.functional.log_softmax(probs_A_enhanced, dim=-1)
+                logprobs_B_enhanced = torch.nn.functional.log_softmax(probs_B_enhanced, dim=-1)
 
                 probs_array_A_enhanced = []
                 probs_array_B_enhanced = []
@@ -291,5 +299,5 @@ for current_alt, current_pron_index in [('text_original', 'pron_index'),
     description[current_alt]['stability'] = stability_match / all_preds
 
 #print(description)
-with open('description_dump_xlnet.pickle', 'wb') as f:
+with open('description_dump_bertfinetuneWSRC.pickle', 'wb') as f:
     pickle.dump((description, indices, answers), f)

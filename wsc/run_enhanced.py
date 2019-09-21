@@ -13,7 +13,7 @@ use_cuda = torch.cuda.is_available()
 device = torch.device('cuda:0' if use_cuda else 'cpu')
 
 
-path_to_wsc = '../../data/wsc_data/enhanced.tense.random.role.syn.voice.scramble.freqnoun.tsv'
+path_to_wsc = '../data/wsc_data/enhanced.tense.random.role.syn.voice.scramble.freqnoun.gender.number.adverb.tsv'
 wsc_datapoints = pd.read_csv(path_to_wsc, sep='\t')
 
 def find_sub_list(sl,l):
@@ -45,13 +45,13 @@ model.eval()
 
 #for dp in wsc_datapoints[1:]:
 for q_index, dp_split in wsc_datapoints.iterrows():
-    if dp_split['text_voice_switch'].replace(' ', '') != '-' and dp_split['text_voice_switch'].replace(' ', ''):
+    if dp_split['text_adverb'].replace(' ', '') != '-' and dp_split['text_adverb'].replace(' ', ''):
         # Tokenized input
         correct_answer = dp_split['correct_answer']
 
         #check for empty
         text = "[CLS] " + dp_split['text_original']  + " [SEP]"
-        text_enhanced = "[CLS] " + dp_split['text_voice_switch']  + " [SEP]"
+        text_enhanced = "[CLS] " + dp_split['text_adverb']  + " [SEP]"
 
         tokenized_text = tokenizer.tokenize(text)
         tokenized_enhanced_text = tokenizer.tokenize(text_enhanced)
@@ -60,8 +60,8 @@ for q_index, dp_split in wsc_datapoints.iterrows():
         tokens_pre_word_piece_B = dp_split['answer_b']
 
         pronoun = dp_split['pron'].strip()
-        pronoun_index_orig =  int(dp_split['pron_index'].strip())
-        pronoun_index_orig_enhanced =  int(dp_split['pron_index_voice'].strip())
+        pronoun_index_orig =  int(dp_split['pron_index'])
+        pronoun_index_orig_enhanced =  int(dp_split['pron_index_adverb'])
 
         tokenized_option_A = tokenizer.tokenize(tokens_pre_word_piece_A)
         tokenized_option_B = tokenizer.tokenize(tokens_pre_word_piece_B)

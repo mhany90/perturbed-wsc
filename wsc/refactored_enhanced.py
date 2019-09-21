@@ -14,7 +14,7 @@ logging.basicConfig(level=logging.INFO)
 use_cuda = torch.cuda.is_available()
 device = torch.device('cuda:0' if use_cuda else 'cpu')
 
-path_to_wsc = '../data/wsc_data/new_test.tsv'
+path_to_wsc = '../data/wsc_data/enhanced.tense.random.role.syn.voice.scramble.freqnoun.gender.number.adverb.tsv'
 wsc_datapoints = pd.read_csv(path_to_wsc, sep='\t')
 
 def find_keyword(tokens, text):
@@ -60,13 +60,15 @@ model.eval()
 for current_alt, current_pron_index in [('text_original', 'pron_index'),
                                         ('text_voice', 'pron_index_voice'),
                                         ('text_tense', 'pron_index_tense'),
-                                        ('text_random', 'pron_index_rand'),
+                                        ('text_context', 'pron_index_context'),
                                         ('text_number', 'pron_index_number'),
                                         ('text_gender', 'pron_index'),
                                         ('text_rel_1', 'pron_index_rel'),
                                         ('text_syn', 'pron_index_syn'),
                                         ('text_scrambled', 'pron_index_scrambled'),
-                                        ('text_freqnoun', 'pron_index_freqnoun')]:
+                                        ('text_freqnoun', 'pron_index_freqnoun'),
+                                        ('text_adverb', 'pron_index_adverb')
+                                        ]:
     description[current_alt] = {'correct': {'ans': [], 'dis': []}, 'wrong': {'ans': [], 'dis': []}}
     indices[current_alt] = {'ans': [], 'dis': []}
     answers[current_alt] = []
@@ -291,5 +293,5 @@ for current_alt, current_pron_index in [('text_original', 'pron_index'),
     description[current_alt]['stability'] = stability_match / all_preds
 
 #print(description)
-with open('description_dump.pickle', 'wb') as f:
+with open('description_dump_bert.pickle', 'wb') as f:
     pickle.dump((description, indices, answers), f)
