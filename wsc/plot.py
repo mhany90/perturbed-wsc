@@ -6,7 +6,7 @@ from scipy import stats
 
 
 
-with open('description_dump.pickle', 'rb') as f:
+with open('description_dump_bert.pickle', 'rb') as f:
     description, indices, answers = pickle.load(f)
 
 for experiment in description.keys():
@@ -27,8 +27,8 @@ for experiment in description.keys():
     wrong_original = description['text_original']['wrong']['ans']
     current_indices = indices[experiment]['ans']
 
-    correct_shift = description[experiment]['correct']['ans'] - correct_original[current_indices]
-    wrong_shift = description[experiment]['wrong']['ans'] - wrong_original[current_indices]
+    correct_shift = 2.71828 ** description[experiment]['correct']['ans'] - 2.71828 ** correct_original[current_indices]
+    wrong_shift = 2.71828 ** description[experiment]['wrong']['ans'] - 2.71828 ** wrong_original[current_indices]
 
     current_answers = answers[experiment]
     assert np.sum(current_answers) / len(current_answers) == description[experiment]['accuracy']
@@ -37,7 +37,7 @@ for experiment in description.keys():
 
 
 
-    print("{}\t{:.2f}\t{:.2f}\t{:.2f}\t{:.2f}\t{:.2f}".
+    print("{}\t{:.5f}\t{:.5f}\t{:.2f}\t{:.2f}\t{:.2f}".
           format(experiment, np.mean(correct_shift), np.mean(wrong_shift),
                  100 * subset_score, 100 * description[experiment]['accuracy'], 100 * description[experiment]['stability']))
 
