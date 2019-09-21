@@ -130,7 +130,7 @@ for current_alt, current_pron_index in [('text_original', 'pron_index'),
                 discrim_word = None
                 discrim_word_index = None
 
-            pronoun_index_orig_enhanced =  int(dp_split[current_pron_index])
+            pronoun_index_orig_enhanced =  int(dp_split[current_pron_index]) + len(PADDING_TEXT.split())
             tokenized_option_A = tokenizer.tokenize(tokens_pre_word_piece_A)
             tokenized_option_B = tokenizer.tokenize(tokens_pre_word_piece_B)
             tokenized_pronoun = tokenizer.tokenize(pronoun)
