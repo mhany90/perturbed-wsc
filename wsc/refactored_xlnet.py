@@ -90,7 +90,7 @@ for current_alt, current_pron_index in [('text_original', 'pron_index'),
             # save the index
             # Tokenized input
             correct_answer = dp_split['correct_answer']
-            text_enhanced = re.sub(r' +', ' ', dp_split[current_alt].lower() + " <eod> </s> <eos> " + dp_split[current_alt].lower())
+            text_enhanced = re.sub(r' +', ' ', P_T + dp_split[current_alt].lower())
 
             tokenized_enhanced_text = tokenizer.tokenize(text_enhanced)
 
@@ -126,7 +126,7 @@ for current_alt, current_pron_index in [('text_original', 'pron_index'),
                 discrim_word = None
                 discrim_word_index = None
 
-            pronoun_index_orig_enhanced =  int(dp_split[current_pron_index]) + len(dp_split[current_alt].split())
+            pronoun_index_orig_enhanced =  int(dp_split[current_pron_index]) + len(P_T.split())
             tokenized_option_A = tokenizer.tokenize(tokens_pre_word_piece_A)
             tokenized_option_B = tokenizer.tokenize(tokens_pre_word_piece_B)
             tokenized_pronoun = tokenizer.tokenize(pronoun)
