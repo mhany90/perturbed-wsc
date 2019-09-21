@@ -1,9 +1,10 @@
 import torch
-from pytorch_transformers import XLNetLMHeadModel, XLNetTokenizer
+from pytorch_transformers import XLNetTokenizer, XLNetLMHeadModel
 import numpy as np
 from copy import deepcopy
 import pandas as pd
 import pickle
+import re
 import sys
 
 # OPTIONAL: if you want to have more information on what's happening, activate the logger as follows
@@ -16,6 +17,17 @@ device = torch.device('cuda:0' if use_cuda else 'cpu')
 
 path_to_wsc = '../data/wsc_data/enhanced.tense.random.role.syn.voice.scramble.freqnoun.gender.number.adverb.tsv'
 wsc_datapoints = pd.read_csv(path_to_wsc, sep='\t')
+
+PADDING_TEXT = """ In 1991, the remains of Russian Tsar Nicholas II and his family
+(except for Alexei and Maria) are discovered.
+The voice of Nicholas's young son, Tsarevich Alexei Nikolaevich, narrates the
+remainder of the story. 1883 Western Siberia,
+a young Grigori Rasputin is asked by his father and a group of men to perform magic.
+Rasputin has a vision and denounces one of the men as a horse thief. Although his
+father initially slaps him for making such an accusation, Rasputin watches as the
+man is chased outside and beaten. Twenty years later, Rasputin sees a vision of
+the Virgin Mary, prompting him to become a priest. Rasputin quickly becomes famous,
+with people, even a bishop, begging for his blessing. <eod> </s> <eos>"""
 
 def find_keyword(tokens, text):
     result = []
@@ -45,6 +57,7 @@ def replace_pronoun(tokenized_text, pronoun_index, tokenized_option):
 
 # Load pre-trained model tokenizer (vocabulary)
 tokenizer = XLNetTokenizer.from_pretrained('xlnet-large-cased')
+PADDING_TEXT = tokenizer.add_special_tokens_single_sentence(tokenizer.convert_tokens_to_ids(tokenizer.tokenize(PADDING_TEXT)))
 
 # perturbation: correct/wrong: original/altered
 # this dupplicates original but whatever the fuck
@@ -59,8 +72,9 @@ model.eval()
 
 for current_alt, current_pron_index in [('text_original', 'pron_index'),
                                         ('text_voice', 'pron_index_voice'),
+                                        ('text_context', 'pron_index_context'),
+                                        ('text_adverb', 'pron_index_adverb'),
                                         ('text_tense', 'pron_index_tense'),
-                                        ('text_random', 'pron_index_rand'),
                                         ('text_number', 'pron_index_number'),
                                         ('text_gender', 'pron_index'),
                                         ('text_rel_1', 'pron_index_rel'),
@@ -80,7 +94,7 @@ for current_alt, current_pron_index in [('text_original', 'pron_index'),
             # save the index
             # Tokenized input
             correct_answer = dp_split['correct_answer']
-            text_enhanced = "[CLS] " + dp_split[current_alt]  + " [SEP]"
+            text_enhanced = re.sub(r' +', ' ', dp_split[current_alt].lower())
 
             tokenized_enhanced_text = tokenizer.tokenize(text_enhanced)
 
@@ -107,6 +121,8 @@ for current_alt, current_pron_index in [('text_original', 'pron_index'),
             else:
                 pronoun = dp_split['pron'].strip()
 
+            pronoun = pronoun.lower()
+
             discrim_word = dp_split['discrim_word']
             if isinstance(discrim_word, str):
                 discrim_word = discrim_word.strip()
@@ -126,9 +142,9 @@ for current_alt, current_pron_index in [('text_original', 'pron_index'),
             ##print(tokenized_option_B, "tokenized_option B")
 
             if current_alt == 'text_number':
-                tokenized_pronoun = tokenizer.tokenize(dp_split['pron_number'].strip())
+                tokenized_pronoun = tokenizer.tokenize(dp_split['pron_number'].strip().lower())
             elif current_alt == 'text_gender':
-                tokenized_pronoun = tokenizer.tokenize(dp_split['pron_gender'].strip())
+                tokenized_pronoun = tokenizer.tokenize(dp_split['pron_gender'].strip().lower())
 
             matched_pronouns_enhanced_text = find_sub_list(tokenized_pronoun,  tokenized_enhanced_text)
             first_indices_text_enhanced = np.array([mp[0] for mp in matched_pronouns_enhanced_text])
@@ -164,11 +180,12 @@ for current_alt, current_pron_index in [('text_original', 'pron_index'),
             masked_lm_labels_A_enhanced = []
             masked_lm_labels_B_enhanced = []
 
+            # process padding
             #enhanced
-            indexed_tokens_A_enhanced = tokenizer.convert_tokens_to_ids(tokenized_text_enhanced_A)
-            indexed_tokens_B_enhanced = tokenizer.convert_tokens_to_ids(tokenized_text_enhanced_B)
-            indexed_tokens_A_pre_mask_enhanced = tokenizer.convert_tokens_to_ids(tokenized_text_A_pre_mask_enhanced)
-            indexed_tokens_B_pre_mask_enhanced = tokenizer.convert_tokens_to_ids(tokenized_text_B_pre_mask_enhanced)
+            indexed_tokens_A_enhanced = PADDING_TEXT + tokenizer.add_special_tokens_single_sentence(tokenizer.convert_tokens_to_ids(tokenized_text_enhanced_A))
+            indexed_tokens_B_enhanced = PADDING_TEXT + tokenizer.add_special_tokens_single_sentence(tokenizer.convert_tokens_to_ids(tokenized_text_enhanced_B))
+            indexed_tokens_A_pre_mask_enhanced = PADDING_TEXT + tokenizer.add_special_tokens_single_sentence(tokenizer.convert_tokens_to_ids(tokenized_text_A_pre_mask_enhanced))
+            indexed_tokens_B_pre_mask_enhanced = PADDING_TEXT + tokenizer.add_special_tokens_single_sentence(tokenizer.convert_tokens_to_ids(tokenized_text_B_pre_mask_enhanced))
 
             # mask all labels but wsc options (enhanced)
             for token_index in range(len(indexed_tokens_A_enhanced)):
@@ -207,27 +224,46 @@ for current_alt, current_pron_index in [('text_original', 'pron_index'),
             total_logprobs_A_enhanced = 0
             total_logprobs_B_enhanced = 0
 
-            with torch.no_grad():
-                probs_A_enhanced = model(tokens_tensor_A_enhanced)
-                probs_B_enhanced = model(tokens_tensor_B_enhanced)
+            def get_masks(input_tensor, mask_tuple):
+                num_tokens = input_tensor.size(1)
+                to_mask = [i[0] for i in mask_tuple]
+                num_tokens_to_predict = len(to_mask)
 
-                logprobs_A_enhanced = torch.nn.functional.log_softmax(probs_A_enhanced[0], dim=-1)
-                logprobs_B_enhanced = torch.nn.functional.log_softmax(probs_B_enhanced[0], dim=-1)
+                perm_mask = torch.zeros(1, num_tokens, num_tokens)
+                perm_mask[:, :, to_mask] = 1.0
+
+                target_mapping = torch.zeros(1, num_tokens_to_predict, num_tokens)
+                in_out_map = zip(range(num_tokens_to_predict), to_mask)
+                for i, j in in_out_map:
+                    target_mapping[0, i, j] = 1.0
+
+                return perm_mask.to(device=device), target_mapping.to(device=device)
+
+            with torch.no_grad():
+                perm_mask_A, target_mapping_A = get_masks(tokens_tensor_A_enhanced, masked_lm_labels_A_non_neg_enhanced)
+                perm_mask_B, target_mapping_B = get_masks(tokens_tensor_B_enhanced, masked_lm_labels_B_non_neg_enhanced)
+                probs_A_enhanced = model(tokens_tensor_A_enhanced, perm_mask=perm_mask_A, target_mapping=target_mapping_A)
+                probs_B_enhanced = model(tokens_tensor_B_enhanced, perm_mask=perm_mask_B, target_mapping=target_mapping_B)
+                probs_A_enhanced = probs_A_enhanced[0].to(device=device)
+                probs_B_enhanced = probs_B_enhanced[0].to(device=device)
+
+                logprobs_A_enhanced = torch.nn.functional.log_softmax(probs_A_enhanced, dim=-1)
+                logprobs_B_enhanced = torch.nn.functional.log_softmax(probs_B_enhanced, dim=-1)
 
                 probs_array_A_enhanced = []
                 probs_array_B_enhanced = []
 
                 # A
-                for index_item in masked_lm_labels_A_non_neg_enhanced:
+                for n, index_item in enumerate(masked_lm_labels_A_non_neg_enhanced):
                     index, item = index_item
-                    total_logprobs_A_enhanced += logprobs_A_enhanced[0, index, item].item()
-                    probs_array_A_enhanced = logprobs_A_enhanced[0, torch.arange(len(indexed_tokens_A_enhanced)), indexed_tokens_A_enhanced]
+                    total_logprobs_A_enhanced += logprobs_A_enhanced[0, n, item].item()
+                    #probs_array_A_enhanced = logprobs_A_enhanced[0, torch.arange(len(indexed_tokens_A_enhanced)), indexed_tokens_A_enhanced]
 
                 # B
-                for index_item in masked_lm_labels_B_non_neg_enhanced:
+                for n, index_item in enumerate(masked_lm_labels_B_non_neg_enhanced):
                     index, item = index_item
-                    total_logprobs_B_enhanced += logprobs_B_enhanced[0, index, item].item()
-                    probs_array_B_enhanced = logprobs_B_enhanced[0, torch.arange(len(indexed_tokens_B_enhanced)), indexed_tokens_B_enhanced]
+                    total_logprobs_B_enhanced += logprobs_B_enhanced[0, n, item].item()
+                    #probs_array_B_enhanced = logprobs_B_enhanced[0, torch.arange(len(indexed_tokens_B_enhanced)), indexed_tokens_B_enhanced]
 
                 # prob shift
                 c = total_logprobs_A_enhanced / tokenized_option_A_len
@@ -239,21 +275,6 @@ for current_alt, current_pron_index in [('text_original', 'pron_index'),
                 description[current_alt]['correct']['ans'].append(c)
                 description[current_alt]['wrong']['ans'].append(w)
                 indices[current_alt]['ans'].append(q_index)
-
-                if discrim_word:
-                    c = probs_array_A_enhanced[discrim_word_index_enhanced_A].item()
-                    w = probs_array_B_enhanced[discrim_word_index_enhanced_B].item()
-
-                    if correct_answer == 'B':
-                        c, w = w, c
-
-                    description[current_alt]['correct']['dis'].append(c)
-                    description[current_alt]['wrong']['dis'].append(w)
-                    indices[current_alt]['dis'].append(q_index)
-                else:
-                    description[current_alt]['correct']['dis'].append(None)
-                    description[current_alt]['wrong']['dis'].append(None)
-                    # indices[current_alt]['dis'].append(q_index)
 
                 max_index_enhanced = np.argmax([total_logprobs_A_enhanced / tokenized_option_A_len, total_logprobs_B_enhanced
                                                 / tokenized_option_B_len ])
