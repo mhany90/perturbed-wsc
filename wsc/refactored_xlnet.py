@@ -57,7 +57,7 @@ def replace_pronoun(tokenized_text, pronoun_index, tokenized_option):
 
 # Load pre-trained model tokenizer (vocabulary)
 tokenizer = XLNetTokenizer.from_pretrained('xlnet-large-cased')
-PADDING_TEXT = tokenizer.add_special_tokens_single_sentence(tokenizer.convert_tokens_to_ids(tokenizer.tokenize(PADDING_TEXT)))
+#PADDING_TEXT = tokenizer.add_special_tokens_single_sentence(tokenizer.convert_tokens_to_ids(tokenizer.tokenize(PADDING_TEXT)))
 
 # perturbation: correct/wrong: original/altered
 # this dupplicates original but whatever the fuck
@@ -94,7 +94,7 @@ for current_alt, current_pron_index in [('text_original', 'pron_index'),
             # save the index
             # Tokenized input
             correct_answer = dp_split['correct_answer']
-            text_enhanced = re.sub(r' +', ' ', dp_split[current_alt].lower())
+            text_enhanced = re.sub(r' +', ' ', PADDING_TEXT + dp_split[current_alt].lower())
 
             tokenized_enhanced_text = tokenizer.tokenize(text_enhanced)
 
@@ -182,10 +182,10 @@ for current_alt, current_pron_index in [('text_original', 'pron_index'),
 
             # process padding
             #enhanced
-            indexed_tokens_A_enhanced = PADDING_TEXT + tokenizer.add_special_tokens_single_sentence(tokenizer.convert_tokens_to_ids(tokenized_text_enhanced_A))
-            indexed_tokens_B_enhanced = PADDING_TEXT + tokenizer.add_special_tokens_single_sentence(tokenizer.convert_tokens_to_ids(tokenized_text_enhanced_B))
-            indexed_tokens_A_pre_mask_enhanced = PADDING_TEXT + tokenizer.add_special_tokens_single_sentence(tokenizer.convert_tokens_to_ids(tokenized_text_A_pre_mask_enhanced))
-            indexed_tokens_B_pre_mask_enhanced = PADDING_TEXT + tokenizer.add_special_tokens_single_sentence(tokenizer.convert_tokens_to_ids(tokenized_text_B_pre_mask_enhanced))
+            indexed_tokens_A_enhanced = tokenizer.add_special_tokens_single_sentence(tokenizer.convert_tokens_to_ids(tokenized_text_enhanced_A))
+            indexed_tokens_B_enhanced = tokenizer.add_special_tokens_single_sentence(tokenizer.convert_tokens_to_ids(tokenized_text_enhanced_B))
+            indexed_tokens_A_pre_mask_enhanced = tokenizer.add_special_tokens_single_sentence(tokenizer.convert_tokens_to_ids(tokenized_text_A_pre_mask_enhanced))
+            indexed_tokens_B_pre_mask_enhanced = tokenizer.add_special_tokens_single_sentence(tokenizer.convert_tokens_to_ids(tokenized_text_B_pre_mask_enhanced))
 
             # mask all labels but wsc options (enhanced)
             for token_index in range(len(indexed_tokens_A_enhanced)):
