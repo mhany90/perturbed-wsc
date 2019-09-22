@@ -18,12 +18,8 @@ device = torch.device('cuda:0' if use_cuda else 'cpu')
 path_to_wsc = '../data/wsc_data/enhanced.tense.random.role.syn.voice.scramble.freqnoun.gender.number.adverb.tsv'
 wsc_datapoints = pd.read_csv(path_to_wsc, sep='\t')
 
-PADDING_TEXT = """ In 1991, the remains of Russian Tsar Nicholas II and his family
-(except for Alexei and Maria) are discovered.
-The voice of Nicholas's young son, Tsarevich Alexei Nikolaevich, narrates the
-remainder of the story. <eod> </s> <eos> """
 
-P_T= """<pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad>  <eod> </s> <eos> """
+P_T= """<pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <eod> </s> <eos> """
 
 def find_keyword(tokens, text):
     result = []
@@ -53,7 +49,6 @@ def replace_pronoun(tokenized_text, pronoun_index, tokenized_option):
 
 # Load pre-trained model tokenizer (vocabulary)
 tokenizer = XLNetTokenizer.from_pretrained('xlnet-large-cased')
-#PADDING_TEXT = tokenizer.add_special_tokens_single_sentence(tokenizer.convert_tokens_to_ids(tokenizer.tokenize(PADDING_TEXT)))
 
 # perturbation: correct/wrong: original/altered
 # this dupplicates original but whatever the fuck
