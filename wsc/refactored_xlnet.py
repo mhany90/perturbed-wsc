@@ -15,19 +15,11 @@ logging.basicConfig(level=logging.INFO)
 use_cuda = torch.cuda.is_available()
 device = torch.device('cuda:0' if use_cuda else 'cpu')
 
-path_to_wsc = '../data/wsc_data/new_test.tsv'
+path_to_wsc = '../data/wsc_data/enhanced.tense.random.role.syn.voice.scramble.freqnoun.gender.number.adverb.tsv'
 wsc_datapoints = pd.read_csv(path_to_wsc, sep='\t')
 
-PADDING_TEXT = """ In 1991, the remains of Russian Tsar Nicholas II and his family
-(except for Alexei and Maria) are discovered.
-The voice of Nicholas's young son, Tsarevich Alexei Nikolaevich, narrates the
-remainder of the story. 1883 Western Siberia,
-a young Grigori Rasputin is asked by his father and a group of men to perform magic.
-Rasputin has a vision and denounces one of the men as a horse thief. Although his
-father initially slaps him for making such an accusation, Rasputin watches as the
-man is chased outside and beaten. Twenty years later, Rasputin sees a vision of
-the Virgin Mary, prompting him to become a priest. Rasputin quickly becomes famous,
-with people, even a bishop, begging for his blessing. <eod> </s> <eos>"""
+
+P_T= """<pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <eod> </s> <eos> """
 
 def find_keyword(tokens, text):
     result = []
@@ -57,7 +49,6 @@ def replace_pronoun(tokenized_text, pronoun_index, tokenized_option):
 
 # Load pre-trained model tokenizer (vocabulary)
 tokenizer = XLNetTokenizer.from_pretrained('xlnet-large-cased')
-PADDING_TEXT = tokenizer.add_special_tokens_single_sentence(tokenizer.convert_tokens_to_ids(tokenizer.tokenize(PADDING_TEXT)))
 
 # perturbation: correct/wrong: original/altered
 # this dupplicates original but whatever the fuck
@@ -94,7 +85,7 @@ for current_alt, current_pron_index in [('text_original', 'pron_index'),
             # save the index
             # Tokenized input
             correct_answer = dp_split['correct_answer']
-            text_enhanced = re.sub(r' +', ' ', dp_split[current_alt].lower())
+            text_enhanced = re.sub(r' +', ' ', P_T + dp_split[current_alt].lower())
 
             tokenized_enhanced_text = tokenizer.tokenize(text_enhanced)
 
@@ -130,7 +121,7 @@ for current_alt, current_pron_index in [('text_original', 'pron_index'),
                 discrim_word = None
                 discrim_word_index = None
 
-            pronoun_index_orig_enhanced =  int(dp_split[current_pron_index])
+            pronoun_index_orig_enhanced =  int(dp_split[current_pron_index]) + len(P_T.split())
             tokenized_option_A = tokenizer.tokenize(tokens_pre_word_piece_A)
             tokenized_option_B = tokenizer.tokenize(tokens_pre_word_piece_B)
             tokenized_pronoun = tokenizer.tokenize(pronoun)
@@ -182,10 +173,10 @@ for current_alt, current_pron_index in [('text_original', 'pron_index'),
 
             # process padding
             #enhanced
-            indexed_tokens_A_enhanced = PADDING_TEXT + tokenizer.add_special_tokens_single_sentence(tokenizer.convert_tokens_to_ids(tokenized_text_enhanced_A))
-            indexed_tokens_B_enhanced = PADDING_TEXT + tokenizer.add_special_tokens_single_sentence(tokenizer.convert_tokens_to_ids(tokenized_text_enhanced_B))
-            indexed_tokens_A_pre_mask_enhanced = PADDING_TEXT + tokenizer.add_special_tokens_single_sentence(tokenizer.convert_tokens_to_ids(tokenized_text_A_pre_mask_enhanced))
-            indexed_tokens_B_pre_mask_enhanced = PADDING_TEXT + tokenizer.add_special_tokens_single_sentence(tokenizer.convert_tokens_to_ids(tokenized_text_B_pre_mask_enhanced))
+            indexed_tokens_A_enhanced = tokenizer.add_special_tokens_single_sentence(tokenizer.convert_tokens_to_ids(tokenized_text_enhanced_A))
+            indexed_tokens_B_enhanced = tokenizer.add_special_tokens_single_sentence(tokenizer.convert_tokens_to_ids(tokenized_text_enhanced_B))
+            indexed_tokens_A_pre_mask_enhanced = tokenizer.add_special_tokens_single_sentence(tokenizer.convert_tokens_to_ids(tokenized_text_A_pre_mask_enhanced))
+            indexed_tokens_B_pre_mask_enhanced = tokenizer.add_special_tokens_single_sentence(tokenizer.convert_tokens_to_ids(tokenized_text_B_pre_mask_enhanced))
 
             # mask all labels but wsc options (enhanced)
             for token_index in range(len(indexed_tokens_A_enhanced)):
@@ -312,5 +303,5 @@ for current_alt, current_pron_index in [('text_original', 'pron_index'),
     description[current_alt]['stability'] = stability_match / all_preds
 
 #print(description)
-with open('description_dump.pickle', 'wb') as f:
+with open('description_dump_xlnet.pickle', 'wb') as f:
     pickle.dump((description, indices, answers), f)

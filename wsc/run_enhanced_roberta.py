@@ -14,7 +14,7 @@ logging.basicConfig(level=logging.INFO)
 use_cuda = torch.cuda.is_available()
 device = torch.device('cuda:0' if use_cuda else 'cpu')
 
-path_to_wsc = '../data/wsc_data/enhanced.tense.random.role.syn.voice.scramble.freqnoun.tsv'
+path_to_wsc = '../data/wsc_data/enhanced.tense.random.role.syn.voice.scramble.freqnoun.gender.number.adverb.tsv'
 wsc_datapoints = pd.read_csv(path_to_wsc, sep='\t')
 
 def find_sub_list(sl,l):
@@ -47,7 +47,7 @@ model = RobertaForMaskedLM.from_pretrained('roberta-large')
 model.eval()
 
 for q_index, dp_split in wsc_datapoints.iterrows():
-    if dp_split['text_voice_switch'].replace(' ', '') != '-' and dp_split['text_voice_switch'].replace(' ', ''):
+    if dp_split['text_adverb'].replace(' ', '') != '-' and dp_split['text_adverb'].replace(' ', ''):
 
         # Tokenized input
         correct_answer = dp_split['correct_answer']
@@ -57,13 +57,12 @@ for q_index, dp_split in wsc_datapoints.iterrows():
         text = re.sub(' +', ' ', text)
         print(text, " text")
 
-        text_enhanced = dp_split['text_voice_switch'].lower()
+        text_enhanced = dp_split['text_adverb'].lower()
         text_enhanced = re.sub(' +', ' ', text_enhanced)
 
 
         tokenized_text = tokenizer.encode(text, add_special_tokens=True)
         tokenized_enhanced_text = tokenizer.encode(text_enhanced, add_special_tokens=True)
-        print(tokenized_text, "tokenized_text")
 
         tokens_pre_word_piece_A = dp_split['answer_a'].strip().lower()
         tokens_pre_word_piece_B = dp_split['answer_b'].strip().lower()
@@ -74,7 +73,7 @@ for q_index, dp_split in wsc_datapoints.iterrows():
         pronoun = 'because ' + dp_split['pron'].lower()
         print(pronoun, "pronoun")
         pronoun_index_orig =  int(dp_split['pron_index'])
-        pronoun_index_orig_enhanced =  int(dp_split['pron_index_voice'])
+        pronoun_index_orig_enhanced =  int(dp_split['pron_index_adverb'])
 
         tokenized_option_A = tokenizer.encode(tokens_pre_word_piece_A, add_special_tokens=True)[1:-1]
         tokenized_option_B = tokenizer.encode(tokens_pre_word_piece_B, add_special_tokens=True)[1:-1]

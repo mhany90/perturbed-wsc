@@ -1,26 +1,23 @@
 import torch
-from pytorch_pretrained_bert import BertTokenizer #, BertModel, BertForMaskedLM
+from pytorch_pretrained_bert import BertTokenizer#, BertModel, BertForMaskedLM
 from modeling import PreTrainedBertModel, BertModel, BertOnlyMLMHead, BertForMaskedLM
 import numpy as np
 from copy import deepcopy
+import pandas as pd
 from file_utils import PYTORCH_PRETRAINED_BERT_CACHE
 from collections import  OrderedDict
-
 
 # OPTIONAL: if you want to have more information on what's happening, activate the logger as follows
 import logging
 logging.basicConfig(level=logging.INFO)
 
 
-CONFIG_NAME = 'bert_config.json'
-WEIGHTS_NAME = 'pytorch_model.bin'
-
 use_cuda = torch.cuda.is_available()
 device = torch.device('cuda:0' if use_cuda else 'cpu')
 
-path_to_wsc = '../data/wsc_data/enhanced.tense.random.role.syn.voice.tsv'
-wsc_file = open(path_to_wsc, 'r')
-wsc_datapoints = wsc_file.readlines()
+
+path_to_wsc = '../data/wsc_data/enhanced.tense.random.role.syn.voice.scramble.freqnoun.gender.number.adverb.tsv'
+wsc_datapoints = pd.read_csv(path_to_wsc, sep='\t')
 
 def find_sub_list(sl,l):
     results=[]
@@ -46,6 +43,7 @@ stability_match  = 0
 all_preds = 0
 
 # Load pre-trained model (weights)
+# Load pre-trained model (weights)
 model = BertForMaskedLM.from_untrained('bert-large-uncased', cache_dir=PYTORCH_PRETRAINED_BERT_CACHE)
 model_dict = torch.load('/Users/mabdou/Desktop/phd/concept/supporting_models/BERT_Wiki_WscR', map_location='cpu')
 new_model_dict = OrderedDict({k.replace('module.', ''):v for k, v in model_dict.items()})
@@ -53,27 +51,25 @@ new_model_dict = OrderedDict({k.replace('module.', ''):v for k, v in model_dict.
 model.load_state_dict(new_model_dict)
 model.eval()
 
-for dp in wsc_datapoints[1:]:
-    dp_split = dp.split('\t')
-    if dp_split[2].replace(' ', '') != '-' and dp_split[2].replace(' ', ''):
-
+#for dp in wsc_datapoints[1:]:
+for q_index, dp_split in wsc_datapoints.iterrows():
+    if dp_split['text_adverb'].replace(' ', '') != '-' and dp_split['text_adverb'].replace(' ', ''):
         # Tokenized input
-        correct_answer = dp_split[-3]
+        correct_answer = dp_split['correct_answer']
 
         #check for empty
-        text = "[CLS] " + dp_split[0]  + " [SEP]"
-        text_enhanced = "[CLS] " + dp_split[2]  + " [SEP]"
-        print(text, "text")
+        text = "[CLS] " + dp_split['text_original']  + " [SEP]"
+        text_enhanced = "[CLS] " + dp_split['text_adverb']  + " [SEP]"
 
         tokenized_text = tokenizer.tokenize(text)
         tokenized_enhanced_text = tokenizer.tokenize(text_enhanced)
 
-        tokens_pre_word_piece_A = dp_split[14]
-        tokens_pre_word_piece_B = dp_split[16]
+        tokens_pre_word_piece_A = dp_split['answer_a']
+        tokens_pre_word_piece_B = dp_split['answer_b']
 
-        pronoun = dp_split[7].strip()
-        pronoun_index_orig =  int(dp_split[8].strip())
-        pronoun_index_orig_enhanced =  int(dp_split[12].strip())
+        pronoun = dp_split['pron'].strip()
+        pronoun_index_orig =  int(dp_split['pron_index'])
+        pronoun_index_orig_enhanced =  int(dp_split['pron_index_adverb'])
 
         tokenized_option_A = tokenizer.tokenize(tokens_pre_word_piece_A)
         tokenized_option_B = tokenizer.tokenize(tokens_pre_word_piece_B)

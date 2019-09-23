@@ -67,7 +67,7 @@ for q_index, dp_split in wsc_datapoints.iterrows():
         first_indices_scramble = np.array([mp[0] for mp in  matched_pronouns_scramble])
         correct_idx_scramble = (np.abs(first_indices_scramble - pronoun_index_orig)).argmin()
 
-        text_enhanced = scramble(dp_split[0], 0.3, pronoun)
+        text_enhanced = scramble(dp_split[0], 0.5, pronoun)
         print(text, "text")
         print(text_enhanced, ' text_enhanced')
 
