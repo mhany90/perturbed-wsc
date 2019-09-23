@@ -60,11 +60,11 @@ model.eval()
 for current_alt, current_pron_index in [('text_original', 'pron_index'),
                                         ('text_voice', 'pron_index_voice'),
                                         ('text_tense', 'pron_index_tense'),
-                                        ('text_random', 'pron_index_rand'),
+                                        # ('text_random', 'pron_index_rand'),
                                         ('text_number', 'pron_index_number'),
                                         ('text_gender', 'pron_index'),
                                         ('text_rel_1', 'pron_index_rel'),
-                                        ('text_syn', 'pron_index_syn'),
+                                        # ('text_syn', 'pron_index_syn'),
                                         ('text_scrambled', 'pron_index_scrambled'),
                                         ('text_freqnoun', 'pron_index_freqnoun')]:
     description[current_alt] = {'correct': {'ans': [], 'dis': []}, 'wrong': {'ans': [], 'dis': []}}
@@ -140,6 +140,8 @@ for current_alt, current_pron_index in [('text_original', 'pron_index'),
 
             if discrim_word:
                 tokenized_discrim_word = tokenizer.tokenize(discrim_word)
+
+
                 discrim_word_index_enhanced_A = find_keyword(tokenized_discrim_word, tokenized_text_enhanced_A)
                 discrim_word_index_enhanced_B = find_keyword(tokenized_discrim_word, tokenized_text_enhanced_B)
                 if not (discrim_word_index_enhanced_A and discrim_word_index_enhanced_B):
@@ -191,14 +193,19 @@ for current_alt, current_pron_index in [('text_original', 'pron_index'),
             masked_lm_labels_B_non_neg_enhanced = [(index, item) for index, item in enumerate(masked_lm_labels_B_enhanced) if item != -1]
 
             tokens_tensor_A_enhanced = torch.tensor([indexed_tokens_A_enhanced])
+            tokens_tensor_A_pre_mask = torch.tensor([indexed_tokens_A_pre_mask_enhanced])
             masked_lm_labels_A_enhanced = torch.tensor([masked_lm_labels_A_enhanced])
 
             tokens_tensor_B_enhanced = torch.tensor([indexed_tokens_B_enhanced])
+            tokens_tensor_B_pre_mask = torch.tensor([indexed_tokens_B_pre_mask_enhanced])
             masked_lm_labels_B_enhanced = torch.tensor([masked_lm_labels_B_enhanced])
 
+            mask_id = torch.tensor(tokenizer.convert_tokens_to_ids(['[MASK]'])).to(device=device)
             # If you have a GPU, put everything on cuda
             tokens_tensor_A_enhanced = tokens_tensor_A_enhanced.to(device=device)
             tokens_tensor_B_enhanced = tokens_tensor_B_enhanced.to(device=device)
+            tokens_tensor_A_pre_mask = tokens_tensor_A_pre_mask.to(device=device)
+            tokens_tensor_B_pre_mask = tokens_tensor_B_pre_mask.to(device=device)
             masked_lm_labels_A_enhanced = masked_lm_labels_A_enhanced.to(device=device)
             masked_lm_labels_B_enhanced = masked_lm_labels_B_enhanced.to(device=device)
 
@@ -241,15 +248,43 @@ for current_alt, current_pron_index in [('text_original', 'pron_index'),
                 indices[current_alt]['ans'].append(q_index)
 
                 if discrim_word:
-                    c = probs_array_A_enhanced[discrim_word_index_enhanced_A].item()
-                    w = probs_array_B_enhanced[discrim_word_index_enhanced_B].item()
+                    discrim_tensor = tokenizer.convert_tokens_to_ids(tokenizer.tokenize(discrim_word))
+                    mask_discrim_A = tokens_tensor_A_pre_mask.clone().to(device=device)
+                    mask_discrim_B = tokens_tensor_B_pre_mask.clone().to(device=device)
+                    for token in discrim_tensor:
+                        tokens_tensor_A_pre_mask[tokens_tensor_A_pre_mask == token] = mask_id
+                        tokens_tensor_B_pre_mask[tokens_tensor_B_pre_mask == token] = mask_id
+
+                    indices_A = (tokens_tensor_A_pre_mask == mask_id).nonzero(as_tuple=True)
+                    indices_B = (tokens_tensor_A_pre_mask == mask_id).nonzero(as_tuple=True)
+                    items_A = mask_discrim_A[indices_A]
+                    items_B = mask_discrim_B[indices_B]
+
+                    try:
+                        probs_A_discrim = torch.nn.functional.log_softmax(model(tokens_tensor_A_pre_mask), dim=-1)
+                        probs_B_discrim = torch.nn.functional.log_softmax(model(tokens_tensor_B_pre_mask), dim=-1)
+                    except:
+                        indices_A, items_A, indices_B, items_B = [[], []], [], [[], []], []
+
+                    total_logprobs_A_discrim = 0
+                    total_logprobs_B_discrim = 0
+
+                    for index, item in zip(indices_A[1], items_A):
+                        total_logprobs_A_discrim += probs_A_discrim[0, index, item].item()
+
+                    for index, item in zip(indices_B[1], items_B):
+                        total_logprobs_B_discrim += probs_B_discrim[0, index, item].item()
+
+                    c = total_logprobs_A_discrim
+                    w = total_logprobs_B_discrim
 
                     if correct_answer == 'B':
                         c, w = w, c
 
-                    description[current_alt]['correct']['dis'].append(c)
-                    description[current_alt]['wrong']['dis'].append(w)
-                    indices[current_alt]['dis'].append(q_index)
+                    if c != 0 and w != 0:
+                        description[current_alt]['correct']['dis'].append(c)
+                        description[current_alt]['wrong']['dis'].append(w)
+                        indices[current_alt]['dis'].append(q_index)
                 else:
                     description[current_alt]['correct']['dis'].append(None)
                     description[current_alt]['wrong']['dis'].append(None)
@@ -291,5 +326,5 @@ for current_alt, current_pron_index in [('text_original', 'pron_index'),
     description[current_alt]['stability'] = stability_match / all_preds
 
 #print(description)
-with open('description_dump.pickle', 'wb') as f:
+with open('description_dump_bert.pickle', 'wb') as f:
     pickle.dump((description, indices, answers), f)
