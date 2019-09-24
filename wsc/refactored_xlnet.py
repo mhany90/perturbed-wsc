@@ -60,7 +60,7 @@ prediction_original = []
 # Load pre-trained model (weights)
 model = XLNetLMHeadModel.from_pretrained('xlnet-large-cased')
 model.eval()
-
+accuracies, stabilities, counts = {}, {}, {}
 for current_alt, current_pron_index in [('text_original', 'pron_index'),
                                         ('text_voice', 'pron_index_voice'),
                                         ('text_context', 'pron_index_context'),
@@ -72,6 +72,10 @@ for current_alt, current_pron_index in [('text_original', 'pron_index'),
                                         ('text_syn', 'pron_index_syn'),
                                         ('text_scrambled', 'pron_index_scrambled'),
                                         ('text_freqnoun', 'pron_index_freqnoun')]:
+    accuracies[current_alt] = {'all': 0, 'switchable': 0, 'associative': 0, '!switchable': 0, '!associative': 0}
+    stabilities[current_alt] = {'all': 0, 'switchable': 0, 'associative': 0, '!switchable': 0, '!associative': 0}
+    counts[current_alt] = {'all': 0, 'switchable': 0, 'associative': 0, '!switchable': 0, '!associative': 0}
+
     description[current_alt] = {'correct': {'ans': [], 'dis': []}, 'wrong': {'ans': [], 'dis': []}}
     indices[current_alt] = {'ans': [], 'dis': []}
     answers[current_alt] = []
@@ -275,6 +279,17 @@ for current_alt, current_pron_index in [('text_original', 'pron_index'),
                 if prediction_enhanced == correct_answer.strip().strip('.').replace(' ', ''):
                     answers[current_alt].append(1)
                     correct_preds_enhanced += 1
+                    accuracies[current_alt]['all'] += 1
+
+                    if dp_split['associative'] == 1:
+                        accuracies[current_alt]['associative'] += 1
+                    else:
+                        accuracies[current_alt]['!associative'] += 1
+
+                    if dp_split['switchable'] == 1:
+                        accuracies[current_alt]['switchable'] += 1
+                    else:
+                        accuracies[current_alt]['!switchable'] += 1
                 else:
                     answers[current_alt].append(0)
 
@@ -287,6 +302,16 @@ for current_alt, current_pron_index in [('text_original', 'pron_index'),
                         stability_match += 1
 
                 all_preds += 1
+
+                if dp_split['associative'] == 1:
+                    counts[current_alt]['associative'] += 1
+                else:
+                    counts[current_alt]['!associative'] += 1
+
+                if dp_split['switchable'] == 1:
+                    counts[current_alt]['switchable'] += 1
+                else:
+                    counts[current_alt]['!switchable'] += 1
                 #print("#############################################################################")
         else:
             if current_alt == 'text_original':
@@ -295,6 +320,8 @@ for current_alt, current_pron_index in [('text_original', 'pron_index'),
 
             continue
 
+    counts[current_alt]['all'] = all_preds
+    counts[current_alt]['all'] = all_preds
     accuracy_enhanced = correct_preds_enhanced/all_preds
     print("accuracy: {}/{} = {}".format(correct_preds_enhanced, all_preds, accuracy_enhanced))
     print("stability: {}/{} = {}%".format(stability_match, all_preds, stability_match / all_preds))
@@ -304,4 +331,4 @@ for current_alt, current_pron_index in [('text_original', 'pron_index'),
 
 #print(description)
 with open('description_dump_xlnet.pickle', 'wb') as f:
-    pickle.dump((description, indices, answers), f)
+    pickle.dump((description, indices, answers, counts, accuracies, stabilities), f)

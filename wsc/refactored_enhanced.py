@@ -14,7 +14,7 @@ logging.basicConfig(level=logging.INFO)
 use_cuda = torch.cuda.is_available()
 device = torch.device('cuda:0' if use_cuda else 'cpu')
 
-path_to_wsc = '../data/wsc_data/enhanced.tense.random.role.syn.voice.scramble.freqnoun.gender.number.adverb.tsv'
+path_to_wsc = '../data/wsc_data/new_test.tsv'
 wsc_datapoints = pd.read_csv(path_to_wsc, sep='\t')
 
 def find_keyword(tokens, text):
@@ -56,7 +56,7 @@ prediction_original = []
 # Load pre-trained model (weights)
 model = BertForMaskedLM.from_pretrained('bert-large-uncased')
 model.eval()
-
+accuracies, stabilities, counts = {}, {}, {}
 for current_alt, current_pron_index in [('text_original', 'pron_index'),
                                         ('text_voice', 'pron_index_voice'),
                                         ('text_tense', 'pron_index_tense'),
@@ -69,6 +69,11 @@ for current_alt, current_pron_index in [('text_original', 'pron_index'),
                                         ('text_freqnoun', 'pron_index_freqnoun'),
                                         ('text_adverb', 'pron_index_adverb')
                                         ]:
+
+    accuracies[current_alt] = {'all': 0, 'switchable': 0, 'associative': 0, '!switchable': 0, '!associative': 0}
+    stabilities[current_alt] = {'all': 0, 'switchable': 0, 'associative': 0, '!switchable': 0, '!associative': 0}
+    counts[current_alt] = {'all': 0, 'switchable': 0, 'associative': 0, '!switchable': 0, '!associative': 0}
+
     description[current_alt] = {'correct': {'ans': [], 'dis': []}, 'wrong': {'ans': [], 'dis': []}}
     indices[current_alt] = {'ans': [], 'dis': []}
     answers[current_alt] = []
@@ -200,7 +205,7 @@ for current_alt, current_pron_index in [('text_original', 'pron_index'),
             tokens_tensor_B_pre_mask = torch.tensor([indexed_tokens_B_pre_mask_enhanced])
             masked_lm_labels_B_enhanced = torch.tensor([masked_lm_labels_B_enhanced])
 
-            mask_id = torch.tensor(tokenizer.convert_tokens_to_ids(['[MASK]'])).to(device=device)
+            # mask_id = torch.tensor(tokenizer.convert_tokens_to_ids(['[MASK]'])).to(device=device)
             # If you have a GPU, put everything on cuda
             tokens_tensor_A_enhanced = tokens_tensor_A_enhanced.to(device=device)
             tokens_tensor_B_enhanced = tokens_tensor_B_enhanced.to(device=device)
@@ -247,7 +252,7 @@ for current_alt, current_pron_index in [('text_original', 'pron_index'),
                 description[current_alt]['wrong']['ans'].append(w)
                 indices[current_alt]['ans'].append(q_index)
 
-                if discrim_word:
+                if discrim_word and 1 == 0:
                     discrim_tensor = tokenizer.convert_tokens_to_ids(tokenizer.tokenize(discrim_word))
                     mask_discrim_A = tokens_tensor_A_pre_mask.clone().to(device=device)
                     mask_discrim_B = tokens_tensor_B_pre_mask.clone().to(device=device)
@@ -297,7 +302,18 @@ for current_alt, current_pron_index in [('text_original', 'pron_index'),
 
                 if prediction_enhanced == correct_answer.strip().strip('.').replace(' ', ''):
                     answers[current_alt].append(1)
-                    correct_preds_enhanced += 1
+                    accuracies[current_alt]['all'] += 1
+
+                    if dp_split['associative'] == 1:
+                        accuracies[current_alt]['associative'] += 1
+                    else:
+                        accuracies[current_alt]['!associative'] += 1
+
+                    if dp_split['switchable'] == 1:
+                        accuracies[current_alt]['switchable'] += 1
+                    else:
+                        accuracies[current_alt]['!switchable'] += 1
+
                 else:
                     answers[current_alt].append(0)
 
@@ -307,10 +323,30 @@ for current_alt, current_pron_index in [('text_original', 'pron_index'),
 
                 else:
                     if prediction_enhanced == prediction_original[q_index]:
-                        stability_match += 1
+                        stabilities[current_alt]['all'] += 1
+
+                        if dp_split['associative'] == 1:
+                            stabilities[current_alt]['associative'] += 1
+                        else:
+                            stabilities[current_alt]['!associative'] += 1
+
+                        if dp_split['switchable'] == 1:
+                            stabilities[current_alt]['switchable'] += 1
+                        else:
+                            stabilities[current_alt]['!switchable'] += 1
 
                 all_preds += 1
-                #print("#############################################################################")
+
+                if dp_split['associative'] == 1:
+                    counts[current_alt]['associative'] += 1
+                else:
+                    counts[current_alt]['!associative'] += 1
+
+                if dp_split['switchable'] == 1:
+                    counts[current_alt]['switchable'] += 1
+                else:
+                    counts[current_alt]['!switchable'] += 1
+
         else:
             if current_alt == 'text_original':
                 print("broken code m8")
@@ -318,13 +354,14 @@ for current_alt, current_pron_index in [('text_original', 'pron_index'),
 
             continue
 
-    accuracy_enhanced = correct_preds_enhanced/all_preds
-    print("accuracy: {}/{} = {}".format(correct_preds_enhanced, all_preds, accuracy_enhanced))
-    print("stability: {}/{} = {}%".format(stability_match, all_preds, stability_match / all_preds))
+    # add the total just in case
+    counts[current_alt]['all'] = all_preds
+    counts[current_alt]['all'] = all_preds
 
-    description[current_alt]['accuracy'] = accuracy_enhanced
-    description[current_alt]['stability'] = stability_match / all_preds
+    accuracy_enhanced = correct_preds_enhanced/all_preds
+    print("accuracy: {}/{} = {}".format(accuracies[current_alt]['all'], all_preds, accuracy_enhanced))
+    print("stability: {}/{} = {}%".format(stabilities[current_alt]['all'], all_preds, stability_match / all_preds))
 
 #print(description)
 with open('description_dump_bert.pickle', 'wb') as f:
-    pickle.dump((description, indices, answers), f)
+    pickle.dump((description, indices, answers, counts, accuracies, stabilities), f)

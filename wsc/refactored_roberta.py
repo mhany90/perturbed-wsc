@@ -62,6 +62,10 @@ prediction_original = []
 model = RobertaForMaskedLM.from_pretrained('roberta-large')
 model.eval()
 
+accuracies = {}
+stabilities = {}
+counts = {}
+
 for current_alt, current_pron_index in [('text_original', 'pron_index'),
                                         ('text_voice', 'pron_index_voice'),
                                         ('text_context', 'pron_index_context'),
@@ -77,6 +81,9 @@ for current_alt, current_pron_index in [('text_original', 'pron_index'),
     description[current_alt] = {'correct': {'ans': [], 'dis': []}, 'wrong': {'ans': [], 'dis': []}}
     indices[current_alt] = {'ans': [], 'dis': []}
     answers[current_alt] = []
+    accuracies[current_alt] = {'all': 0, 'switchable': 0, 'associative': 0, '!switchable': 0, '!associative': 0}
+    stabilities[current_alt] = {'all': 0, 'switchable': 0, 'associative': 0, '!switchable': 0, '!associative': 0}
+    counts[current_alt] = {'all': 0, 'switchable': 0, 'associative': 0, '!switchable': 0, '!associative': 0}
 
     correct_preds_enhanced = 0
     stability_match = 0
@@ -273,6 +280,18 @@ for current_alt, current_pron_index in [('text_original', 'pron_index'),
                 if prediction_enhanced == correct_answer .strip().strip('.').replace(' ', ''):
                     answers[current_alt].append(1)
                     correct_preds_enhanced += 1
+
+                    accuracies[current_alt]['all'] += 1
+
+                    if dp_split['associative'] == 1:
+                        accuracies[current_alt]['associative'] += 1
+                    else:
+                        accuracies[current_alt]['!associative'] += 1
+
+                    if dp_split['switchable'] == 1:
+                        accuracies[current_alt]['switchable'] += 1
+                    else:
+                        accuracies[current_alt]['!switchable'] += 1
                 else:
                     answers[current_alt].append(0)
 
@@ -282,16 +301,36 @@ for current_alt, current_pron_index in [('text_original', 'pron_index'),
 
                 else:
                     if prediction_enhanced == prediction_original[q_index]:
-                        stability_match += 1
+                        stabilities[current_alt]['all'] += 1
+
+                        if dp_split['associative'] == 1:
+                            stabilities[current_alt]['associative'] += 1
+                        else:
+                            stabilities[current_alt]['!associative'] += 1
+
+                        if dp_split['switchable'] == 1:
+                            stabilities[current_alt]['switchable'] += 1
+                        else:
+                            stabilities[current_alt]['!switchable'] += 1
 
                 all_preds += 1
-                #print("#############################################################################")
+
+                if dp_split['associative'] == 1:
+                    counts[current_alt]['associative'] += 1
+                else:
+                    counts[current_alt]['!associative'] += 1
+
+                if dp_split['switchable'] == 1:
+                    counts[current_alt]['switchable'] += 1
+                else:
+                    counts[current_alt]['!switchable'] += 1
         else:
             if current_alt == 'text_original':
                 print("broken code m8")
                 exit()
 
     accuracy_enhanced = correct_preds_enhanced / all_preds
+    counts[current_alt]['all'] = all_preds
     print("accuracy: {}/{} = {}".format(correct_preds_enhanced, all_preds, accuracy_enhanced))
     print("stability: {}/{} = {}%".format(stability_match, all_preds, stability_match / all_preds))
     description[current_alt]['accuracy'] = accuracy_enhanced
@@ -299,5 +338,5 @@ for current_alt, current_pron_index in [('text_original', 'pron_index'),
 
     # print(description)
 with open('description_dump_roberta.pickle', 'wb') as f:
-    pickle.dump((description, indices, answers), f)
+    pickle.dump((description, indices, answers, counts, accuracies, stabilities), f)
 
