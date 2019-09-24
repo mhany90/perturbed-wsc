@@ -299,7 +299,17 @@ for current_alt, current_pron_index in [('text_original', 'pron_index'),
 
                 else:
                     if prediction_enhanced == prediction_original[q_index]:
-                        stability_match += 1
+                        stabilities[current_alt]['all'] += 1
+
+                        if dp_split['associative'] == 1:
+                            stabilities[current_alt]['associative'] += 1
+                        else:
+                            stabilities[current_alt]['!associative'] += 1
+
+                        if dp_split['switchable'] == 1:
+                            stabilities[current_alt]['switchable'] += 1
+                        else:
+                            stabilities[current_alt]['!switchable'] += 1
 
                 all_preds += 1
 
