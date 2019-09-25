@@ -275,7 +275,18 @@ for current_alt, current_pron_index in [('text_original', 'pron_index'),
 
                 if prediction_enhanced == correct_answer.strip().strip('.').replace(' ', ''):
                     answers[current_alt].append(1)
-                    correct_preds_enhanced += 1
+                    accuracies[current_alt]['all'] += 1
+
+                    if dp_split['associative'] == 1:
+                        accuracies[current_alt]['associative'] += 1
+                    else:
+                        accuracies[current_alt]['!associative'] += 1
+
+                    if dp_split['switchable'] == 1:
+                        accuracies[current_alt]['switchable'] += 1
+                    else:
+                        accuracies[current_alt]['!switchable'] += 1
+
                 else:
                     answers[current_alt].append(0)
 

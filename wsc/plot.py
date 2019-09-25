@@ -9,7 +9,7 @@ import seaborn as sns; sns.set()
 sns.set(style="darkgrid")
 
 
-with open('description_dump_roberta.pickle', 'rb') as f:
+with open('description_dump_finetuned.pickle', 'rb') as f:
     description, indices, answers, counts, accuracies, stabilities = pickle.load(f)
 
 for experiment in description.keys():
