@@ -1,5 +1,5 @@
 import torch
-from pytorch_pretrained_bert import BertTokenizer, BertModel, BertForMaskedLM
+from pytorch_transformers import BertTokenizer, BertModel, BertForMaskedLM
 import numpy as np
 from copy import deepcopy
 import pandas as pd
@@ -55,8 +55,9 @@ indices = {}
 answers = {}
 
 prediction_original = []
+baseline_attentions = []
 # Load pre-trained model (weights)
-model = BertForMaskedLM.from_pretrained(model_name)
+model = BertForMaskedLM.from_pretrained(model_name, output_attentions=True)
 model.eval()
 accuracies, stabilities, counts = {}, {}, {}
 for current_alt, current_pron_index in [('text_original', 'pron_index'),
@@ -130,9 +131,6 @@ for current_alt, current_pron_index in [('text_original', 'pron_index'),
 
             tokenized_option_A_len = len(tokenized_option_A)
             tokenized_option_B_len = len(tokenized_option_B)
-
-            ##print(tokenized_option_A, "tokenized_option A")
-            ##print(tokenized_option_B, "tokenized_option B")
 
             if current_alt == 'text_number':
                 tokenized_pronoun = tokenizer.tokenize(dp_split['pron_number'].strip())
@@ -222,8 +220,8 @@ for current_alt, current_pron_index in [('text_original', 'pron_index'),
             total_logprobs_B_enhanced = 0
 
             with torch.no_grad():
-                probs_A_enhanced = model(tokens_tensor_A_enhanced)
-                probs_B_enhanced = model(tokens_tensor_B_enhanced)
+                probs_A_enhanced = model(tokens_tensor_A_enhanced)[0]
+                probs_B_enhanced = model(tokens_tensor_B_enhanced)[0]
 
                 logprobs_A_enhanced = torch.nn.functional.log_softmax(probs_A_enhanced, dim=-1)
                 logprobs_B_enhanced = torch.nn.functional.log_softmax(probs_B_enhanced, dim=-1)
@@ -253,6 +251,31 @@ for current_alt, current_pron_index in [('text_original', 'pron_index'),
                 description[current_alt]['correct']['ans'].append(c)
                 description[current_alt]['wrong']['ans'].append(w)
                 indices[current_alt]['ans'].append(q_index)
+
+                ## attention analysis
+                if current_alt == 'text_original':
+                    baseline_attentions.append((tokens_tensor_A_pre_mask, tokens_tensor_B_pre_mask))
+
+                else:
+                    old_A_tokens, old_B_tokens = baseline_attentions[q_index]
+                    old_A_attn = model(old_A_tokens)[1]
+                    old_B_attn = model(old_B_tokens)[1]
+                    new_A_attn = model(tokens_tensor_A_pre_mask)[1]
+                    new_B_attn = model(tokens_tensor_B_pre_mask)[1]
+
+                    # pick the
+                    mask_new_A = [n for (n, i) in enumerate(tokens_tensor_A_pre_mask.squeeze()) if i in old_A_tokens]
+                    mask_new_B = [n for (n, i) in enumerate(tokens_tensor_B_pre_mask.squeeze()) if i in old_B_tokens]
+                    mask_old_A = [n for (n, i) in enumerate(old_A_tokens.squeeze()) if i in tokens_tensor_A_pre_mask]
+                    mask_old_B = [n for (n, i) in enumerate(old_B_tokens.squeeze()) if i in tokens_tensor_A_pre_mask]
+
+                    new_A_attn = new_A_attn[-1][0, :, :, mask_new_A].sum(dim=-1).sum(dim=-1).mean(dim=-1)
+                    old_A_attn = old_A_attn[-1][0, :, :, mask_old_A].sum(dim=-1).sum(dim=-1).mean(dim=-1)
+                    new_B_attn = new_B_attn[-1][0, :, :, mask_new_B].sum(dim=-1).sum(dim=-1).mean(dim=-1)
+                    old_B_attn = old_B_attn[-1][0, :, :, mask_old_B].sum(dim=-1).sum(dim=-1).mean(dim=-1)
+                    diff_A = new_A_attn - old_A_attn
+                    diff_B = new_B_attn - old_B_attn
+                ## END
 
                 if discrim_word and 1 == 0:
                     discrim_tensor = tokenizer.convert_tokens_to_ids(tokenizer.tokenize(discrim_word))

@@ -58,7 +58,7 @@ answers = {}
 prediction_original = []
 # Load pre-trained model (weights)
 model = BertForMaskedLM.from_untrained('bert-large-uncased', cache_dir=PYTORCH_PRETRAINED_BERT_CACHE)
-model_dict = torch.load('/Users/mabdou/Desktop/phd/concept/supporting_models/BERT_Wiki_WscR', map_location='cpu')
+model_dict = torch.load('../BERT_Wiki_WscR')
 new_model_dict = OrderedDict({k.replace('module.', ''):v for k, v in model_dict.items()})
 
 model.load_state_dict(new_model_dict)
