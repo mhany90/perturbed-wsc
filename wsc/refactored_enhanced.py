@@ -53,7 +53,7 @@ tokenizer = BertTokenizer.from_pretrained(model_name)
 description = {}
 indices = {}
 answers = {}
-
+attentions = {}
 prediction_original = []
 baseline_attentions = []
 # Load pre-trained model (weights)
@@ -77,7 +77,7 @@ for current_alt, current_pron_index in [('text_original', 'pron_index'),
     stabilities[current_alt] = {'all': 0, 'switchable': 0, 'associative': 0, '!switchable': 0, '!associative': 0}
     counts[current_alt] = {'all': 0, 'switchable': 0, 'associative': 0, '!switchable': 0, '!associative': 0}
 
-    description[current_alt] = {'correct': {'ans': [], 'dis': []}, 'wrong': {'ans': [], 'dis': []}}
+    description[current_alt] = {'correct': {'ans': [], 'dis': [], 'attn': []}, 'wrong': {'ans': [], 'dis': [], 'attn': []}}
     indices[current_alt] = {'ans': [], 'dis': []}
     answers[current_alt] = []
 
@@ -89,7 +89,7 @@ for current_alt, current_pron_index in [('text_original', 'pron_index'),
         if dp_split[current_alt].replace(' ', '') != '-' and dp_split[current_alt].replace(' ', ''):
             # save the index
             # Tokenized input
-            correct_answer = dp_split['correct_answer']
+            correct_answer = dp_split['correct_answer'].strip().strip('.').replace(' ', '')
             text_enhanced = "[CLS] " + dp_split[current_alt]  + " [SEP]"
 
             tokenized_enhanced_text = tokenizer.tokenize(text_enhanced)
@@ -157,7 +157,6 @@ for current_alt, current_pron_index in [('text_original', 'pron_index'),
 
             masked_indices_A_text_enhanced = [m for m in matched_A_text_enhanced if m[0] == pronoun_index_text_enhanced][0]
             masked_indices_B_text_enhanced = [m for m in matched_B_text_enhanced if m[0] == pronoun_index_text_enhanced][0]
-
 
             tokenized_text_A_pre_mask_enhanced = deepcopy(tokenized_text_enhanced_A)
             tokenized_text_B_pre_mask_enhanced = deepcopy(tokenized_text_enhanced_B)
@@ -253,28 +252,46 @@ for current_alt, current_pron_index in [('text_original', 'pron_index'),
                 indices[current_alt]['ans'].append(q_index)
 
                 ## attention analysis
-                if current_alt == 'text_original':
-                    baseline_attentions.append((tokens_tensor_A_pre_mask, tokens_tensor_B_pre_mask))
 
-                else:
-                    old_A_tokens, old_B_tokens = baseline_attentions[q_index]
-                    old_A_attn = model(old_A_tokens)[1]
-                    old_B_attn = model(old_B_tokens)[1]
-                    new_A_attn = model(tokens_tensor_A_pre_mask)[1]
-                    new_B_attn = model(tokens_tensor_B_pre_mask)[1]
+                interesting_phenomena_A = {}
+                interesting_phenomena_B = {}
+                interesting_phenomena_A['answer'] = [i[0] for i in masked_lm_labels_A_non_neg_enhanced]
+                interesting_phenomena_B['answer'] = [i[0] for i in masked_lm_labels_B_non_neg_enhanced]
 
-                    # pick the
-                    mask_new_A = [n for (n, i) in enumerate(tokens_tensor_A_pre_mask.squeeze()) if i in old_A_tokens]
-                    mask_new_B = [n for (n, i) in enumerate(tokens_tensor_B_pre_mask.squeeze()) if i in old_B_tokens]
-                    mask_old_A = [n for (n, i) in enumerate(old_A_tokens.squeeze()) if i in tokens_tensor_A_pre_mask]
-                    mask_old_B = [n for (n, i) in enumerate(old_B_tokens.squeeze()) if i in tokens_tensor_A_pre_mask]
+                interesting_phenomena_A['discrim'] = []
+                interesting_phenomena_B['discrim'] = []
+                if discrim_word:
+                    discrim_tensor = tokenizer.convert_tokens_to_ids(tokenizer.tokenize(discrim_word))
+                    for token in discrim_tensor:
+                        interesting_phenomena_A['discrim'].append((tokens_tensor_A_pre_mask == token).nonzero()[0][1].item())
+                        interesting_phenomena_B['discrim'].append((tokens_tensor_B_pre_mask == token).nonzero()[0][1].item())
 
-                    new_A_attn = new_A_attn[-1][0, :, :, mask_new_A].sum(dim=-1).sum(dim=-1).mean(dim=-1)
-                    old_A_attn = old_A_attn[-1][0, :, :, mask_old_A].sum(dim=-1).sum(dim=-1).mean(dim=-1)
-                    new_B_attn = new_B_attn[-1][0, :, :, mask_new_B].sum(dim=-1).sum(dim=-1).mean(dim=-1)
-                    old_B_attn = old_B_attn[-1][0, :, :, mask_old_B].sum(dim=-1).sum(dim=-1).mean(dim=-1)
-                    diff_A = new_A_attn - old_A_attn
-                    diff_B = new_B_attn - old_B_attn
+                new_A_attn = model(tokens_tensor_A_pre_mask)[1]
+                new_B_attn = model(tokens_tensor_B_pre_mask)[1]
+
+                # attention paid to discrim
+                if discrim_word:
+                    c = new_A_attn[-1][0, :, :, interesting_phenomena_A['discrim']].sum(dim=-1).sum(dim=-1).mean(dim=-1)
+                    w = new_B_attn[-1][0, :, :, interesting_phenomena_B['discrim']].sum(dim=-1).sum(dim=-1).mean(dim=-1)
+
+                if correct_answer == 'B':
+                    c, w = w, c
+
+                description[current_alt]['correct']['attn'].append(c)
+                description[current_alt]['wrong']['attn'].append(w)
+
+                # # pick the
+                # mask_new_A = [n for (n, i) in enumerate(tokens_tensor_A_pre_mask.squeeze()) if i in old_A_tokens]
+                # mask_new_B = [n for (n, i) in enumerate(tokens_tensor_B_pre_mask.squeeze()) if i in old_B_tokens]
+                # mask_old_A = [n for (n, i) in enumerate(old_A_tokens.squeeze()) if i in tokens_tensor_A_pre_mask]
+                # mask_old_B = [n for (n, i) in enumerate(old_B_tokens.squeeze()) if i in tokens_tensor_A_pre_mask]
+                #
+                # new_A_attn = new_A_attn[-1][0, :, :, mask_new_A].sum(dim=-1).sum(dim=-1).mean(dim=-1)
+                # old_A_attn = old_A_attn[-1][0, :, :, mask_old_A].sum(dim=-1).sum(dim=-1).mean(dim=-1)
+                # new_B_attn = new_B_attn[-1][0, :, :, mask_new_B].sum(dim=-1).sum(dim=-1).mean(dim=-1)
+                # old_B_attn = old_B_attn[-1][0, :, :, mask_old_B].sum(dim=-1).sum(dim=-1).mean(dim=-1)
+                # diff_A = new_A_attn - old_A_attn
+                # diff_B = new_B_attn - old_B_attn
                 ## END
 
                 if discrim_word and 1 == 0:
@@ -389,4 +406,4 @@ for current_alt, current_pron_index in [('text_original', 'pron_index'),
 
 #print(description)
 with open('description_dump_bert.pickle', 'wb') as f:
-    pickle.dump((description, indices, answers, counts, accuracies, stabilities), f)
+    pickle.dump((description, indices, answers, counts, accuracies, stabilities, attentions), f)
