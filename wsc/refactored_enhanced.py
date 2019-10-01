@@ -291,8 +291,15 @@ for current_alt, current_pron_index in [('text_original', 'pron_index'),
                 c, w = 0, 0
                 c_p, w_p = 0, 0
                 if discrim_word:
-                    c = new_A_attn[-1][0, :,  interesting_phenomena_A['answer'], interesting_phenomena_A['discrim']].sum(dim=-1).sum(dim=-1).max(dim=-1)[0].item() #* len_tokens_A_enhanced
-                    w = new_B_attn[-1][0, :,  interesting_phenomena_B['answer'], interesting_phenomena_B['discrim']].sum(dim=-1).sum(dim=-1).max(dim=-1)[0].item() #* len_tokens_A_enhanced
+                    #c = new_A_attn[-1][0, :,  interesting_phenomena_A['answer'], interesting_phenomena_A['discrim']].sum(dim=-1).sum(dim=-1).max(dim=-1)[0].item()
+                    #w = new_B_attn[-1][0, :,  interesting_phenomena_B['answer'], interesting_phenomena_B['discrim']].sum(dim=-1).sum(dim=-1).max(dim=-1)[0].item()
+
+                    c_disc = new_A_attn[-1][0, :, :, interesting_phenomena_A['discrim']]
+                    w_disc = new_B_attn[-1][0, :, :, interesting_phenomena_B['discrim']]
+
+                    c = c_disc[: ,interesting_phenomena_A['answer'], :].sum(dim=-1).sum(dim=-1).max(dim=-1)[0].item()
+                    w = w_disc[: ,interesting_phenomena_B['answer'], :].sum(dim=-1).sum(dim=-1).max(dim=-1)[0].item()
+
 
                     a = new_attn_from_pron[-1][0, :, pronoun_index_text_enhanced, interesting_phenomena_pron['discrim']]\
                         .sum(dim=-1).mean(dim=-1).item()
