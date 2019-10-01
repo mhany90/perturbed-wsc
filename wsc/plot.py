@@ -9,7 +9,7 @@ import seaborn as sns; sns.set()
 sns.set(style="darkgrid")
 
 
-with open('description_dump_bert.pickle', 'rb') as f:
+with open('description_dump_finetuned.pickle', 'rb') as f:
     description, indices, answers, counts, accuracies, stabilities = pickle.load(f)
 
 for experiment in description.keys():
@@ -40,10 +40,18 @@ for experiment in description.keys():
     current_answers = answers[experiment]
     # assert np.sum(current_answers) / len(current_answers) == description[experiment]['accuracy']
 
-    print("{}\t{:.2f}\t{:.2f}\t{:.2f}\t{:.2f}\t{:.2f}\t{:.2f}".format(
+    print("{}\t{:.2f}\t{:.2f}\t{:.2f}\t{:.2f}\t{:.2f}\t{:.2f}\t{:.2f}\t{:.2f}\t{:.2f}\t{:.2f}".format(
         experiment,
-        100 * accuracies[experiment]['all'] / counts[experiment]['all'], 100 * accuracies[experiment]['associative'] / counts[experiment]['associative'], 100 * accuracies[experiment]['switchable'] / counts[experiment]['switchable'],
-        100 * stabilities[experiment]['all'] / counts[experiment]['all'], 100 * accuracies[experiment]['associative'] / counts[experiment]['associative'], 100 * accuracies[experiment]['switchable'] / counts[experiment]['switchable']
+        100 * accuracies[experiment]['all'] / counts[experiment]['all'],
+        100 * accuracies[experiment]['associative'] / counts[experiment]['associative'],
+        100 * accuracies[experiment]['switchable'] / counts[experiment]['switchable'],
+        100 * accuracies[experiment]['!associative'] / counts[experiment]['!associative'],
+        100 * accuracies[experiment]['!switchable'] / counts[experiment]['!switchable'],
+        100 * stabilities[experiment]['all'] / counts[experiment]['all'],
+        100 * stabilities[experiment]['associative'] / counts[experiment]['associative'],
+        100 * stabilities[experiment]['switchable'] / counts[experiment]['switchable'],
+        100 * stabilities[experiment]['!associative'] / counts[experiment]['!associative'],
+        100 * stabilities[experiment]['!switchable'] / counts[experiment]['!switchable'],
     ))
     # subset of answers for the original dataset that matches valid ones for current experiment
     subset_score = np.sum(answers['text_original'][current_indices]) / len(answers['text_original'][current_indices])

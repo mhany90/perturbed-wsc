@@ -43,8 +43,10 @@ def replace_pronoun(tokenized_text, pronoun_index, tokenized_option):
     tokenized_text.pop(new_pronoun_index)
     return tokenized_text
 
+
+model_name = 'bert-base-uncased' if sys.argv[1] == '--debug' else 'bert-large-uncased'
 # Load pre-trained model tokenizer (vocabulary)
-tokenizer = BertTokenizer.from_pretrained('bert-large-uncased')
+tokenizer = BertTokenizer.from_pretrained(model_name)
 
 # perturbation: correct/wrong: original/altered
 # this dupplicates original but whatever the fuck
@@ -54,7 +56,7 @@ answers = {}
 
 prediction_original = []
 # Load pre-trained model (weights)
-model = BertForMaskedLM.from_pretrained('bert-large-uncased')
+model = BertForMaskedLM.from_pretrained(model_name)
 model.eval()
 accuracies, stabilities, counts = {}, {}, {}
 for current_alt, current_pron_index in [('text_original', 'pron_index'),
