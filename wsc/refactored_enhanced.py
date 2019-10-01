@@ -270,9 +270,10 @@ for current_alt, current_pron_index in [('text_original', 'pron_index'),
                 new_B_attn = model(tokens_tensor_B_pre_mask)[1]
 
                 # attention paid to discrim
+                c, w = 0, 0
                 if discrim_word:
-                    c = new_A_attn[-1][0, :, :, interesting_phenomena_A['discrim']].sum(dim=-1).sum(dim=-1).mean(dim=-1)
-                    w = new_B_attn[-1][0, :, :, interesting_phenomena_B['discrim']].sum(dim=-1).sum(dim=-1).mean(dim=-1)
+                    c = new_A_attn[-1][0, :, :, interesting_phenomena_A['discrim']].sum(dim=-1).sum(dim=-1).mean(dim=-1).item()
+                    w = new_B_attn[-1][0, :, :, interesting_phenomena_B['discrim']].sum(dim=-1).sum(dim=-1).mean(dim=-1).item()
 
                 if correct_answer == 'B':
                     c, w = w, c
@@ -406,4 +407,4 @@ for current_alt, current_pron_index in [('text_original', 'pron_index'),
 
 #print(description)
 with open('description_dump_bert.pickle', 'wb') as f:
-    pickle.dump((description, indices, answers, counts, accuracies, stabilities, attentions), f)
+    pickle.dump((description, indices, answers, counts, accuracies, stabilities), f)
