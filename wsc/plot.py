@@ -5,12 +5,12 @@ import pickle
 import math
 import numpy as np
 from scipy import stats
+from functools import reduce
 import seaborn as sns; sns.set()
 sns.set(style="darkgrid")
 
-
-with open('description_dump_bert.pickle', 'rb') as f:
-    description, indices, answers, counts, accuracies, stabilities, _ = pickle.load(f)
+with open('description_dump_bert_headmaxnonorm.pickle', 'rb') as f:
+    description, indices, answers, counts, accuracies, stabilities = pickle.load(f)
 
 for experiment in description.keys():
     for polarity in description[experiment].keys():
@@ -28,8 +28,15 @@ for experiment in description.keys():
 
 dists = []
 ratios = []
-c1 = []
-c2 = []
+correct_diffs = []
+wrong_diffs = []
+correct_shifts = []
+wrong_shifts = []
+
+all_diffs = []
+all_shifts = []
+all_accuracies = []
+
 for experiment in description.keys():
     correct_original = description['text_original']['correct']['ans']
     wrong_original = description['text_original']['wrong']['ans']
@@ -41,14 +48,30 @@ for experiment in description.keys():
     current_answers = answers[experiment]
     # assert np.sum(current_answers) / len(current_answers) == description[experiment]['accuracy']
 
+    #attn
     correct_attn_orig = description['text_original']['correct']['attn'][current_indices]
-    wrong_attn_orig = description['text_original']['wrong']['attn']
+    wrong_attn_orig = description['text_original']['wrong']['attn'][current_indices]
 
     correct_attn = description[experiment]['correct']['attn']
-    diff = correct_attn - correct_attn_orig
-    print("{}\t{}\t{}".format(experiment, diff.mean(), accuracies[experiment]['all'] / len(current_indices)))
-    c1.append(diff.mean())
-    c2.append(accuracies[experiment]['all'] / len(current_indices))
+    correct_diff = correct_attn - correct_attn_orig
+
+    wrong_attn = description[experiment]['wrong']['attn']
+    wrong_diff = wrong_attn - wrong_attn_orig
+
+
+    print("{}\t corr diff: {}\t wrong diff: {}\t acc: {}".format(experiment, correct_diff.mean(), wrong_diff.mean(), accuracies[experiment]['all'] / len(current_indices)))
+    correct_diffs.append(correct_diff.mean())
+    wrong_diffs.append(wrong_diff.mean())
+    all_diffs.append(correct_diff.mean() + wrong_diff.mean())
+
+    correct_shifts.append(correct_shift.mean())
+    wrong_shifts.append(wrong_shift.mean())
+    all_shifts.append(correct_shift.mean() + wrong_shift.mean())
+
+
+
+    all_accuracies.append(accuracies[experiment]['all'] / len(current_indices))
+
     # print("{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}".format(
     #     experiment,
     #     accuracies[experiment]['all'],
@@ -89,7 +112,7 @@ for experiment in description.keys():
 #           format(experiment, np.mean(correct_shift), np.mean(wrong_shift),
 #     100 * subset_score, 100 * description[experiment]['accuracy'], 100 * description[experiment]['stability']))
 
-print(stats.pearson3(c1, c2))
+print(stats.pearsonr(correct_diffs, correct_shifts))
 """
 plt.ylim(top=3)
 plt.bar(indices, final_probs, 0.4, color='olivedrab')

@@ -14,7 +14,7 @@ logging.basicConfig(level=logging.INFO)
 use_cuda = torch.cuda.is_available()
 device = torch.device('cuda:0' if use_cuda else 'cpu')
 
-path_to_wsc = '../data/wsc_data/new_test.tsv'
+path_to_wsc = '../data/wsc_data/enhanced.tense.random.role.syn.voice.scramble.freqnoun.gender.number.adverb.tsv'
 wsc_datapoints = pd.read_csv(path_to_wsc, sep='\t')
 
 def find_keyword(tokens, text):
@@ -76,8 +76,8 @@ for current_alt, current_pron_index in [('text_original', 'pron_index'),
     accuracies[current_alt] = {'all': 0, 'switchable': 0, 'associative': 0, '!switchable': 0, '!associative': 0}
     stabilities[current_alt] = {'all': 0, 'switchable': 0, 'associative': 0, '!switchable': 0, '!associative': 0}
     counts[current_alt] = {'all': 0, 'switchable': 0, 'associative': 0, '!switchable': 0, '!associative': 0}
-
-    description[current_alt] = {'correct': {'ans': [], 'dis': [], 'attn': []}, 'wrong': {'ans': [], 'dis': [], 'attn': []}}
+    description[current_alt] = {'correct': {'ans': [], 'dis': [], 'attn': []}, 'wrong': {'ans': [], 'dis': [], 'attn': []},
+                                'all':{'pron_attn': []}}
     indices[current_alt] = {'ans': [], 'dis': []}
     answers[current_alt] = []
 
@@ -176,15 +176,21 @@ for current_alt, current_pron_index in [('text_original', 'pron_index'),
             indexed_tokens_A_pre_mask_enhanced = tokenizer.convert_tokens_to_ids(tokenized_text_A_pre_mask_enhanced)
             indexed_tokens_B_pre_mask_enhanced = tokenizer.convert_tokens_to_ids(tokenized_text_B_pre_mask_enhanced)
 
+            #text with pron
+            indexed_tokens_enhanced_with_pron = tokenizer.convert_tokens_to_ids(tokenized_enhanced_text)
+
+            len_tokens_A_enhanced = len(indexed_tokens_A_enhanced)
+            len_tokens_B_enhanced = len(indexed_tokens_B_enhanced)
+
             # mask all labels but wsc options (enhanced)
-            for token_index in range(len(indexed_tokens_A_enhanced)):
+            for token_index in range(len_tokens_A_enhanced):
                 if token_index in range(masked_indices_A_text_enhanced[0], masked_indices_A_text_enhanced[1]):
                     masked_lm_labels_A_enhanced.append(indexed_tokens_A_pre_mask_enhanced[token_index])
                 else:
                     masked_lm_labels_A_enhanced.append(-1)
 
             # mask all labels but wsc options
-            for token_index in range(len(indexed_tokens_B_enhanced)):
+            for token_index in range(len_tokens_B_enhanced):
                 if token_index in range(masked_indices_B_text_enhanced[0], masked_indices_B_text_enhanced[1]):
                     masked_lm_labels_B_enhanced.append(indexed_tokens_B_pre_mask_enhanced[token_index])
                 else:
@@ -204,6 +210,8 @@ for current_alt, current_pron_index in [('text_original', 'pron_index'),
             tokens_tensor_B_pre_mask = torch.tensor([indexed_tokens_B_pre_mask_enhanced])
             masked_lm_labels_B_enhanced = torch.tensor([masked_lm_labels_B_enhanced])
 
+            tokens_tensor_enhanced_with_pron = torch.tensor([indexed_tokens_enhanced_with_pron])
+
             # mask_id = torch.tensor(tokenizer.convert_tokens_to_ids(['[MASK]'])).to(device=device)
             # If you have a GPU, put everything on cuda
             tokens_tensor_A_enhanced = tokens_tensor_A_enhanced.to(device=device)
@@ -212,6 +220,7 @@ for current_alt, current_pron_index in [('text_original', 'pron_index'),
             tokens_tensor_B_pre_mask = tokens_tensor_B_pre_mask.to(device=device)
             masked_lm_labels_A_enhanced = masked_lm_labels_A_enhanced.to(device=device)
             masked_lm_labels_B_enhanced = masked_lm_labels_B_enhanced.to(device=device)
+            tokens_tensor_enhanced_with_pron = tokens_tensor_enhanced_with_pron.to(device=device)
 
             model.to(device=device)
 
@@ -269,17 +278,24 @@ for current_alt, current_pron_index in [('text_original', 'pron_index'),
                 new_A_attn = model(tokens_tensor_A_pre_mask)[1]
                 new_B_attn = model(tokens_tensor_B_pre_mask)[1]
 
+                new_attn_from_pron = model(tokens_tensor_enhanced_with_pron)[1]
+
                 # attention paid to discrim
                 c, w = 0, 0
+                c_p, w_p = 0, 0
                 if discrim_word:
-                    c = new_A_attn[-1][0, :, :, interesting_phenomena_A['discrim']].sum(dim=-1).sum(dim=-1).mean(dim=-1).item()
-                    w = new_B_attn[-1][0, :, :, interesting_phenomena_B['discrim']].sum(dim=-1).sum(dim=-1).mean(dim=-1).item()
+                    c = new_A_attn[-1][0, :, :, interesting_phenomena_A['discrim']].sum(dim=-1).sum(dim=-1).max(dim=-1)[0].item() #* len_tokens_A_enhanced
+                    w = new_B_attn[-1][0, :, :, interesting_phenomena_B['discrim']].sum(dim=-1).sum(dim=-1).max(dim=-1)[0].item() #* len_tokens_A_enhanced
+
+                    a = new_attn_from_pron[-1][0, :, pronoun_index_text_enhanced, interesting_phenomena_A['discrim']]\
+                        .sum(dim=-1).mean(dim=-1).item()  # * len_tokens_A_enhanced
 
                 if correct_answer == 'B':
                     c, w = w, c
 
                 description[current_alt]['correct']['attn'].append(c)
                 description[current_alt]['wrong']['attn'].append(w)
+                description[current_alt]['all']['pron_attn'].append(a)
 
                 # # pick the
                 # mask_new_A = [n for (n, i) in enumerate(tokens_tensor_A_pre_mask.squeeze()) if i in old_A_tokens]
@@ -406,5 +422,5 @@ for current_alt, current_pron_index in [('text_original', 'pron_index'),
     print("stability: {}/{} = {}%".format(stabilities[current_alt]['all'], all_preds, stability_match / all_preds))
 
 #print(description)
-with open('description_dump_bert.pickle', 'wb') as f:
+with open('description_dump_bert_headmaxnonorm_pronmean.pickle', 'wb') as f:
     pickle.dump((description, indices, answers, counts, accuracies, stabilities), f)
