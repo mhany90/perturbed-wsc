@@ -264,16 +264,23 @@ for current_alt, current_pron_index in [('text_original', 'pron_index'),
 
                 interesting_phenomena_A = {}
                 interesting_phenomena_B = {}
+                interesting_phenomena_pron = {}
+
                 interesting_phenomena_A['answer'] = [i[0] for i in masked_lm_labels_A_non_neg_enhanced]
                 interesting_phenomena_B['answer'] = [i[0] for i in masked_lm_labels_B_non_neg_enhanced]
 
                 interesting_phenomena_A['discrim'] = []
                 interesting_phenomena_B['discrim'] = []
+                interesting_phenomena_pron['discrim'] = []
+
                 if discrim_word:
                     discrim_tensor = tokenizer.convert_tokens_to_ids(tokenizer.tokenize(discrim_word))
                     for token in discrim_tensor:
                         interesting_phenomena_A['discrim'].append((tokens_tensor_A_pre_mask == token).nonzero()[0][1].item())
                         interesting_phenomena_B['discrim'].append((tokens_tensor_B_pre_mask == token).nonzero()[0][1].item())
+                        interesting_phenomena_pron['discrim'].append((tokens_tensor_enhanced_with_pron == token).nonzero()[0][1].item())
+
+
 
                 new_A_attn = model(tokens_tensor_A_pre_mask)[1]
                 new_B_attn = model(tokens_tensor_B_pre_mask)[1]
@@ -287,7 +294,7 @@ for current_alt, current_pron_index in [('text_original', 'pron_index'),
                     c = new_A_attn[-1][0, :, :, interesting_phenomena_A['discrim']].sum(dim=-1).sum(dim=-1).max(dim=-1)[0].item() #* len_tokens_A_enhanced
                     w = new_B_attn[-1][0, :, :, interesting_phenomena_B['discrim']].sum(dim=-1).sum(dim=-1).max(dim=-1)[0].item() #* len_tokens_A_enhanced
 
-                    a = new_attn_from_pron[-1][0, :, pronoun_index_text_enhanced, interesting_phenomena_A['discrim']]\
+                    a = new_attn_from_pron[-1][0, :, pronoun_index_text_enhanced, interesting_phenomena_pron['discrim']]\
                         .sum(dim=-1).mean(dim=-1).item()  # * len_tokens_A_enhanced
 
                 if correct_answer == 'B':
