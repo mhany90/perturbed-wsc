@@ -294,9 +294,9 @@ for current_alt, current_pron_index in [('text_original', 'pron_index'),
                     c = new_A_attn[-1][0, :, :, interesting_phenomena_A['discrim']].sum(dim=-1).sum(dim=-1).max(dim=-1)[0].item() #* len_tokens_A_enhanced
                     w = new_B_attn[-1][0, :, :, interesting_phenomena_B['discrim']].sum(dim=-1).sum(dim=-1).max(dim=-1)[0].item() #* len_tokens_A_enhanced
 
-                    print(new_attn_from_pron[-1][0, :, pronoun_index_text_enhanced, interesting_phenomena_pron['discrim']].item())
-                    a = new_attn_from_pron[-1][0, :, pronoun_index_text_enhanced, interesting_phenomena_pron['discrim']]\
-                        .mean(dim=0).item()  # * len_tokens_A_enhanced
+                    print(new_attn_from_pron[-1][0, :,interesting_phenomena_pron['discrim']  ,pronoun_index_text_enhanced].item())
+                    a = new_attn_from_pron[-1][0, :, interesting_phenomena_pron['discrim'], pronoun_index_text_enhanced]\
+                        .sum(dim=-1).mean(dim=0).item()  # * len_tokens_A_enhanced
 
                 if correct_answer == 'B':
                     c, w = w, c
