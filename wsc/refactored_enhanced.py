@@ -295,7 +295,7 @@ for current_alt, current_pron_index in [('text_original', 'pron_index'),
                     w = new_B_attn[-1][0, :,  interesting_phenomena_B['answer'], interesting_phenomena_B['discrim']].sum(dim=-1).sum(dim=-1).max(dim=-1)[0].item() #* len_tokens_A_enhanced
 
                     a = new_attn_from_pron[-1][0, :, pronoun_index_text_enhanced, interesting_phenomena_pron['discrim']]\
-                        .sum(dim=-1).mean(dim=-1)[0].item()
+                        .sum(dim=-1).mean(dim=-1).item()
 
                 if correct_answer == 'B':
                     c, w = w, c
