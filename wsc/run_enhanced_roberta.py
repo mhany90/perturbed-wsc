@@ -17,15 +17,7 @@ device = torch.device('cuda:0' if use_cuda else 'cpu')
 path_to_wsc = '../data/wsc_data/enhanced.tense.random.role.syn.voice.scramble.freqnoun.gender.number.adverb.tsv'
 wsc_datapoints = pd.read_csv(path_to_wsc, sep='\t')
 
-def find_sub_list(sl,l):
-    sl = [item for item in sl]
-    l = [item for item in l]
-    results=[]
-    sll=len(sl)
-    for ind in (i for i,e in enumerate(l) if e==sl[0]):
-        if l[ind:ind+sll]==sl:
-            results.append((ind,ind+sll))
-    return results
+
 
 def replace_pronoun(tokenized_text, pronoun_index, tokenized_option):
     tokenized_text = tokenized_text[:pronoun_index] + tokenized_option + tokenized_text[pronoun_index:]
@@ -131,7 +123,7 @@ for q_index, dp_split in wsc_datapoints.iterrows():
         masked_indices_items_A_text = [(index, item) for index, item in
                                       zip(range(masked_indices_A_text[0],masked_indices_A_text[1] + 1),tokenized_option_A)]
         masked_indices_items_A_text_enhanced = [(index, item) for index, item in
-                                       zip(range(masked_indices_A_text[0], masked_indices_A_text_enhanced[1] +1 ),tokenized_option_A)]
+                                       zip(range(masked_indices_A_text[0], masked_indices_A_text_enhanced[1] + 1),tokenized_option_A)]
 
         masked_indices_items_B_text = [(index, item) for index, item in
                                        zip(range(masked_indices_A_text[0], masked_indices_B_text[1] + 1),tokenized_option_B)]

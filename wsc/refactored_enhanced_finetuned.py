@@ -76,13 +76,14 @@ for current_alt, current_pron_index in [('text_original', 'pron_index'),
                                         ('text_freqnoun', 'pron_index_freqnoun'),
                                         ('text_adverb', 'pron_index_adverb')
                                         ]:
-    description[current_alt] = {'correct': {'ans': [], 'dis': []}, 'wrong': {'ans': [], 'dis': []}}
-    indices[current_alt] = {'ans': [], 'dis': []}
-    answers[current_alt] = []
 
     accuracies[current_alt] = {'all': 0, 'switchable': 0, 'associative': 0, '!switchable': 0, '!associative': 0}
     stabilities[current_alt] = {'all': 0, 'switchable': 0, 'associative': 0, '!switchable': 0, '!associative': 0}
     counts[current_alt] = {'all': 0, 'switchable': 0, 'associative': 0, '!switchable': 0, '!associative': 0}
+
+    description[current_alt] = {'correct': {'ans': [], 'dis': []}, 'wrong': {'ans': [], 'dis': []}}
+    indices[current_alt] = {'ans': [], 'dis': []}
+    answers[current_alt] = []
 
     correct_preds_enhanced, stability_match = 0, 0
     all_preds = 0
@@ -204,14 +205,19 @@ for current_alt, current_pron_index in [('text_original', 'pron_index'),
             masked_lm_labels_B_non_neg_enhanced = [(index, item) for index, item in enumerate(masked_lm_labels_B_enhanced) if item != -1]
 
             tokens_tensor_A_enhanced = torch.tensor([indexed_tokens_A_enhanced])
+            tokens_tensor_A_pre_mask = torch.tensor([indexed_tokens_A_pre_mask_enhanced])
             masked_lm_labels_A_enhanced = torch.tensor([masked_lm_labels_A_enhanced])
 
             tokens_tensor_B_enhanced = torch.tensor([indexed_tokens_B_enhanced])
+            tokens_tensor_B_pre_mask = torch.tensor([indexed_tokens_B_pre_mask_enhanced])
             masked_lm_labels_B_enhanced = torch.tensor([masked_lm_labels_B_enhanced])
 
+            # mask_id = torch.tensor(tokenizer.convert_tokens_to_ids(['[MASK]'])).to(device=device)
             # If you have a GPU, put everything on cuda
             tokens_tensor_A_enhanced = tokens_tensor_A_enhanced.to(device=device)
             tokens_tensor_B_enhanced = tokens_tensor_B_enhanced.to(device=device)
+            tokens_tensor_A_pre_mask = tokens_tensor_A_pre_mask.to(device=device)
+            tokens_tensor_B_pre_mask = tokens_tensor_B_pre_mask.to(device=device)
             masked_lm_labels_A_enhanced = masked_lm_labels_A_enhanced.to(device=device)
             masked_lm_labels_B_enhanced = masked_lm_labels_B_enhanced.to(device=device)
 
@@ -253,16 +259,44 @@ for current_alt, current_pron_index in [('text_original', 'pron_index'),
                 description[current_alt]['wrong']['ans'].append(w)
                 indices[current_alt]['ans'].append(q_index)
 
-                if discrim_word:
-                    c = probs_array_A_enhanced[discrim_word_index_enhanced_A].item()
-                    w = probs_array_B_enhanced[discrim_word_index_enhanced_B].item()
+                if discrim_word and 1 == 0:
+                    discrim_tensor = tokenizer.convert_tokens_to_ids(tokenizer.tokenize(discrim_word))
+                    mask_discrim_A = tokens_tensor_A_pre_mask.clone().to(device=device)
+                    mask_discrim_B = tokens_tensor_B_pre_mask.clone().to(device=device)
+                    for token in discrim_tensor:
+                        tokens_tensor_A_pre_mask[tokens_tensor_A_pre_mask == token] = mask_id
+                        tokens_tensor_B_pre_mask[tokens_tensor_B_pre_mask == token] = mask_id
+
+                    indices_A = (tokens_tensor_A_pre_mask == mask_id).nonzero(as_tuple=True)
+                    indices_B = (tokens_tensor_A_pre_mask == mask_id).nonzero(as_tuple=True)
+                    items_A = mask_discrim_A[indices_A]
+                    items_B = mask_discrim_B[indices_B]
+
+                    try:
+                        probs_A_discrim = torch.nn.functional.log_softmax(model(tokens_tensor_A_pre_mask), dim=-1)
+                        probs_B_discrim = torch.nn.functional.log_softmax(model(tokens_tensor_B_pre_mask), dim=-1)
+                    except:
+                        indices_A, items_A, indices_B, items_B = [[], []], [], [[], []], []
+
+                    total_logprobs_A_discrim = 0
+                    total_logprobs_B_discrim = 0
+
+                    for index, item in zip(indices_A[1], items_A):
+                        total_logprobs_A_discrim += probs_A_discrim[0, index, item].item()
+
+                    for index, item in zip(indices_B[1], items_B):
+                        total_logprobs_B_discrim += probs_B_discrim[0, index, item].item()
+
+                    c = total_logprobs_A_discrim
+                    w = total_logprobs_B_discrim
 
                     if correct_answer == 'B':
                         c, w = w, c
 
-                    description[current_alt]['correct']['dis'].append(c)
-                    description[current_alt]['wrong']['dis'].append(w)
-                    indices[current_alt]['dis'].append(q_index)
+                    if c != 0 and w != 0:
+                        description[current_alt]['correct']['dis'].append(c)
+                        description[current_alt]['wrong']['dis'].append(w)
+                        indices[current_alt]['dis'].append(q_index)
                 else:
                     description[current_alt]['correct']['dis'].append(None)
                     description[current_alt]['wrong']['dis'].append(None)
@@ -275,7 +309,18 @@ for current_alt, current_pron_index in [('text_original', 'pron_index'),
 
                 if prediction_enhanced == correct_answer.strip().strip('.').replace(' ', ''):
                     answers[current_alt].append(1)
-                    correct_preds_enhanced += 1
+                    accuracies[current_alt]['all'] += 1
+
+                    if dp_split['associative'] == 1:
+                        accuracies[current_alt]['associative'] += 1
+                    else:
+                        accuracies[current_alt]['!associative'] += 1
+
+                    if dp_split['switchable'] == 1:
+                        accuracies[current_alt]['switchable'] += 1
+                    else:
+                        accuracies[current_alt]['!switchable'] += 1
+
                 else:
                     answers[current_alt].append(0)
 
@@ -308,7 +353,7 @@ for current_alt, current_pron_index in [('text_original', 'pron_index'),
                     counts[current_alt]['switchable'] += 1
                 else:
                     counts[current_alt]['!switchable'] += 1
-                #print("#############################################################################")
+
         else:
             if current_alt == 'text_original':
                 print("broken code m8")
@@ -316,12 +361,13 @@ for current_alt, current_pron_index in [('text_original', 'pron_index'),
 
             continue
 
+    # add the total just in case
     counts[current_alt]['all'] = all_preds
-    print("accuracy: {}/{} = {}".format(correct_preds_enhanced, all_preds, accuracy_enhanced))
-    print("stability: {}/{} = {}%".format(stability_match, all_preds, stability_match / all_preds))
+    counts[current_alt]['all'] = all_preds
 
-    description[current_alt]['accuracy'] = accuracy_enhanced
-    description[current_alt]['stability'] = stability_match / all_preds
+    accuracy_enhanced = correct_preds_enhanced/all_preds
+    print("accuracy: {}/{} = {}".format(accuracies[current_alt]['all'], all_preds, accuracy_enhanced))
+    print("stability: {}/{} = {}%".format(stabilities[current_alt]['all'], all_preds, stability_match / all_preds))
 
 #print(description)
 with open('description_dump_bertfinetuneWSRC.pickle', 'wb') as f:

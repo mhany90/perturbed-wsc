@@ -14,7 +14,7 @@ logging.basicConfig(level=logging.INFO)
 use_cuda = torch.cuda.is_available()
 device = torch.device('cuda:0' if use_cuda else 'cpu')
 
-path_to_wsc = '../data/wsc_data/new_test.tsv'
+path_to_wsc = '../data/wsc_data/enhanced.tense.random.role.syn.voice.scramble.freqnoun.gender.number.adverb.tsv'
 wsc_datapoints = pd.read_csv(path_to_wsc, sep='\t')
 
 def find_keyword(tokens, text):
