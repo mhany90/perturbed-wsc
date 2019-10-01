@@ -9,8 +9,8 @@ import seaborn as sns; sns.set()
 sns.set(style="darkgrid")
 
 
-with open('description_dump_roberta.pickle', 'rb') as f:
-    description, indices, answers, counts, accuracies, stabilities = pickle.load(f)
+with open('description_dump_bert.pickle', 'rb') as f:
+    description, indices, answers, counts, accuracies, stabilities, _ = pickle.load(f)
 
 for experiment in description.keys():
     for polarity in description[experiment].keys():
@@ -28,7 +28,8 @@ for experiment in description.keys():
 
 dists = []
 ratios = []
-
+c1 = []
+c2 = []
 for experiment in description.keys():
     correct_original = description['text_original']['correct']['ans']
     wrong_original = description['text_original']['wrong']['ans']
@@ -40,24 +41,32 @@ for experiment in description.keys():
     current_answers = answers[experiment]
     # assert np.sum(current_answers) / len(current_answers) == description[experiment]['accuracy']
 
-    print("{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}".format(
-        experiment,
-        accuracies[experiment]['all'],
-        accuracies[experiment]['associative'],
-        accuracies[experiment]['switchable'],
-        accuracies[experiment]['!associative'],
-        accuracies[experiment]['!switchable'],
-        stabilities[experiment]['all'],
-        stabilities[experiment]['associative'],
-        stabilities[experiment]['switchable'],
-        stabilities[experiment]['!associative'],
-        stabilities[experiment]['!switchable'],
-        counts[experiment]['all'],
-        counts[experiment]['associative'],
-        counts[experiment]['switchable'],
-        counts[experiment]['!associative'],
-        counts[experiment]['!switchable']
-    ))
+    correct_attn_orig = description['text_original']['correct']['attn'][current_indices]
+    wrong_attn_orig = description['text_original']['wrong']['attn']
+
+    correct_attn = description[experiment]['correct']['attn']
+    diff = correct_attn - correct_attn_orig
+    print("{}\t{}\t{}".format(experiment, diff.mean(), accuracies[experiment]['all'] / len(current_indices)))
+    c1.append(diff.mean())
+    c2.append(accuracies[experiment]['all'] / len(current_indices))
+    # print("{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}".format(
+    #     experiment,
+    #     accuracies[experiment]['all'],
+    #     accuracies[experiment]['associative'],
+    #     accuracies[experiment]['switchable'],
+    #     accuracies[experiment]['!associative'],
+    #     accuracies[experiment]['!switchable'],
+    #     stabilities[experiment]['all'],
+    #     stabilities[experiment]['associative'],
+    #     stabilities[experiment]['switchable'],
+    #     stabilities[experiment]['!associative'],
+    #     stabilities[experiment]['!switchable'],
+    #     counts[experiment]['all'],
+    #     counts[experiment]['associative'],
+    #     counts[experiment]['switchable'],
+    #     counts[experiment]['!associative'],
+    #     counts[experiment]['!switchable']
+    # ))
     # subset of answers for the original dataset that matches valid ones for current experiment
     subset_score = np.sum(answers['text_original'][current_indices]) / len(answers['text_original'][current_indices])
 
@@ -80,6 +89,7 @@ for experiment in description.keys():
 #           format(experiment, np.mean(correct_shift), np.mean(wrong_shift),
 #     100 * subset_score, 100 * description[experiment]['accuracy'], 100 * description[experiment]['stability']))
 
+print(stats.pearson3(c1, c2))
 """
 plt.ylim(top=3)
 plt.bar(indices, final_probs, 0.4, color='olivedrab')
