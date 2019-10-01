@@ -9,7 +9,7 @@ from functools import reduce
 import seaborn as sns; sns.set()
 sns.set(style="darkgrid")
 
-with open('description_dump_bert_headmaxnonorm.pickle', 'rb') as f:
+with open('description_dump_bert_headmaxnonorm_pronmean.pickle', 'rb') as f:
     description, indices, answers, counts, accuracies, stabilities = pickle.load(f)
 
 for experiment in description.keys():
@@ -37,6 +37,8 @@ all_diffs = []
 all_shifts = []
 all_accuracies = []
 
+pron_diffs = []
+
 for experiment in description.keys():
     correct_original = description['text_original']['correct']['ans']
     wrong_original = description['text_original']['wrong']['ans']
@@ -58,16 +60,20 @@ for experiment in description.keys():
     wrong_attn = description[experiment]['wrong']['attn']
     wrong_diff = wrong_attn - wrong_attn_orig
 
+    pron_attn_orig = description['text_original']['all']['pron_attn'][current_indices]
+    pron_attn = description[experiment]['all']['pron_attn']
+    pron_diff = pron_attn - pron_attn_orig
 
-    print("{}\t corr diff: {}\t wrong diff: {}\t acc: {}".format(experiment, correct_diff.mean(), wrong_diff.mean(), accuracies[experiment]['all'] / len(current_indices)))
+
+    print("{}\t pron diff: {}\t corr diff: {}\t wrong diff: {}\t acc: {}".format(experiment, pron_diff.mean(), correct_diff.mean(), wrong_diff.mean(), accuracies[experiment]['all'] / len(current_indices)))
     correct_diffs.append(correct_diff.mean())
     wrong_diffs.append(wrong_diff.mean())
+    pron_diffs.append(pron_diff.mean())
     all_diffs.append(correct_diff.mean() + wrong_diff.mean())
 
     correct_shifts.append(correct_shift.mean())
     wrong_shifts.append(wrong_shift.mean())
     all_shifts.append(correct_shift.mean() + wrong_shift.mean())
-
 
 
     all_accuracies.append(accuracies[experiment]['all'] / len(current_indices))
@@ -112,7 +118,25 @@ for experiment in description.keys():
 #           format(experiment, np.mean(correct_shift), np.mean(wrong_shift),
 #     100 * subset_score, 100 * description[experiment]['accuracy'], 100 * description[experiment]['stability']))
 
-print(stats.pearsonr(correct_diffs, correct_shifts))
+
+#drop freq noun
+correct_diffs.pop(-2)
+correct_shifts.pop(-2)
+all_accuracies.pop(-2)
+wrong_diffs.pop(-2)
+wrong_shifts.pop(-2)
+pron_diffs.pop(-2)
+
+
+correct_diffs.pop(0)
+correct_shifts.pop(0)
+all_accuracies.pop(0)
+wrong_diffs.pop(0)
+wrong_shifts.pop(0)
+pron_diffs.pop(0)
+
+
+print(stats.pearsonr(pron_diffs, all_accuracies))
 """
 plt.ylim(top=3)
 plt.bar(indices, final_probs, 0.4, color='olivedrab')
