@@ -2,9 +2,13 @@ import torch
 from pytorch_transformers import BertTokenizer, BertModel, BertForMaskedLM
 import numpy as np
 from copy import deepcopy
+from helpers import align_word_pieces
 import pandas as pd
 import pickle
 import sys
+import spacy
+
+nlp = spacy.load("en_core_web_sm")
 
 # OPTIONAL: if you want to have more information on what's happening, activate the logger as follows
 import logging
@@ -56,6 +60,7 @@ answers = {}
 attentions = {}
 prediction_original = []
 baseline_attentions = []
+pos_attentions = {}
 # Load pre-trained model (weights)
 model = BertForMaskedLM.from_pretrained(model_name, output_attentions=True)
 model.eval()
@@ -90,9 +95,11 @@ for current_alt, current_pron_index in [('text_original', 'pron_index'),
             # save the index
             # Tokenized input
             correct_answer = dp_split['correct_answer'].strip().strip('.').replace(' ', '')
+            spacy_text = nlp(dp_split[current_alt])
             text_enhanced = "[CLS] " + dp_split[current_alt]  + " [SEP]"
 
             tokenized_enhanced_text = tokenizer.tokenize(text_enhanced)
+
 
             if current_alt == 'text_syn':
                 tokens_pre_word_piece_A = dp_split['answer_a_syn']
@@ -127,6 +134,8 @@ for current_alt, current_pron_index in [('text_original', 'pron_index'),
             pronoun_index_orig_enhanced =  int(dp_split[current_pron_index])
             tokenized_option_A = tokenizer.tokenize(tokens_pre_word_piece_A)
             tokenized_option_B = tokenizer.tokenize(tokens_pre_word_piece_B)
+            spacy_A = nlp(tokens_pre_word_piece_A)
+            spacy_B = nlp(tokens_pre_word_piece_B)
             tokenized_pronoun = tokenizer.tokenize(pronoun)
 
             tokenized_option_A_len = len(tokenized_option_A)
@@ -160,6 +169,11 @@ for current_alt, current_pron_index in [('text_original', 'pron_index'),
 
             tokenized_text_A_pre_mask_enhanced = deepcopy(tokenized_text_enhanced_A)
             tokenized_text_B_pre_mask_enhanced = deepcopy(tokenized_text_enhanced_B)
+            spacy_A = nlp(" ".join(tokenized_text_A_pre_mask_enhanced[1:-1]))
+            spacy_B = nlp(" ".join(tokenized_text_B_pre_mask_enhanced[1:-1]))
+
+            align_A = align_word_pieces(spacy_A.text, tokenized_text_A_pre_mask_enhanced[1:-1])
+            align_B = align_word_pieces(spacy_B.text, tokenized_text_B_pre_mask_enhanced[1:-1])
 
             for masked_index in range(masked_indices_A_text_enhanced[0], masked_indices_A_text_enhanced[1]):
                 tokenized_text_enhanced_A[masked_index] = '[MASK]'
