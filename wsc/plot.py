@@ -28,16 +28,29 @@ for experiment in description.keys():
 
 dists = []
 ratios = []
+
 correct_diffs = []
 wrong_diffs = []
 correct_shifts = []
 wrong_shifts = []
 
+correct_diffs_flat = []
+wrong_diffs_flat  = []
+correct_shifts_flat  = []
+wrong_shifts_flat  = []
+
+
 all_diffs = []
 all_shifts = []
-all_accuracies = []
 
+all_diffs_flat = []
+all_shifts_flat = []
+
+all_accuracies = []
 pron_diffs = []
+
+pron_diffs_flat = []
+
 
 for experiment in description.keys():
     correct_original = description['text_original']['correct']['ans']
@@ -65,15 +78,28 @@ for experiment in description.keys():
     pron_diff = pron_attn - pron_attn_orig
 
 
-    print("{}\t pron diff: {}\t corr diff: {}\t wrong diff: {}\t acc: {}".format(experiment, pron_diff.mean(), correct_diff.mean(), wrong_diff.mean(), accuracies[experiment]['all'] / len(current_indices)))
+    print("{}\t correct_shift: {}\t wrong_shift: {}\t corr diff: {}\t wrong diff: {}\t acc: {}".format(experiment, correct_shift.mean(), wrong_shift.mean(), correct_diff.mean(), wrong_diff.mean(), accuracies[experiment]['all'] / len(current_indices)))
+    #diffs
     correct_diffs.append(correct_diff.mean())
     wrong_diffs.append(wrong_diff.mean())
     pron_diffs.append(pron_diff.mean())
     all_diffs.append(correct_diff.mean() + wrong_diff.mean())
 
+    #flat
+    correct_diffs_flat.extend(correct_diff)
+    wrong_diffs_flat.extend(wrong_diff)
+    pron_diffs_flat.extend(pron_diff)
+    all_diffs_flat.extend([c + w for c, w in zip(correct_diff , wrong_diff)])
+
+    #shifts
     correct_shifts.append(correct_shift.mean())
     wrong_shifts.append(wrong_shift.mean())
     all_shifts.append(correct_shift.mean() + wrong_shift.mean())
+
+    #flat
+    correct_shifts_flat.extend(correct_shift)
+    wrong_shifts_flat.extend(wrong_shift)
+    all_shifts_flat.extend([c + w for c, w in zip(correct_shift , wrong_shift)])
 
 
     all_accuracies.append(accuracies[experiment]['all'] / len(current_indices))
@@ -126,6 +152,7 @@ all_accuracies.pop(-2)
 wrong_diffs.pop(-2)
 wrong_shifts.pop(-2)
 pron_diffs.pop(-2)
+all_shifts.pop(-2)
 
 
 correct_diffs.pop(0)
@@ -134,9 +161,10 @@ all_accuracies.pop(0)
 wrong_diffs.pop(0)
 wrong_shifts.pop(0)
 pron_diffs.pop(0)
+all_shifts.pop(0)
 
-
-print(stats.pearsonr(pron_diffs, all_accuracies))
+shift_diff = [c - w for c, w in zip(correct_shifts , wrong_shifts)]
+print(stats.pearsonr(all_shifts, all_accuracies))
 """
 plt.ylim(top=3)
 plt.bar(indices, final_probs, 0.4, color='olivedrab')
