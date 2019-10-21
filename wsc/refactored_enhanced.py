@@ -65,6 +65,7 @@ pos_attentions = {}
 model = BertForMaskedLM.from_pretrained(model_name, output_attentions=True)
 model.eval()
 accuracies, stabilities, counts = {}, {}, {}
+sentence_pairs = {}
 for current_alt, current_pron_index in [('text_original', 'pron_index'),
                                         ('text_voice', 'pron_index_voice'),
                                         ('text_tense', 'pron_index_tense'),
@@ -78,6 +79,7 @@ for current_alt, current_pron_index in [('text_original', 'pron_index'),
                                         ('text_adverb', 'pron_index_adverb')
                                         ]:
 
+    sentence_pairs[current_alt] = []
     accuracies[current_alt] = {'all': 0, 'switchable': 0, 'associative': 0, '!switchable': 0, '!associative': 0}
     stabilities[current_alt] = {'all': 0, 'switchable': 0, 'associative': 0, '!switchable': 0, '!associative': 0}
     counts[current_alt] = {'all': 0, 'switchable': 0, 'associative': 0, '!switchable': 0, '!associative': 0}
@@ -99,8 +101,6 @@ for current_alt, current_pron_index in [('text_original', 'pron_index'),
             text_enhanced = "[CLS] " + dp_split[current_alt]  + " [SEP]"
 
             tokenized_enhanced_text = tokenizer.tokenize(text_enhanced)
-
-
             if current_alt == 'text_syn':
                 tokens_pre_word_piece_A = dp_split['answer_a_syn']
                 tokens_pre_word_piece_B = dp_split['answer_b_syn']
@@ -134,8 +134,6 @@ for current_alt, current_pron_index in [('text_original', 'pron_index'),
             pronoun_index_orig_enhanced =  int(dp_split[current_pron_index])
             tokenized_option_A = tokenizer.tokenize(tokens_pre_word_piece_A)
             tokenized_option_B = tokenizer.tokenize(tokens_pre_word_piece_B)
-            spacy_A = nlp(tokens_pre_word_piece_A)
-            spacy_B = nlp(tokens_pre_word_piece_B)
             tokenized_pronoun = tokenizer.tokenize(pronoun)
 
             tokenized_option_A_len = len(tokenized_option_A)
@@ -169,6 +167,7 @@ for current_alt, current_pron_index in [('text_original', 'pron_index'),
 
             tokenized_text_A_pre_mask_enhanced = deepcopy(tokenized_text_enhanced_A)
             tokenized_text_B_pre_mask_enhanced = deepcopy(tokenized_text_enhanced_B)
+            sentence_pairs[current_alt].append((tokenized_text_A_pre_mask_enhanced, tokenized_text_B_pre_mask_enhanced))
             spacy_A = nlp(" ".join(tokenized_text_A_pre_mask_enhanced[1:-1]))
             spacy_B = nlp(" ".join(tokenized_text_B_pre_mask_enhanced[1:-1]))
 
@@ -295,13 +294,18 @@ for current_alt, current_pron_index in [('text_original', 'pron_index'),
                         interesting_phenomena_pron['discrim'].append((tokens_tensor_enhanced_with_pron == token).nonzero()[0][1].item())
 
 
+                # find attn maxes
+                indexed_tokens_enhanced_with_pron = torch.tensor(indexed_tokens_enhanced_with_pron).unsqueeze(0).to(device=device)
+                attn_raw = model(indexed_tokens_enhanced_with_pron)[1]
+
+                # /
 
                 new_A_attn = model(tokens_tensor_A_pre_mask)[1]
                 new_B_attn = model(tokens_tensor_B_pre_mask)[1]
 
                 new_attn_from_pron = model(tokens_tensor_enhanced_with_pron)[1]
 
-                # attention paid to discrim
+                # attention paid to iscrim
                 c, w = 0, 0
                 c_p, w_p = 0, 0
                 if discrim_word:
@@ -452,3 +456,6 @@ for current_alt, current_pron_index in [('text_original', 'pron_index'),
 #print(description)
 with open('description_dump_bert_headmaxnonorm_pronmean.pickle', 'wb') as f:
     pickle.dump((description, indices, answers, counts, accuracies, stabilities), f)
+
+with open('sent_pairs_bert', 'wb') as f:
+    pickle.dump(sentence_pairs, f)
