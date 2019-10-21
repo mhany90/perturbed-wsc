@@ -97,8 +97,15 @@ for exp_name, pron_col in EXPERIMENT_ARR:
         # find referent index(es)
         ignore_attention = False
         referent_indices_A, referent_indices_B = [], []
-        matched_referents_A, backoff_strategy_A = match_lists(tokens_option_A, tokens_orig)
-        matched_referents_B, backoff_strategy_B = match_lists(tokens_option_B, tokens_orig)
+        if exp_name is not 'text_scrambled':
+            matched_referents_A, backoff_strategy_A = match_lists(tokens_option_A, tokens_orig)
+            matched_referents_B, backoff_strategy_B = match_lists(tokens_option_B, tokens_orig)
+        else:
+            matched_referents_A = find_sublist(tokens_option_A, tokens_orig)
+            matched_referents_B = find_sublist(tokens_option_B, tokens_orig)
+            backoff_strategy_A = 'none'
+            backoff_strategy_B = 'none'
+
 
         if len(matched_referents_A) == 0 or len(matched_referents_B) == 0:
             print("NO MATCH")
@@ -107,14 +114,15 @@ for exp_name, pron_col in EXPERIMENT_ARR:
             if backoff_strategy_A == 'none':
                 referent_indices_A = range(matched_referents_A[0], matched_referents_A[0] + len(tokens_option_A))
             elif backoff_strategy_A == 'subtract_one':
-                referent_indices_A = range(matched_referents_A[0], matched_referents_A[0] + len(tokens_option_A - 1))
+                print()
+                referent_indices_A = range(matched_referents_A[0], matched_referents_A[0] + len(tokens_option_A) - 1)
             elif backoff_strategy_A == 'last_word':
                 referent_indices_A = range(matched_referents_A[0], matched_referents_A[0] + 1)
 
             if backoff_strategy_A == 'none':
                 referent_indices_A = range(matched_referents_B[0], matched_referents_B[0] + len(tokens_option_B))
             elif backoff_strategy_A == 'subtract_one':
-                referent_indices_A = range(matched_referents_B[0], matched_referents_B[0] + len(tokens_option_B - 1))
+                referent_indices_A = range(matched_referents_B[0], matched_referents_B[0] + len(tokens_option_B) - 1)
             elif backoff_strategy_A == 'last_word':
                 referent_indices_A = range(matched_referents_B[0], matched_referents_B[0] + 1)
 
