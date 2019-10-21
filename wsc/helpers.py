@@ -145,14 +145,22 @@ def match_lists(text_subset_list, text_full_list):
             #remove 's
             text_full_list_no_possessive = [token.replace("\'s", "") for token in text_full_list]
             matches = find_sublist(text_subset_list, text_full_list_no_possessive)
+
             #back off to last word (often the correct one because of 'the')
             if len(matches) == 0:
                 text_subset_list_backoff1 = [text_subset_list[-1]]
                 matches = find_sublist(text_subset_list_backoff1, text_full_list)
+
                 # back off to word before that
                 if len(matches) == 0:
-                        text_subset_list_backoff2 = [text_subset_list[-2]]
-                        matches = find_sublist(text_subset_list_backoff2, text_full_list)
+                    text_subset_list_backoff2 = [text_subset_list[-2]]
+                    matches = find_sublist(text_subset_list_backoff2, text_full_list)
+
+                    # back off from singluar to plural (necessary for 'the piece' in 122/123)
+                    if len(matches) == 0:
+                        text_subset_list_backoff1[0] = text_subset_list_backoff1[0] + 's'
+                        text_subset_list_plural = text_subset_list_backoff1
+                        matches = find_sublist(text_subset_list_plural, text_full_list)
     return matches
 
 
@@ -199,8 +207,8 @@ def test_matching():
                 tokens_pre_word_piece_A = re.sub(' +', ' ', tokens_pre_word_piece_A.rstrip().lower())
                 text_enhanced = re.sub(' +', ' ', text_enhanced.lower())
                 matches = match_lists(tokens_pre_word_piece_A.split(), text_enhanced.split())
-                print(tokens_pre_word_piece_A)
-                print(text_enhanced)
-                print(matches)
+                #print(tokens_pre_word_piece_B)
+                #print(text_enhanced)
+                #print(matches)
 
 test_matching()

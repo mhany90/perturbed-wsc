@@ -33,7 +33,7 @@ def find_keyword(tokens, text):
     # get just the last token for now
     return result[-1]
 
-def find_sub_list(sl,l):
+def find_sublist(sl,l):
     results=[]
     sll=len(sl)
     for ind in (i for i,e in enumerate(l) if e==sl[0]):
@@ -144,7 +144,7 @@ for current_alt, current_pron_index in [('text_original', 'pron_index'),
             elif current_alt == 'text_gender':
                 tokenized_pronoun = tokenizer.tokenize(dp_split['pron_gender'].strip())
 
-            matched_pronouns_enhanced_text = find_sub_list(tokenized_pronoun,  tokenized_enhanced_text)
+            matched_pronouns_enhanced_text = find_sublist(tokenized_pronoun,  tokenized_enhanced_text)
             first_indices_text_enhanced = np.array([mp[0] for mp in matched_pronouns_enhanced_text])
             correct_idx_text_enhanced = (np.abs(first_indices_text_enhanced - pronoun_index_orig_enhanced)).argmin()
             pronoun_index_text_enhanced = matched_pronouns_enhanced_text[correct_idx_text_enhanced][0]
@@ -159,8 +159,8 @@ for current_alt, current_pron_index in [('text_original', 'pron_index'),
                 if not (discrim_word_index_enhanced_A and discrim_word_index_enhanced_B):
                     discrim_word = None
 
-            matched_A_text_enhanced = find_sub_list(tokenized_option_A, tokenized_text_enhanced_A)
-            matched_B_text_enhanced = find_sub_list(tokenized_option_B, tokenized_text_enhanced_B)
+            matched_A_text_enhanced = find_sublist(tokenized_option_A, tokenized_text_enhanced_A)
+            matched_B_text_enhanced = find_sublist(tokenized_option_B, tokenized_text_enhanced_B)
 
             masked_indices_A_text_enhanced = [m for m in matched_A_text_enhanced if m[0] == pronoun_index_text_enhanced][0]
             masked_indices_B_text_enhanced = [m for m in matched_B_text_enhanced if m[0] == pronoun_index_text_enhanced][0]

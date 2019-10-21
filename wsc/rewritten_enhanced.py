@@ -9,20 +9,10 @@ import torch.nn.functional as F
 
 from collections import Counter
 from pytorch_transformers import BertTokenizer, BertModel, BertForMaskedLM
+from helpers import match_lists, find_sublist
 
 
-def find_sublist(sublist, parent):
-    results = []
-    sub_len = len(sublist)
-    valid_starts = [n for n, word in enumerate(parent) if word == sublist[0]]
-
-    for i in valid_starts:
-        if parent[i:i + sub_len] == sublist:
-            results.append(i)
-
-    return np.array(results)
-
-TSV_PATH = '../data/final.tsv'
+TSV_PATH = '../data/wsc_data/enhanced.tense.random.role.syn.voice.scramble.freqnoun.gender.number.adverb.tsv'
 EXPERIMENT_ARR = [('text_original', 'pron_index'),
                   ('text_voice', 'pron_index_voice'),
                   ('text_tense', 'pron_index_tense'),
@@ -107,9 +97,10 @@ for exp_name, pron_col in EXPERIMENT_ARR:
         # find referent index(es)
         ignore_attention = False
         referent_indices_A, referent_indices_B = [], []
-        matched_referents_A = find_sublist(tokens_option_A, tokens_orig)
-        matched_referents_B = find_sublist(tokens_option_B, tokens_orig)
+        matched_referents_A = match_lists(tokens_option_A, tokens_orig)
+        matched_referents_B = match_lists(tokens_option_B, tokens_orig)
         if len(matched_referents_A) == 0 or len(matched_referents_B) == 0:
+            print("NO MATCH")
             ignore_attention = True
         else:
             referent_indices_A = range(matched_referents_A[0], matched_referents_A[0] + len(tokens_option_A))
