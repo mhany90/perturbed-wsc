@@ -134,34 +134,42 @@ def find_sublist(sublist, parent):
 
     return np.array(results)
 
+def get_shorter_lists(l):
+    perms = []
+    for i in range(len(l)):
+        n = l[:]
+        n.pop(i)
+        perms.append(n)
+    return perms
 
 def match_lists(text_subset_list, text_full_list):
     #try simple matching
     matches = find_sublist(text_subset_list, text_full_list)
+    backoff_strategy = 'none'
+
     if len(matches) == 0:
-        text_subset_list_backoff = [text_subset_list[-1]]
-        matches = find_sublist(text_subset_list_backoff, text_full_list)
-        if len(matches) == 0:
-            #remove 's
-            text_full_list_no_possessive = [token.replace("\'s", "") for token in text_full_list]
-            matches = find_sublist(text_subset_list, text_full_list_no_possessive)
+        #back off to shorter list
+        backoff_strategy = 'subtract_one'
+        shorter_perms = get_shorter_lists(text_subset_list)
+        all_matches = []
+        for perm in shorter_perms:
+            matches = find_sublist(perm, text_full_list)
+            if len(matches) != 0:
+                all_matches.append(matches)
+        #how to select? first is best most of time but if ''s' in sublist, pick last
+        if len(all_matches) !=0:
+            if "\'" in text_subset_list:
+                matches = all_matches[-1]
+            else:
+                matches = all_matches[0]
 
-            #back off to last word (often the correct one because of 'the')
-            if len(matches) == 0:
-                text_subset_list_backoff1 = [text_subset_list[-1]]
-                matches = find_sublist(text_subset_list_backoff1, text_full_list)
+        #if first backoff strategy doesn't work
+        if len(all_matches) == 0:
+            backoff_strategy = 'last_word'
+            text_subset_list = [text_subset_list[-1]]
+            matches = find_sublist(text_subset_list, text_full_list)
 
-                # back off to word before that
-                if len(matches) == 0:
-                    text_subset_list_backoff2 = [text_subset_list[-2]]
-                    matches = find_sublist(text_subset_list_backoff2, text_full_list)
-
-                    # back off from singluar to plural (necessary for 'the piece' in 122/123)
-                    if len(matches) == 0:
-                        text_subset_list_backoff1[0] = text_subset_list_backoff1[0] + 's'
-                        text_subset_list_plural = text_subset_list_backoff1
-                        matches = find_sublist(text_subset_list_plural, text_full_list)
-    return matches
+    return matches, backoff_strategy
 
 
 def test_matching():
@@ -211,4 +219,3 @@ def test_matching():
                 #print(text_enhanced)
                 #print(matches)
 
-test_matching()
