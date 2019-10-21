@@ -1,5 +1,5 @@
 import re
-import numpy
+import numpy as np
 import pandas as pd
 
 
@@ -80,7 +80,7 @@ def _align(seq1, seq2):
 
 
 def _get_char_map(seq):
-    char_map = numpy.zeros((sum(len(token) for token in seq),), dtype="i")
+    char_map = np.zeros((sum(len(token) for token in seq),), dtype="i")
     offset = 0
     for i, token in enumerate(seq):
         for j in range(len(token)):
@@ -112,7 +112,7 @@ def flatten_list(nested):
         flat.extend(x)
     return flat
 
-
+"""
 def find_sublist(sl,l):
     results=[]
     sll=len(sl)
@@ -120,6 +120,19 @@ def find_sublist(sl,l):
         if l[ind:ind+sll]==sl:
             results.append((ind,ind+sll))
     return results
+
+
+"""
+def find_sublist(sublist, parent):
+    results = []
+    sub_len = len(sublist)
+    valid_starts = [n for n, word in enumerate(parent) if word == sublist[0]]
+
+    for i in valid_starts:
+        if parent[i:i + sub_len] == sublist:
+            results.append(i)
+
+    return np.array(results)
 
 
 def match_lists(text_subset_list, text_full_list):
@@ -185,4 +198,9 @@ def test_matching():
                 #get ref. matches
                 tokens_pre_word_piece_A = re.sub(' +', ' ', tokens_pre_word_piece_A.rstrip().lower())
                 text_enhanced = re.sub(' +', ' ', text_enhanced.lower())
-                match_lists(tokens_pre_word_piece_A.split(), text_enhanced.split())
+                matches = match_lists(tokens_pre_word_piece_A.split(), text_enhanced.split())
+                print(tokens_pre_word_piece_A)
+                print(text_enhanced)
+                print(matches)
+
+test_matching()
