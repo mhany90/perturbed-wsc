@@ -224,7 +224,7 @@ for exp_name, pron_col in EXPERIMENT_ARR:
                 # get layer-head matrix and save
                 lhm = torch.stack(attn_orig).squeeze(1)[:, :, pron_index, ref].mean(dim=-1)
                 # check for nan
-                if torch.isnan(lhm).any().cpu():
+                if torch.isnan(lhm).any().cpu() and name != ('discrim', ''):
                     print(lhm, " lhm")
                     print(ref, " : ref")
                     print(referent_indices_B, "referent_indices_B")
