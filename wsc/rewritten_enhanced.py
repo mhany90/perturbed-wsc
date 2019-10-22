@@ -122,7 +122,7 @@ for exp_name, pron_col in EXPERIMENT_ARR:
             elif backoff_strategy_A == 'last_word':
                 referent_indices_A = range(matched_referents_A[0], matched_referents_A[0] + 1)
 
-            if backoff_strategy_A == 'none':
+            if backoff_strategy_B == 'none':
                 referent_indices_B = range(matched_referents_B[0], matched_referents_B[0] + len(tokens_option_B))
             elif backoff_strategy_B == 'subtract_one':
                 referent_indices_B = range(matched_referents_B[0], matched_referents_B[0] + len(tokens_option_B) - 1)
@@ -223,6 +223,22 @@ for exp_name, pron_col in EXPERIMENT_ARR:
             def fill_attention(ref, name):
                 # get layer-head matrix and save
                 lhm = torch.stack(attn_orig).squeeze(1)[:, :, pron_index, ref].mean(dim=-1)
+                # check for nan
+                if torch.isnan(lhm).any().cpu():
+                    print(lhm, " lhm")
+                    print(ref, " : ref")
+                    print(referent_indices_B, "referent_indices_B")
+                    print(name, " : name")
+                    print(correct_answer, " correct_answer")
+                    print(text_orig, "text_orig")
+                    print(tokens_A, "tokens_a")
+                    print(matched_referents_A, "matched_referents_A")
+                    print(backoff_strategy_A, "backoff_strategy_A")
+                    print(tokens_B, "tokens_b")
+                    print(matched_referents_B, "matched_referents_B")
+                    print(backoff_strategy_B, "backoff_strategy_B")
+                    exit()
+
                 attentions[exp_name][name[0]][name[1]].append(lhm.cpu())
                 num_layers, num_heads = lhm.shape
 
@@ -258,6 +274,7 @@ for exp_name, pron_col in EXPERIMENT_ARR:
                                                                          i in others.transpose(0, 1)]).mean().cpu())
             attentions[exp_name]['wrong']['cos_o'].append(torch.stack([F.cosine_similarity(wrong_rep, i, dim=1) for
                                                                        i in others.transpose(0, 1)]).mean().cpu())
+
 
         total += 1
 
