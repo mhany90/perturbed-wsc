@@ -33,6 +33,7 @@ answers = {}
 attentions = {}
 tuples = {}
 indices = {}
+closer_referents = {}
 
 # initialise
 device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
@@ -57,6 +58,8 @@ for exp_name, pron_col in EXPERIMENT_ARR:
     tuples[exp_name] = {'correct': {'pred_top1': [], 'gold_top1': [], 'pred_top5': [], 'gold_top5': []},
                         'wrong': {'pred_top1': [], 'gold_top1': [], 'pred_top5': [], 'gold_top5': []},
                         'discrim': {'_top1': [], '_top5': []}}
+
+    closer_referents[exp_name] = {'all':0,'correct':0, 'incorrect':0}
 
     # which examples have been gathered for each analysis type
     indices[exp_name] = {'attn': [], 'tuples': []}
@@ -100,6 +103,7 @@ for exp_name, pron_col in EXPERIMENT_ARR:
         if exp_name is not 'text_scrambled':
             matched_referents_A, backoff_strategy_A = match_lists(tokens_option_A, tokens_orig)
             matched_referents_B, backoff_strategy_B = match_lists(tokens_option_B, tokens_orig)
+
         else:
             matched_referents_A = find_sublist(tokens_option_A, tokens_orig)
             matched_referents_B = find_sublist(tokens_option_B, tokens_orig)
@@ -114,17 +118,22 @@ for exp_name, pron_col in EXPERIMENT_ARR:
             if backoff_strategy_A == 'none':
                 referent_indices_A = range(matched_referents_A[0], matched_referents_A[0] + len(tokens_option_A))
             elif backoff_strategy_A == 'subtract_one':
-                print()
                 referent_indices_A = range(matched_referents_A[0], matched_referents_A[0] + len(tokens_option_A) - 1)
             elif backoff_strategy_A == 'last_word':
                 referent_indices_A = range(matched_referents_A[0], matched_referents_A[0] + 1)
 
             if backoff_strategy_A == 'none':
-                referent_indices_A = range(matched_referents_B[0], matched_referents_B[0] + len(tokens_option_B))
-            elif backoff_strategy_A == 'subtract_one':
-                referent_indices_A = range(matched_referents_B[0], matched_referents_B[0] + len(tokens_option_B) - 1)
-            elif backoff_strategy_A == 'last_word':
-                referent_indices_A = range(matched_referents_B[0], matched_referents_B[0] + 1)
+                referent_indices_B = range(matched_referents_B[0], matched_referents_B[0] + len(tokens_option_B))
+            elif backoff_strategy_B == 'subtract_one':
+                referent_indices_B = range(matched_referents_B[0], matched_referents_B[0] + len(tokens_option_B) - 1)
+            elif backoff_strategy_B == 'last_word':
+                referent_indices_B = range(matched_referents_B[0], matched_referents_B[0] + 1)
+
+            # find referent that is closer to pron_index
+            if abs(matched_referents_A[0] - pron_index) > abs(matched_referents_B[0] - pron_index):
+                closer_referent = 'B'
+            else:
+                closer_referent = 'A'
 
         # find discrim word
         text_discrim = entry['discrim_word']
@@ -177,6 +186,9 @@ for exp_name, pron_col in EXPERIMENT_ARR:
         answers[exp_name]['gold'].append(0 if correct_answer == "A" else 1)
         predicted_answer = "A" if predicted_answer == 0 else "B"
 
+        if closer_referent == predicted_answer:
+            closer_referents[exp_name]['all'] += 1
+
         correct_logprobs, wrong_logprobs = total_logprobs_A, total_logprobs_B
         if correct_answer == "B":
             correct_logprobs, wrong_logprobs = wrong_logprobs, correct_logprobs
@@ -187,6 +199,11 @@ for exp_name, pron_col in EXPERIMENT_ARR:
 
         if predicted_answer == correct_answer:
             accuracies[exp_name]['all'] += 1
+            if closer_referent == predicted_answer:
+                closer_referents[exp_name]['correct'] += 1
+            else:
+                closer_referents[exp_name]['incorrect'] += 1
+
 
         if predicted_answer == original_predictions[q_index]:
             stabilities[exp_name]['all'] += 1
@@ -248,6 +265,7 @@ for exp_name, pron_col in EXPERIMENT_ARR:
                                         accuracies[exp_name]['all'] / total))
     print("stability: {}/{} = {}".format(stabilities[exp_name]['all'], total,
                                          stabilities[exp_name]['all'] / total))
+    print("count closer referent: {}".format(closer_referents[exp_name]['all']))
 
     # for truth in attentions[exp_name]:
     #     for type in attentions[exp_name][truth]:
