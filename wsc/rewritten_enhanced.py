@@ -1,5 +1,6 @@
 import sys
 import pickle
+import random
 
 import tqdm
 import torch
@@ -9,10 +10,9 @@ import torch.nn.functional as F
 
 from collections import Counter
 from pytorch_transformers import BertTokenizer, BertModel, BertForMaskedLM
-from helpers import match_lists, find_sublist
+from helpers import match_lists, find_sublist, safe_append, safe_increment
 
-
-TSV_PATH = '../data/wsc_data/enhanced.tense.random.role.syn.voice.scramble.freqnoun.gender.number.adverb.tsv'
+TSV_PATH = '../data/final.tsv'
 EXPERIMENT_ARR = [('text_original', 'pron_index'),
                   ('text_voice', 'pron_index_voice'),
                   ('text_tense', 'pron_index_tense'),
@@ -39,6 +39,7 @@ closer_referents = {}
 device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
 datafile = pd.read_csv(TSV_PATH, sep='\t')
 model_name = 'bert-base-uncased' if sys.argv[1] == '--debug' else 'bert-large-uncased'
+NUM_HEADS = 12 if sys.argv[1] == '--debug' else 16
 
 tokenizer = BertTokenizer.from_pretrained(model_name)
 model = BertForMaskedLM.from_pretrained(model_name, output_hidden_states=True, output_attentions=True).eval().to(device)
@@ -47,17 +48,12 @@ for exp_name, pron_col in EXPERIMENT_ARR:
     print(exp_name)
 
     # initialise output stuff
-    accuracies[exp_name] = {'all': 0}
+    accuracies[exp_name] = {}
     stabilities[exp_name] = {'all': 0}
     # should be full-sized for every perturbation
     answers[exp_name] = {'gold': [], 'pred': [], 'probs': []}
-    attentions[exp_name] = {'correct': {'pred': [], 'gold': [], 'cos_d': [], 'cos_o': []},
-                            'wrong': {'pred': [], 'gold': [], 'cos_d': [], 'cos_o': []},
-                            'discrim': {'': []}}
-
-    tuples[exp_name] = {'correct': {'pred_top1': [], 'gold_top1': [], 'pred_top5': [], 'gold_top5': []},
-                        'wrong': {'pred_top1': [], 'gold_top1': [], 'pred_top5': [], 'gold_top5': []},
-                        'discrim': {'_top1': [], '_top5': []}}
+    attentions[exp_name] = {}
+    tuples[exp_name] = {}
 
     closer_referents[exp_name] = {'all':0,'correct':0, 'incorrect':0}
 
@@ -65,6 +61,7 @@ for exp_name, pron_col in EXPERIMENT_ARR:
     indices[exp_name] = {'attn': [], 'tuples': []}
 
     total = 0
+    attn_total = 0
 
     for q_index, entry in tqdm.tqdm(datafile.iterrows()):
         if entry[exp_name].replace(' ', '') in [None, '-']:
@@ -100,20 +97,12 @@ for exp_name, pron_col in EXPERIMENT_ARR:
         # find referent index(es)
         ignore_attention = False
         referent_indices_A, referent_indices_B = [], []
-        if exp_name is not 'text_scrambled':
-            matched_referents_A, backoff_strategy_A = match_lists(tokens_option_A, tokens_orig)
-            matched_referents_B, backoff_strategy_B = match_lists(tokens_option_B, tokens_orig)
-
-        else:
-            matched_referents_A = find_sublist(tokens_option_A, tokens_orig)
-            matched_referents_B = find_sublist(tokens_option_B, tokens_orig)
-            backoff_strategy_A = 'none'
-            backoff_strategy_B = 'none'
-
+        matched_referents_A, backoff_strategy_A = match_lists(tokens_option_A, tokens_orig, exp_name)
+        matched_referents_B, backoff_strategy_B = match_lists(tokens_option_B, tokens_orig, exp_name)
 
         if len(matched_referents_A) == 0 or len(matched_referents_B) == 0:
-            print("NO MATCH")
             ignore_attention = True
+
         else:
             if backoff_strategy_A == 'none':
                 referent_indices_A = range(matched_referents_A[0], matched_referents_A[0] + len(tokens_option_A))
@@ -168,18 +157,17 @@ for exp_name, pron_col in EXPERIMENT_ARR:
         predict_items_A = ids_A[predict_indices_A]
         predict_items_B = ids_B[predict_indices_B]
 
-        with torch.no_grad():
-            # pad with batch dim
-            probs_A = model(ids_masked_A.unsqueeze(0))[0]
-            probs_B = model(ids_masked_B.unsqueeze(0))[0]
+        def get_logprobs(ids_masked, predict_indices, predict_items, tokens_option, head_mask=torch.ones(NUM_HEADS)):
+            head_mask = head_mask.to(device)
+            with torch.no_grad():
+                probs, _, attn = model(ids_masked.unsqueeze(0), head_mask=head_mask)
+                logprobs = F.log_softmax(probs, dim=-1)
+                return sum([logprobs[0, index, item].item()
+                            for index, item in zip(predict_indices, predict_items)]) / len(tokens_option)
 
-            logprobs_A = F.log_softmax(probs_A, dim=-1)
-            logprobs_B = F.log_softmax(probs_B, dim=-1)
-
-            total_logprobs_A = sum([logprobs_A[0, index, item].item()
-                                    for index, item in zip(predict_indices_A, predict_items_A)]) / len(tokens_option_A)
-            total_logprobs_B = sum([logprobs_B[0, index, item].item()
-                                   for index, item in zip(predict_indices_B, predict_items_B)]) / len(tokens_option_B)
+        # pad with batch dim
+        total_logprobs_A = get_logprobs(ids_masked_A, predict_indices_A, predict_items_A, tokens_option_A)
+        total_logprobs_B = get_logprobs(ids_masked_B, predict_indices_B, predict_items_B, tokens_option_B)
 
         predicted_answer = np.argmax([total_logprobs_A, total_logprobs_B])
         answers[exp_name]['pred'].append(predicted_answer)
@@ -198,12 +186,11 @@ for exp_name, pron_col in EXPERIMENT_ARR:
             original_predictions.append(predicted_answer)
 
         if predicted_answer == correct_answer:
-            accuracies[exp_name]['all'] += 1
+            safe_increment(accuracies[exp_name], 'all')
             if closer_referent == predicted_answer:
                 closer_referents[exp_name]['correct'] += 1
             else:
                 closer_referents[exp_name]['incorrect'] += 1
-
 
         if predicted_answer == original_predictions[q_index]:
             stabilities[exp_name]['all'] += 1
@@ -222,59 +209,107 @@ for exp_name, pron_col in EXPERIMENT_ARR:
 
             def fill_attention(ref, name):
                 # get layer-head matrix and save
-                lhm = torch.stack(attn_orig).squeeze(1)[:, :, pron_index, ref].mean(dim=-1)
-                # check for nan
-                if torch.isnan(lhm).any().cpu() and name != ('discrim', ''):
-                    print(lhm, " lhm")
-                    print(ref, " : ref")
-                    print(referent_indices_B, "referent_indices_B")
-                    print(name, " : name")
-                    print(correct_answer, " correct_answer")
-                    print(text_orig, "text_orig")
-                    print(tokens_A, "tokens_a")
-                    print(matched_referents_A, "matched_referents_A")
-                    print(backoff_strategy_A, "backoff_strategy_A")
-                    print(tokens_B, "tokens_b")
-                    print(matched_referents_B, "matched_referents_B")
-                    print(backoff_strategy_B, "backoff_strategy_B")
-                    exit()
+                lhm = torch.stack(attn_orig).squeeze(1)[:, :, pron_index, ref].sum(dim=-1)
+                lhm_all = torch.stack(attn_orig).squeeze(1)[:, :, :, ref].sum(dim=-1).mean(dim=-1)
 
-                attentions[exp_name][name[0]][name[1]].append(lhm.cpu())
+                safe_append(attentions[exp_name], name, lhm.cpu())
+                safe_append(attentions[exp_name], 'all.' + name, lhm_all.cpu())
                 num_layers, num_heads = lhm.shape
 
                 top1 = lhm.argmax().item()
                 top5 = lhm.view(-1).topk(5).indices.tolist()
 
-                tuples[exp_name][name[0]][name[1] + "_top1"].append((top1 // num_heads, top1 % num_heads))
+                safe_append(tuples[exp_name], name + '.top1', (top1 // num_heads, top1 % num_heads))
                 for n in top5:
-                    tuples[exp_name][name[0]][name[1] + "_top5"].append((n // num_heads, n % num_heads))
+                    safe_append(tuples[exp_name], name + '.top5', (n // num_heads, n % num_heads))
 
-            fill_attention(gold_referent, ('correct', 'gold'))
-            fill_attention(pred_referent, ('correct', 'pred'))
-            fill_attention(gold_referent_x, ('wrong', 'gold'))
-            fill_attention(pred_referent_x, ('wrong', 'pred'))
-            fill_attention(discrim_referent, ('discrim', ''))
+            other_indices = list(set(range(len(tokens_orig))) -
+                            (set(gold_referent) | set(gold_referent_x) | set(discrim_referent)))
+
+            random_index = random.choice(other_indices)
+
+            fill_attention(gold_referent, 'correct')
+            fill_attention(gold_referent_x, 'wrong')
+            fill_attention(referent_indices_A, 'A')
+            fill_attention(referent_indices_B, 'B')
+            fill_attention(discrim_referent, 'discrim')
+            fill_attention(other_indices, 'other')
+            fill_attention(pred_referent, 'pred')
+            fill_attention(pred_referent_x, 'nonpred')
             indices[exp_name]['tuples'].append(q_index)
 
             # cosine sim (only for gold)
-            current_rep = torch.stack(rep_orig).squeeze()
-            correct_rep = current_rep[:, gold_referent].mean(dim=1).squeeze()
-            wrong_rep = current_rep[:, gold_referent_x].mean(dim=1).squeeze()
-            discrim_rep = current_rep[:, discrim_referent].mean(dim=1).squeeze()
-
-            other_indices = list(set(range(len(tokens_orig))) - \
-                            (set(gold_referent) | set(gold_referent_x) | set(discrim_referent)))
+            # current_rep = torch.stack(rep_orig).squeeze()
+            # correct_rep = current_rep[:, gold_referent].mean(dim=1).squeeze()
+            # wrong_rep = current_rep[:, gold_referent_x].mean(dim=1).squeeze()
+            # discrim_rep = current_rep[:, discrim_referent].mean(dim=1).squeeze()
+            #
+            # other_indices = list(set(range(len(tokens_orig))) -
+            #                 (set(gold_referent) | set(gold_referent_x) | set(discrim_referent)))
 
             # calculate mean after sim!
-            others = current_rep[:, other_indices].squeeze()
-            attentions[exp_name]['correct']['cos_d'].append(F.cosine_similarity(correct_rep, discrim_rep, dim=1).cpu())
-            attentions[exp_name]['wrong']['cos_d'].append(F.cosine_similarity(wrong_rep, discrim_rep, dim=1).cpu())
+            # others = current_rep[:, other_indices].squeeze()
+            # safe_append(attentions[exp_name], 'correct.cos_d', F.cosine_similarity(correct_rep, discrim_rep, dim=1).cpu())
+            # safe_append(attentions[exp_name], 'wrong.cos_d', F.cosine_similarity(wrong_rep, discrim_rep, dim=1).cpu())
+            #
+            # safe_append(attentions[exp_name], 'correct.cos_o',
+            #             torch.stack([F.cosine_similarity(correct_rep, i, dim=1) for i in others.transpose(0, 1)]).mean().cpu())
+            # safe_append(attentions[exp_name], 'wrong.cos_o',
+            #             torch.stack([F.cosine_similarity(wrong_rep, i, dim=1) for i in others.transpose(0, 1)]).mean().cpu())
 
-            attentions[exp_name]['correct']['cos_o'].append(torch.stack([F.cosine_similarity(correct_rep, i, dim=1) for
-                                                                         i in others.transpose(0, 1)]).mean().cpu())
-            attentions[exp_name]['wrong']['cos_o'].append(torch.stack([F.cosine_similarity(wrong_rep, i, dim=1) for
-                                                                       i in others.transpose(0, 1)]).mean().cpu())
+            # attn scores
+            # lhm_A = torch.stack(attn_orig).squeeze(1)[:, :, :, referent_indices_A].mean(dim=-1).mean(dim=-1)
+            # lhm_B = torch.stack(attn_orig).squeeze(1)[:, :, :, referent_indices_B].mean(dim=-1).mean(dim=-1)
+            # attn_preds = (lhm_A > lhm_B).type(torch.LongTensor)
+            # correct_answer_int = 0 if correct_answer == "A" else 1
+            # safe_append(attentions[exp_name], 'attn_preds', (attn_preds == correct_answer_int).type(torch.LongTensor))
+            # attn_total += 1
 
+            # attn_pred = "A" if lhm_A > lhm_B else "B"
+            # if attn_pred == correct_answer:
+            #     accuracies[exp_name]['attn'] += 1
+
+            # attn_total += 1
+            # masks
+            safe_increment(accuracies[exp_name], 'total')
+
+            # mask_set = [('normal', torch.ones(16)),
+            #             ('start_8', torch.tensor([1] * 8 + [0] * 8)),
+            #             ('end_8', torch.tensor([0] * 8 + [1] * 8)),
+            #             ('start_4', torch.tensor([1] * 4 + [0] * 12)),
+            #             ('end_4', torch.tensor([0] * 12 + [1] * 4))]
+
+            def generate_ratios(ref, name):
+                for status in ['h2l', 'l2h']:
+                    dynamic_mask = torch.ones(NUM_HEADS).to(device)
+                    for i in range(NUM_HEADS):
+                        name = '{}.mask_{}'.format(name, i)
+
+                        with torch.no_grad():
+                            attn_orig = torch.stack(model(ids_orig.unsqueeze(0), head_mask=dynamic_mask)[2]).squeeze(dim=1)
+                            attn_orig = attn_orig[:, :, :, ref].sum(dim=-1).sum(dim=-1).sum(dim=0)
+
+                        if status == 'h2l':
+                            attn_orig[attn_orig == 0] = float("-inf")
+                            strongest_head = attn_orig.argmax(dim=-1).item()
+                        elif status == 'l2h':
+                            attn_orig[attn_orig == 0] = float("inf")
+                            strongest_head = attn_orig.argmin(dim=-1).item()
+
+                        dynamic_mask[strongest_head] = 0
+
+                        alt_logprobs_A = get_logprobs(ids_masked_A, predict_indices_A, predict_items_A, tokens_option_A, head_mask=dynamic_mask)
+                        alt_logprobs_B = get_logprobs(ids_masked_B, predict_indices_B, predict_items_B, tokens_option_B, head_mask=dynamic_mask)
+                        alt_predicted_answer = np.argmax([alt_logprobs_A, alt_logprobs_B])
+                        correct_answer_int = 0 if correct_answer == "A" else 1
+                        if correct_answer_int == alt_predicted_answer:
+                            safe_increment(accuracies[exp_name], 'alt.' + status + '.' + name)
+
+            generate_ratios(gold_referent, 'gold')
+            generate_ratios(list(set(gold_referent) | set(gold_referent_x)), 'both')
+            generate_ratios(discrim_referent, 'discrim')
+            generate_ratios(other_indices, 'other')
+            generate_ratios(random_index, 'random')
 
         total += 1
 
@@ -282,11 +317,8 @@ for exp_name, pron_col in EXPERIMENT_ARR:
                                         accuracies[exp_name]['all'] / total))
     print("stability: {}/{} = {}".format(stabilities[exp_name]['all'], total,
                                          stabilities[exp_name]['all'] / total))
-    print("count closer referent: {}".format(closer_referents[exp_name]['all']))
 
-    # for truth in attentions[exp_name]:
-    #     for type in attentions[exp_name][truth]:
-    #         attentions[exp_name][truth][type] = torch.stack(attentions[exp_name][truth][type]).mean(dim=0).cpu().numpy()
+    # print(torch.stack(attentions[exp_name]['attn_preds']).sum(dim=0))
 
 with open('bert.dump', 'wb') as f:
-    pickle.dump((answers, indices, tuples, attentions), f)
+    pickle.dump((answers, indices, tuples, attentions, accuracies), f)

@@ -142,13 +142,32 @@ def get_shorter_lists(l):
         perms.append(n)
     return perms
 
-def match_lists(text_subset_list, text_full_list):
-    #try simple matching
+
+def safe_increment(d, k):
+    if k not in d.keys():
+        d[k] = 1
+    else:
+        d[k] += 1
+
+
+def safe_append(d, k, e):
+    if k not in d.keys():
+        d[k] = [e]
+    else:
+        d[k].append(e)
+
+
+def match_lists(text_subset_list, text_full_list, exp_name):
+    # try simple matching
     matches = find_sublist(text_subset_list, text_full_list)
     backoff_strategy = 'none'
 
+    if exp_name in ['text_scrambled']:
+        return matches, backoff_strategy
+
+
     if len(matches) == 0:
-        #back off to shorter list
+        # back off to shorter list
         backoff_strategy = 'subtract_one'
         shorter_perms = get_shorter_lists(text_subset_list)
         all_matches = []
@@ -156,14 +175,14 @@ def match_lists(text_subset_list, text_full_list):
             matches = find_sublist(perm, text_full_list)
             if len(matches) != 0:
                 all_matches.append(matches)
-        #how to select? first is best most of time but if ''s' in sublist, pick last
+        # how to select? first is best most of time but if ''s' in sublist, pick last
         if len(all_matches) !=0:
             if "\'" in text_subset_list:
                 matches = all_matches[-1]
             else:
                 matches = all_matches[0]
 
-        #if first backoff strategy doesn't work
+        # if first backoff strategy doesn't work
         if len(all_matches) == 0:
             backoff_strategy = 'last_word'
             text_subset_list = [text_subset_list[-1]]
