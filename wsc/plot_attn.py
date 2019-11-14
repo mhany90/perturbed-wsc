@@ -25,17 +25,13 @@ with open('bert.dump', 'rb') as f:
 
 
 def dropbo():
-    for exp in accuracies:
-        for i in list(accuracies[exp].keys()):
-            prefix = '.'.join(i.split('.')[:2] + i.split('.')[-1:])
-            accuracies[exp][prefix] = accuracies[exp].pop(i)
-
     baselines = {}
     for exp in accuracies:
         curr = (answers[exp]['gold'][indices[exp]['tuples']] == answers[exp]['pred'][indices[exp]['tuples']])
         baselines[exp] = len(curr.nonzero()[0])
 
-    type_dict = {'gold': 'Gold referent', 'both': 'Both referents', 'discrim': 'Discriminatory tokens', 'other': 'All other tokens'}
+    type_dict = {'gold': 'Gold referent', 'both': 'Both referents', 'discrim': 'Discriminatory tokens',
+                 'other': 'All other tokens', 'random': 'Random token'}
     exp_dict = {'text_original': 'ORIG', 'text_tense': 'TEN', 'text_number': 'NUM',
                 'text_gender': 'GEN', 'text_scrambled': 'SCR', 'text_adverb': 'ADV',
                 'text_syn': 'SYN/NA', 'text_voice': 'VC', 'text_rel_1': 'RC'}
@@ -43,17 +39,24 @@ def dropbo():
     print("ext\tnormal\tstart4\tend4\tstart8\tend8")
     exps = {}
     # full = {'both': [], 'gold': [], 'discrim': [], 'other': [], 'indices': [], 'all': [], 'pert': [], 'type': []}
-    results = {'score': [], 'exp': [], 'type': [], 'baseline': []}
+    results = {'score': [], 'exp': [], 'type': [], 'direction': [], 'masked': []}
     for i in accuracies.keys():
         if i in ['text_context', 'text_freqnoun']:
             continue
-        for j in range(16):
+        for j in range(17):
             for type in ['both', 'gold', 'discrim', 'other']:
-                total = accuracies[i]['total.total']
-                results['score'].append(accuracies[i]['alt.l2h{}.mask_{}'.format(type, j)] / total)
-                results['type'].append(type_dict[type])
-                results['baseline'].append(baselines[i]/ total)
-                results['exp'].append(exp_dict[i])
+                for direction in ['l2h', 'h2l']:
+                    # also append baselines if j == 0
+                    if j == 0:
+                        total = accuracies[i]['total']
+                        results['score'].append(baselines[i] / total)
+                    else:
+                        results['score'].append(accuracies[i]['alt.{}.{}.mask_{}'.format(direction, type, j - 1)] / total)
+                    results['direction'].append(direction)
+                    results['type'].append(type_dict[type])
+                    results['exp'].append(exp_dict[i])
+                    # add 1 because index 0 has 1 head masked
+                    results['masked'].append(j)
 
     for i in results:
         results[i] = np.array(results[i])
@@ -62,8 +65,14 @@ def dropbo():
 
     # plt.axis('on')
     sns.set_style("darkgrid")
-    sns.catplot(x='type', y='score', hue='exp', data=results, kind='strip')
-    # sns.catplot(x='exp', y='score', hue='type', data=results, kind='strip')
+    # sns.catplot(x='masked', y='score', hue='direction', data=results, kind='violin', split=True)
+    # sns.catplot(x='type', y='score', hue='direction', data=results, kind='box')
+
+    sns.relplot(x='masked', y='score', hue="direction", col="type", data=results, ci=90, palette='husl', kind='line')
+
+    # sns.lineplot(x='masked', y='score', hue='type', data=results[results.direction == 'h2l'], ci=None)
+    # sns.lineplot(x='masked', y='score', hue='type', data=results[results.direction == 'l2h'], ci=None, palette='muted')
+
     plt.show()
 
     exit()

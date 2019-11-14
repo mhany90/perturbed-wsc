@@ -37,6 +37,7 @@ closer_referents = {}
 
 # initialise
 device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
+
 datafile = pd.read_csv(TSV_PATH, sep='\t')
 model_name = 'bert-base-uncased' if sys.argv[1] == '--debug' else 'bert-large-uncased'
 NUM_HEADS = 12 if sys.argv[1] == '--debug' else 16
@@ -226,7 +227,7 @@ for exp_name, pron_col in EXPERIMENT_ARR:
             other_indices = list(set(range(len(tokens_orig))) -
                             (set(gold_referent) | set(gold_referent_x) | set(discrim_referent)))
 
-            random_index = random.choice(other_indices)
+            random_index = [random.choice(other_indices)]
 
             fill_attention(gold_referent, 'correct')
             fill_attention(gold_referent_x, 'wrong')
@@ -238,52 +239,14 @@ for exp_name, pron_col in EXPERIMENT_ARR:
             fill_attention(pred_referent_x, 'nonpred')
             indices[exp_name]['tuples'].append(q_index)
 
-            # cosine sim (only for gold)
-            # current_rep = torch.stack(rep_orig).squeeze()
-            # correct_rep = current_rep[:, gold_referent].mean(dim=1).squeeze()
-            # wrong_rep = current_rep[:, gold_referent_x].mean(dim=1).squeeze()
-            # discrim_rep = current_rep[:, discrim_referent].mean(dim=1).squeeze()
-            #
-            # other_indices = list(set(range(len(tokens_orig))) -
-            #                 (set(gold_referent) | set(gold_referent_x) | set(discrim_referent)))
-
-            # calculate mean after sim!
-            # others = current_rep[:, other_indices].squeeze()
-            # safe_append(attentions[exp_name], 'correct.cos_d', F.cosine_similarity(correct_rep, discrim_rep, dim=1).cpu())
-            # safe_append(attentions[exp_name], 'wrong.cos_d', F.cosine_similarity(wrong_rep, discrim_rep, dim=1).cpu())
-            #
-            # safe_append(attentions[exp_name], 'correct.cos_o',
-            #             torch.stack([F.cosine_similarity(correct_rep, i, dim=1) for i in others.transpose(0, 1)]).mean().cpu())
-            # safe_append(attentions[exp_name], 'wrong.cos_o',
-            #             torch.stack([F.cosine_similarity(wrong_rep, i, dim=1) for i in others.transpose(0, 1)]).mean().cpu())
-
-            # attn scores
-            # lhm_A = torch.stack(attn_orig).squeeze(1)[:, :, :, referent_indices_A].mean(dim=-1).mean(dim=-1)
-            # lhm_B = torch.stack(attn_orig).squeeze(1)[:, :, :, referent_indices_B].mean(dim=-1).mean(dim=-1)
-            # attn_preds = (lhm_A > lhm_B).type(torch.LongTensor)
-            # correct_answer_int = 0 if correct_answer == "A" else 1
-            # safe_append(attentions[exp_name], 'attn_preds', (attn_preds == correct_answer_int).type(torch.LongTensor))
-            # attn_total += 1
-
-            # attn_pred = "A" if lhm_A > lhm_B else "B"
-            # if attn_pred == correct_answer:
-            #     accuracies[exp_name]['attn'] += 1
-
-            # attn_total += 1
             # masks
             safe_increment(accuracies[exp_name], 'total')
 
-            # mask_set = [('normal', torch.ones(16)),
-            #             ('start_8', torch.tensor([1] * 8 + [0] * 8)),
-            #             ('end_8', torch.tensor([0] * 8 + [1] * 8)),
-            #             ('start_4', torch.tensor([1] * 4 + [0] * 12)),
-            #             ('end_4', torch.tensor([0] * 12 + [1] * 4))]
-
-            def generate_ratios(ref, name):
-                for status in ['h2l', 'l2h']:
+            def generate_ratios(ref, type):
+                for status in ['h2l', 'l2h', 'randhead']:
                     dynamic_mask = torch.ones(NUM_HEADS).to(device)
                     for i in range(NUM_HEADS):
-                        name = '{}.mask_{}'.format(name, i)
+                        name = '{}.{}.mask_{}'.format(status, type, i)
 
                         with torch.no_grad():
                             attn_orig = torch.stack(model(ids_orig.unsqueeze(0), head_mask=dynamic_mask)[2]).squeeze(dim=1)
@@ -291,25 +254,27 @@ for exp_name, pron_col in EXPERIMENT_ARR:
 
                         if status == 'h2l':
                             attn_orig[attn_orig == 0] = float("-inf")
-                            strongest_head = attn_orig.argmax(dim=-1).item()
+                            head_to_mask = attn_orig.argmax(dim=-1).item()
                         elif status == 'l2h':
                             attn_orig[attn_orig == 0] = float("inf")
-                            strongest_head = attn_orig.argmin(dim=-1).item()
+                            head_to_mask = attn_orig.argmin(dim=-1).item()
+                        elif status == 'randhead':
+                            head_to_mask = random.choice(dynamic_mask.nonzero(as_tuple=True)[0])
 
-                        dynamic_mask[strongest_head] = 0
+                        dynamic_mask[head_to_mask] = 0
 
                         alt_logprobs_A = get_logprobs(ids_masked_A, predict_indices_A, predict_items_A, tokens_option_A, head_mask=dynamic_mask)
                         alt_logprobs_B = get_logprobs(ids_masked_B, predict_indices_B, predict_items_B, tokens_option_B, head_mask=dynamic_mask)
                         alt_predicted_answer = np.argmax([alt_logprobs_A, alt_logprobs_B])
                         correct_answer_int = 0 if correct_answer == "A" else 1
                         if correct_answer_int == alt_predicted_answer:
-                            safe_increment(accuracies[exp_name], 'alt.' + status + '.' + name)
+                            safe_increment(accuracies[exp_name], 'alt.' + name)
 
             generate_ratios(gold_referent, 'gold')
             generate_ratios(list(set(gold_referent) | set(gold_referent_x)), 'both')
             generate_ratios(discrim_referent, 'discrim')
             generate_ratios(other_indices, 'other')
-            generate_ratios(random_index, 'random')
+            generate_ratios(random_index, 'randtok')
 
         total += 1
 
