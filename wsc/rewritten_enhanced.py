@@ -34,6 +34,7 @@ attentions = {}
 tuples = {}
 indices = {}
 closer_referents = {}
+masked_heads = {}
 
 # initialise
 device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
@@ -50,6 +51,7 @@ for exp_name, pron_col in EXPERIMENT_ARR:
 
     # initialise output stuff
     accuracies[exp_name] = {}
+    masked_heads[exp_name] = {}
     stabilities[exp_name] = {'all': 0}
     # should be full-sized for every perturbation
     answers[exp_name] = {'gold': [], 'pred': [], 'probs': []}
@@ -196,7 +198,7 @@ for exp_name, pron_col in EXPERIMENT_ARR:
         if predicted_answer == original_predictions[q_index]:
             stabilities[exp_name]['all'] += 1
 
-        if not ignore_attention:
+        if not ignore_attention and "--small" not in sys.argv:
             with torch.no_grad():
                 rep_orig, attn_orig = model(ids_orig.unsqueeze(0))[1:]
 
@@ -269,6 +271,7 @@ for exp_name, pron_col in EXPERIMENT_ARR:
                         correct_answer_int = 0 if correct_answer == "A" else 1
                         if correct_answer_int == alt_predicted_answer:
                             safe_increment(accuracies[exp_name], 'alt.' + name)
+                            safe_append(masked_heads[exp_name], 'alt.' + name, head_to_mask)
 
             generate_ratios(gold_referent, 'gold')
             generate_ratios(list(set(gold_referent) | set(gold_referent_x)), 'both')
@@ -286,4 +289,4 @@ for exp_name, pron_col in EXPERIMENT_ARR:
     # print(torch.stack(attentions[exp_name]['attn_preds']).sum(dim=0))
 
 with open('bert.dump', 'wb') as f:
-    pickle.dump((answers, indices, tuples, attentions, accuracies), f)
+    pickle.dump((answers, indices, tuples, attentions, accuracies, masked_heads), f)

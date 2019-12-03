@@ -10,14 +10,19 @@ from scipy import stats
 from collections import Counter
 import seaborn as sns
 
-# plt.set_cmap('Greys_r')
+plt.set_cmap('Greys_r')
 # plt.set_cmap('Purples')
 # plt.set_cmap('PRGn')
 # plt.axis('off')
 
 
+type_dict = {'gold': 'Gold referent', 'both': 'Both referents', 'discrim': 'Discriminatory tokens',
+             'other': 'All other tokens', 'randtok': 'Random token'}
+exp_dict = {'text_original': 'ORIG', 'text_tense': 'TEN', 'text_number': 'NUM',
+            'text_gender': 'GEN', 'text_scrambled': 'SCR', 'text_adverb': 'ADV',
+            'text_syn': 'SYN/NA', 'text_voice': 'VC', 'text_rel_1': 'RC'}
 with open('bert.dump', 'rb') as f:
-    answers, indices, tuples, attentions, accuracies = pickle.load(f)
+    answers, indices, tuples, attentions, accuracies, head_to_mask = pickle.load(f)
     for i in answers:
         for j in answers[i]:
             answers[i][j] = np.array(answers[i][j])
@@ -30,49 +35,53 @@ def dropbo():
         curr = (answers[exp]['gold'][indices[exp]['tuples']] == answers[exp]['pred'][indices[exp]['tuples']])
         baselines[exp] = len(curr.nonzero()[0])
 
-    type_dict = {'gold': 'Gold referent', 'both': 'Both referents', 'discrim': 'Discriminatory tokens',
-                 'other': 'All other tokens', 'random': 'Random token'}
-    exp_dict = {'text_original': 'ORIG', 'text_tense': 'TEN', 'text_number': 'NUM',
-                'text_gender': 'GEN', 'text_scrambled': 'SCR', 'text_adverb': 'ADV',
-                'text_syn': 'SYN/NA', 'text_voice': 'VC', 'text_rel_1': 'RC'}
 
     print("ext\tnormal\tstart4\tend4\tstart8\tend8")
     exps = {}
-    # full = {'both': [], 'gold': [], 'discrim': [], 'other': [], 'indices': [], 'all': [], 'pert': [], 'type': []}
+    # full = {'both': [], 'gold': [], 'discrim': [], 'other': [], 'indices': [], 'all': [], 'pert': [], 'type': []}A
     results = {'score': [], 'exp': [], 'type': [], 'direction': [], 'masked': []}
+    masko = {'num_masked': [], 'head': [], 'freq': [], 'direction': []}
+    for i in range(17):
+        results['head_{}'.format(i)] = []
+
     for i in accuracies.keys():
-        if i in ['text_context', 'text_freqnoun']:
+        if i in ['text_context', 'text_freqnoun', 'text_scrambled']:
             continue
         for j in range(17):
-            for type in ['both', 'gold', 'discrim', 'other']:
-                for direction in ['l2h', 'h2l']:
+            for type in ['discrim']:
+                for direction in ['l2h']:
                     # also append baselines if j == 0
                     if j == 0:
                         total = accuracies[i]['total']
                         results['score'].append(baselines[i] / total)
+                        for head_no in range(17):
+                            results['head_{}'.format(head_no)].append(0)
                     else:
-                        results['score'].append(accuracies[i]['alt.{}.{}.mask_{}'.format(direction, type, j - 1)] / total)
+                        key = 'alt.{}.{}.mask_{}'.format(direction, type, j-1)
+                        results['score'].append(accuracies[i][key] / total)
+                        total_heads = len(head_to_mask[i][key])
+                        for head_no in range(17):
+                            masko['num_masked'].append(j)
+                            masko['head'].append(head_no)
+                            masko['freq'].append(head_to_mask[i][key].count(head_no) / total_heads)
+                            masko['direction'].append(direction)
+                            results['head_{}'.format(head_no)].append(head_to_mask[i][key].count(head_no) / total_heads)
+
                     results['direction'].append(direction)
                     results['type'].append(type_dict[type])
                     results['exp'].append(exp_dict[i])
                     # add 1 because index 0 has 1 head masked
                     results['masked'].append(j)
-
     for i in results:
         results[i] = np.array(results[i])
 
     results = pd.DataFrame(results)
-
+    masko = pd.DataFrame(masko)
     # plt.axis('on')
-    sns.set_style("darkgrid")
-    # sns.catplot(x='masked', y='score', hue='direction', data=results, kind='violin', split=True)
-    # sns.catplot(x='type', y='score', hue='direction', data=results, kind='box')
 
-    sns.relplot(x='masked', y='score', hue="direction", col="type", data=results, ci=90, palette='husl', kind='line')
-
-    # sns.lineplot(x='masked', y='score', hue='type', data=results[results.direction == 'h2l'], ci=None)
-    # sns.lineplot(x='masked', y='score', hue='type', data=results[results.direction == 'l2h'], ci=None, palette='muted')
-
+    sns.set_style("white")
+    p = sns.catplot(x='num_masked', y='freq', hue='head', data=masko, kind='bar', ci=None, legend=False)
+    q = sns.lineplot(x='masked', y='score', hue='direction', data=results, ax=p.axes.item())
     plt.show()
 
     exit()
@@ -115,9 +124,15 @@ def map_one(mat):
 
 
 def predbo():
-    fig, ax = plt.subplots(2, 5, sharex=True, sharey=True)
+    fig, ax = plt.subplots(2, 4, sharex=True, sharey=True)
+    del(tuples['text_scrambled'])
+    del(tuples['text_freqnoun'])
+
     for n, experiment in enumerate(tuples.keys()):
-        x, y = n // 5, n % 5
+        if experiment in ['text_scrambled', 'text_freqnoun']:
+            continue
+
+        x, y = n // 4, n % 4
 
         for i in attentions[experiment]:
             attentions[experiment][i] = np.stack(attentions[experiment][i])
@@ -154,13 +169,15 @@ def predbo():
     plt.show()
 
 def plotbo():
-    fig, ax = plt.subplots(2, 5, sharex=True, sharey=True)
+    fig, ax = plt.subplots(2, 4, sharex=True, sharey=True)
+    del(tuples['text_scrambled'])
+    del(tuples['text_freqnoun'])
     c = Counter()
     for n, experiment in enumerate(tuples.keys()):
         for report in attentions[experiment]:
             attentions[experiment][report] = torch.stack(attentions[experiment][report]).mean(dim=0).numpy()
 
-        x, y = n // 5, n % 5
+        x, y = n // 4, n % 4
 
         # current_indices = indices[experiment]['tuples']
         # heat = np.zeros((24, 16))
@@ -175,15 +192,16 @@ def plotbo():
 
         ax[x, y].axis([0, 15.5, 0, 23.5])
         ax[x, y].axis('off')
-        ax[x, y].set_title(experiment[5:])
+        ax[x, y].set_title(exp_dict[experiment], fontsize=18)
         attn_diff = attentions[experiment]['correct'] - attentions[experiment]['wrong']
         # attn_diff = attn_diff_gold - attn_diff_pred
-        # attn_diff[attn_diff < 0] = 0
-
-        im = ax[x, y].imshow(attn_diff, vmin=-0.15, vmax=0.15)
+        attn_diff[attn_diff < 0] = 0
+        im = ax[x, y].imshow(attn_diff, vmin=0, vmax=0.1)#, vmax=1)
         # im = ax[x, y].imshow(attn_diff)
 
+    plt.colorbar(im, ax=ax.ravel().tolist())
     # print(c)
+    plt.savefig('/tmp/attn.png')
     plt.show()
     # plt.savefig('/tmp/diff_gold_top5')
 
