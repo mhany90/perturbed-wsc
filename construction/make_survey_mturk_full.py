@@ -42,7 +42,7 @@ def replace_pronoun(tokenized_text, pronoun_index, tokenized_option):
     return tokenized_text
 
 counter = 0
-limit_of_dps = 289
+limit_of_dps = 285
 split_counter = 0
 filename = sys.argv[1]
 filename = filename + '.full' + '.csv'
@@ -61,11 +61,11 @@ for q_index, dp_split in wsc_datapoints.iterrows():
 
         correct_answer = dp_split['correct_answer'].strip()
         pronoun = dp_split['pron'].strip()
-        pronoun_index_orig =  dp_split['pron_index']
+        pronoun_index_orig =  dp_split['pron_index_adverb']
 
         answer_A = dp_split['answer_a'].strip()
         answer_B = dp_split['answer_b'].strip()
-        text = dp_split['text_scrambled'].strip()
+        text = dp_split['text_adverb'].strip()
         """
         print(text, ' : text')
         print(answer_A, " : answer_A")
