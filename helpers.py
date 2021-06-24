@@ -3,7 +3,7 @@ import numpy as np
 import pandas as pd
 
 
-path_to_wsc = '../data/wsc_data/enhanced.tense.random.role.syn.voice.scramble.freqnoun.gender.number.adverb.tsv'
+path_to_wsc = './data/dataset/enhanced_wsc.tsv'
 wsc_datapoints = pd.read_csv(path_to_wsc, sep='\t')
 
 
